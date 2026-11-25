@@ -399,6 +399,12 @@ html.light .note{color:rgba(0,0,0,.6)}
 .ex .kvv,.sc .ctl .kvv{white-space:nowrap;max-width:none}
 .wts .pg{padding-top:12px}
 .tab.on .tt{font-weight:400}
+
+@media (display-mode: standalone){html{min-height:min(100lvh,calc(100% + env(safe-area-inset-top,0px)))}body{min-height:100%}}
+html.sa{min-height:min(100lvh,calc(100% + env(safe-area-inset-top,0px)))}
+#gear{height:41px;width:46px;margin:-9px 0 0 0}
+.sbh .con{scrollbar-width:none}.sbh .con::-webkit-scrollbar{display:none}
+.sbs .con{overflow-y:scroll}
 </style></head><body>
 <div id="boot"><div class="bw"><div class="bl"><i></i><i></i><i></i><i></i></div></div><div class="bsw"><svg class="bsp" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="58 24"/></svg></div></div>
 <div id="app">
@@ -433,7 +439,7 @@ grad:["linear-gradient(135deg,#0f2027,#203a43 50%,#2c5364)","linear-gradient(135
 const SCHEMES={campbell:['12,12,12','204,204,204'],onehalf:['30,30,30','220,223,228'],solarized:['0,43,54','131,148,150'],pshell:['1,36,86','204,204,204']};
 const applyLook=()=>{const sc=SCHEMES[S.set.scheme]||SCHEMES.campbell;document.documentElement.style.setProperty('--bgc',sc[0]);document.documentElement.style.setProperty('--fg','rgb('+sc[1]+')');const r=document.documentElement,st=r.style;st.setProperty('--alpha',S.set.alpha);st.setProperty('--fs',S.set.fs+'px');st.setProperty('--accent',S.set.accent);st.setProperty('--ff',`'${S.set.font}', Consolas, monospace`);
  const L=S.set.theme==='light'||(S.set.theme==='system'&&matchMedia('(prefers-color-scheme: light)').matches);
- r.classList.toggle('light',L);r.classList.toggle('nomica',!S.set.mica);r.classList.toggle('nowrap',!S.set.wrap);r.classList.toggle('rm',!!S.set.rm);r.classList.toggle('hc',!!S.set.hc);r.classList.toggle('nonoise',S.set.noise===false);st.setProperty('--blur',(S.set.blur??60)+'px');st.setProperty('--tabr',(S.set.tabr??6)+'px');st.setProperty('--tabw',(S.set.tabw||235)+'px');st.setProperty('--fw',S.set.fw||400);st.setProperty('--lh',S.set.lh||1.25);st.setProperty('--wall',(S.set.wall==='custom'&&S.set.wallImg)?'url('+S.set.wallImg+') center/cover no-repeat':WALLS[S.set.wall||'bloom'][L?1:0]);st.setProperty('--fs',Math.round(S.set.fs*(S.set.big?1.12:1))+'px');st.setProperty('--accent',S.set.hc?'#ffff00':S.set.accent);st.setProperty('--toppad',(S.set.topPad??28)+'px');st.setProperty('--gapfix',(S.set.gapFix||0)+'px');st.setProperty('--ui',S.set.ui||1);st.setProperty('--tabc',L?'rgba(250,250,250,'+S.set.alpha+')':'rgba('+sc[0]+','+S.set.alpha+')');r.classList.toggle('winctl',!!S.set.winctl)};
+ r.classList.toggle('light',L);r.classList.toggle('nomica',!S.set.mica);r.classList.toggle('nowrap',!S.set.wrap);r.classList.toggle('rm',!!S.set.rm);r.classList.toggle('hc',!!S.set.hc);r.classList.toggle('nonoise',S.set.noise===false);st.setProperty('--blur',(S.set.blur??60)+'px');st.setProperty('--tabr',(S.set.tabr??6)+'px');st.setProperty('--tabw',(S.set.tabw||235)+'px');st.setProperty('--fw',S.set.fw||400);st.setProperty('--lh',S.set.lh||1.25);st.setProperty('--wall',(S.set.wall==='custom'&&S.set.wallImg)?'url('+S.set.wallImg+') center/cover no-repeat':WALLS[S.set.wall||'bloom'][L?1:0]);st.setProperty('--fs',Math.round(S.set.fs*(S.set.big?1.12:1))+'px');st.setProperty('--accent',S.set.hc?'#ffff00':S.set.accent);st.setProperty('--toppad',(S.set.topPad??28)+'px');st.setProperty('--gapfix',(S.set.gapFix||0)+'px');st.setProperty('--ui',S.set.ui||1);st.setProperty('--tabc',L?'rgba(250,250,250,'+S.set.alpha+')':'rgba('+sc[0]+','+S.set.alpha+')');r.classList.toggle('winctl',!!S.set.winctl);r.classList.toggle('sbh',S.set.sbar==='hidden');r.classList.toggle('sbs',S.set.sbar==='always')};
 const getEnv=n=>{const u=n.toUpperCase();if(u==='GEMINI_API_KEY')return S.set.apiKey;if(u==='GEMINI_MODEL')return S.set.model;
  const d={USERNAME:'User',COMPUTERNAME:'WT-PWA',OS:'Windows_NT',USERPROFILE:'C:\\Users\\User',SYSTEMROOT:'C:\\Windows',PATH:'C:\\Windows\\System32;C:\\Windows'};return S.env[u]??d[u]??''};
 const setEnv=(n,v)=>{const u=n.toUpperCase();if(u==='GEMINI_API_KEY')S.set.apiKey=v;else if(u==='GEMINI_MODEL')S.set.model=v;else S.env[u]=v;save();refreshSettings()};
@@ -474,7 +480,7 @@ function closeTab(t){t.dead=true;t.abort&&t.abort();t.view.remove();const i=tabs
 function newTab(type){if(type==='settings'){const o=tabs.find(x=>x.type==='settings');if(o)return sel(o)}
  const t={id:nid++,type,cwd:['Users','User'],title:TT[type],hi:-1,conv:[],fresh:true};const v=document.createElement('div');v.className='view';t.view=v;$('#views').append(v);tabs.push(t);
  if(type==='settings')t.page='startup';else buildConsole(t);sel(t);return t}
-const setPrompt=t=>{t.pr.textContent=t.type==='ps'?`PS ${pstr(t.cwd)}> `:t.type==='cmd'?(t.promptFmt||S.set.cmdPrompt||'$P$G').replace(/\$P\$G/i,pstr(t.cwd)+'>').replace(/\$P/i,pstr(t.cwd)).replace(/\$G/i,'>'):'Gemini> '};
+const setPrompt=t=>{t.pr.textContent=t.type==='ps'?`PS ${S.set.fullPath===false?(t.cwd[t.cwd.length-1]||'C:\\'):pstr(t.cwd)}> `:t.type==='cmd'?(t.promptFmt||S.set.cmdPrompt||'$P$G').replace(/\$P\$G/i,pstr(t.cwd)+'>').replace(/\$P/i,pstr(t.cwd)).replace(/\$G/i,'>'):'Gemini> '};
 function hlHtml(v){let first=true;return v.replace(/("[^"]*"?|'[^']*'?)|(\s+)|(\|)|([^\s"'|]+)/g,(m,s,w,p,x)=>{if(s)return`<span class="cy">${esc(s)}</span>`;if(w)return w;if(p){first=true;return'|'}
  let c='';if(first){first=false;c=AL[x.toLowerCase()]?'y':'r'}else if(/^-/.test(x))c='gr';else if(/^\$/.test(x))c='gn';return`<span class="${c}">${esc(x)}</span>`})}
 function buildConsole(t){t.view.innerHTML='<div class="con"><div class="inl"><span class="pr"></span><div class="iw"><div class="hl"></div><input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="go"></div></div></div>';
@@ -482,7 +488,7 @@ function buildConsole(t){t.view.innerHTML='<div class="con"><div class="inl"><sp
  if(t.type!=='ps')t.con.classList.add('plain');
  t.print=(x,c)=>{const d=document.createElement('div');d.className=(c||'')+' ln';d.textContent=x;t.con.insertBefore(d,t.inl);return d};
  t.html=h=>{const d=document.createElement('div');d.className='ln';d.innerHTML=h;t.con.insertBefore(d,t.inl);return d};
- t.scroll=()=>{t.con.scrollTop=t.con.scrollHeight};t.clear=()=>[...t.con.children].forEach(e=>e!==t.inl&&e.remove());
+ t.scroll=()=>{if(S.set.autoScroll!==false)t.con.scrollTop=t.con.scrollHeight};t.clear=()=>[...t.con.children].forEach(e=>e!==t.inl&&e.remove());
  t.setColor=(b,f)=>{t.con.style.setProperty('--bgc',b||'12,12,12');t.con.style.setProperty('--fg',f?`rgb(${f})`:'#ccc')};
  t.god=()=>{S.secrets=true;save();t.con.classList.remove('god');void t.con.offsetWidth;t.con.classList.add('god');
   t.html(`<span style="color:#ffd700">${plain(bannerH('GOD MODE')).split('\n').join('\n')}</span>`);t.print(godList());t.scroll()};
@@ -517,7 +523,7 @@ const expV=(x,single)=>single?x:x.replace(/\$env:(\w+)/gi,(m,n)=>getEnv(n)).repl
 const tokenize=s=>{const r=[];s.replace(/"([^"]*)"|'([^']*)'|(\S+)/g,(m,a,b,c)=>{r.push(expV(a!==undefined?a:b!==undefined?b:c,b!==undefined))});return r};
 async function run(t,line){t.busy=true;t.inl.style.display='none';
  t.html(esc(t.pr.textContent)+(t.type==='ps'?hlHtml(line):esc(line)));
- if(line.trim()){S.hist.push(line);if(S.hist.length>(S.set.histMax||500))S.hist.shift();save()}
+ if(line.trim()&&S.set.histSave!==false){S.hist.push(line);if(S.hist.length>(S.set.histMax||500))S.hist.shift();save()}
  try{await exec(t,line)}catch(e){t.print(String(e.message||e),'r')}
  t.busy=false;if(!t.dead){t.inl.style.display='';setPrompt(t);t.inp.focus();t.scroll()}}
 async function exec(t,line){line=line.trim();if(!line)return;let m;
@@ -527,7 +533,7 @@ async function exec(t,line){line=line.trim();if(!line)return;let m;
   if(ART_RE.test(line)){t.print(await gemArt(t,line),'art');return}
   const r=await gem(t,line,true,t.conv);t.conv.push({role:'user',parts:[{text:line}]},{role:'model',parts:[{text:r}]});if(t.conv.length>24)t.conv.splice(0,2);return}
  const vm=/^\$([A-Za-z_]\w*)\s*=\s*(.+)$/.exec(line);
- if(vm&&!/^\$env:/i.test(line)){const v=vm[2].trim();VARS[vm[1]]=/^["']/.test(v)?v.slice(1,-1):/^[\d\s.+\-*/()%]+$/.test(v)?String(calc(v)):expV(v,false);return}
+ if(vm&&!/^\$env:/i.test(line)){const v=vm[2].trim();VARS[vm[1]]=/^["']/.test(v)?v.slice(1,-1):/^[\d\s.+\-*/()%]+$/.test(v)?String(calc(v)):(/^[A-Za-z][\w-]*(\s|$)/.test(v)&&AL[v.split(/\s/)[0].toLowerCase()]?(await capture(t,v)).trim():expV(v,false));return}
  const vr=/^\$([A-Za-z_]\w*)$/.exec(line);
  if(vr&&Object.prototype.hasOwnProperty.call(VARS,vr[1])){t.print(VARS[vr[1]]);return}
  if(/^[\d\s.+\-*/()%]+$/.test(line)&&/[+\-*/%]/.test(line)){t.print(String(calc(line)));return}
@@ -537,7 +543,7 @@ async function exec(t,line){line=line.trim();if(!line)return;let m;
  const{stages,redir}=splitLine(line);let data=null;
  for(let i=0;i<stages.length;i++){const last=i===stages.length-1,a=tokenize(stages[i]);if(!a.length)continue;const name=a.shift(),id=AL[name.toLowerCase()];
   if(!id||(t.type==='cmd'&&name.includes('-')))throw new Error(t.type==='cmd'?`'${name}' は、内部コマンドまたは外部コマンド、\n操作可能なプログラムまたはバッチ ファイルとして認識されていません。`:`${name}: The term '${name}' is not recognized as a name of a cmdlet, function, script file, or executable program.\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.`);
-  const c={t,a,p:a.filter(x=>!/^[-\/]/.test(x)),f:new Set(a.filter(x=>/^[-\/]/.test(x)).map(x=>x.slice(1).toLowerCase())),in:data,live:last&&!redir};
+  const c={t,n:name.toLowerCase(),a,p:a.filter(x=>!/^[-\/]/.test(x)),f:new Set(a.filter(x=>/^[-\/]/.test(x)).map(x=>x.slice(1).toLowerCase())),in:data,live:last&&!redir};
   const r=await CM[id].f(c);data=r==null?'':r}
  if(redir){const l=loc(t.cwd,redir.path);if(!l.par||!l.name)throw new Error('指定されたパスが見つかりません。');const txt=plain(data)+'\n';
   if(l.node&&l.node.t==='d')throw new Error('Access is denied.');if(l.node&&redir.app)l.node.c+=txt;else l.par.c[l.name]=mkF(txt);l.par.m=now();save();return}
@@ -710,13 +716,58 @@ reg('fh','Format-Hex','ファイルを16進数で表示',['format-hex'],c=>{cons
  for(let i=0;i<b.length;i+=16){const ch=b.slice(i,i+16);rows.push(`${i.toString(16).padStart(8,'0')}   ${ch.map(x=>x.toString(16).padStart(2,'0').toUpperCase()).join(' ').padEnd(47)}  ${ch.map(x=>x>=32&&x<127?String.fromCharCode(x):'.').join('')}`)}
  return'\nPath: '+pstr(l.parts)+'\n\n           00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F\n'+rows.join('\n')});
 
+/* ===== more commands 2 ===== */
+async function capture(t,line){const out=[],p=t.print,h=t.html;t.print=x=>{out.push(x);return document.createElement('div')};t.html=x=>{out.push(plain(H0+x));return document.createElement('div')};try{await exec(t,line)}finally{t.print=p;t.html=h}return out.join('\n')}
+const lsOrig=CM.ls.f;
+CM.ls.f=c=>{const rec=c.f.has('recurse')||c.f.has('s');if(!rec)return lsOrig(c);const a=c.p.join(' ')||'.',l=loc(c.t.cwd,a);if(!l.node||l.node.t!=='d')return lsOrig(c);
+ const names=c.f.has('b')||c.f.has('name'),f2=new Set([...c.f].filter(x=>x!=='recurse'&&x!=='s')),out=[],base=l.parts.length;
+ const walkD=(node,parts)=>{if(names){for(const k of Object.keys(node.c).sort())out.push(parts.slice(base).concat(k).join('\\'))}else out.push(lsOrig({...c,p:[pstr(parts)],f:f2}));for(const k of Object.keys(node.c).sort())if(node.c[k].t==='d')walkD(node.c[k],[...parts,k])};
+ walkD(l.node,canon(l.parts));return out.join(names?'\n':'')};
+const catOrig=CM.cat.f;
+CM.cat.f=c=>{const n=opt(c.a,'totalcount')||opt(c.a,'head'),m=opt(c.a,'tail'),p=c.p.filter(x=>x!==n&&x!==m);if(p.length===1&&p[0].toLowerCase()==='nul')return'';let r=catOrig({...c,p});if(n)r=r.split('\n').slice(0,+n).join('\n');if(m)r=r.split('\n').slice(-m).join('\n');return r};
+const dateOrig=CM.date.f;
+CM.date.f=c=>{const d=new Date(),fmt=opt(c.a,'format')||opt(c.a,'uformat');
+ if(fmt){const z=n=>String(n).padStart(2,'0'),M={yyyy:d.getFullYear(),yy:String(d.getFullYear()).slice(2),MM:z(d.getMonth()+1),dd:z(d.getDate()),HH:z(d.getHours()),mm:z(d.getMinutes()),ss:z(d.getSeconds())};return fmt.replace(/yyyy|yy|MM|dd|HH|mm|ss/g,t=>M[t])}
+ if(c.f.has('t'))return c.n==='time'?d.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}):d.toLocaleDateString('ja-JP');return dateOrig(c)};
+const CLR={black:'#0c0c0c',darkblue:'#3b78ff',darkgreen:'#13a10e',darkcyan:'#3a96dd',darkred:'#c50f1f',darkmagenta:'#881798',darkyellow:'#c19c00',gray:'#cccccc',darkgray:'#767676',blue:'#3b78ff',green:'#16c60c',cyan:'#61d6d6',red:'#e74856',magenta:'#b4009e',yellow:'#f9f1a5',white:'#f2f2f2'};
+reg('wh','Write-Host','色付きでテキストを出力 (-ForegroundColor / -BackgroundColor)',['write-host'],c=>{const fg=opt(c.a,'foregroundcolor'),bg=opt(c.a,'backgroundcolor'),tx=c.a.filter((x,i,a)=>!/^-/.test(x)&&String(a[i-1]).toLowerCase()!=='-foregroundcolor'&&String(a[i-1]).toLowerCase()!=='-backgroundcolor').join(' ');if(!fg&&!bg)return tx;return H(`<span style="${fg?'color:'+(CLR[fg.toLowerCase()]||fg)+';':''}${bg?'background:'+(CLR[bg.toLowerCase()]||bg):''}">${esc(tx)}</span>`)});
+reg('rh','Read-Host','ユーザー入力を読み取る',['read-host'],c=>{const v=prompt(c.p.join(' ')||'入力してください');return v==null?'':v});
+reg('gv','Get-Variable','変数の一覧を表示',['get-variable','gv'],c=>'\nName                           Value\n----                           -----\n'+Object.entries(VARS).map(([k,v])=>k.padEnd(31)+v).join('\n'));
+reg('rv','Remove-Variable','変数を削除',['remove-variable','rv'],c=>{c.p.forEach(n=>delete VARS[n.replace(/^\$/,'')]);return''});
+reg('onl','Out-Null','出力を破棄',['out-null'],c=>'');
+reg('ostr','Out-String','入力を文字列として出力',['out-string','out-host'],c=>c.in!=null?c.in:'');
+reg('tee','Tee-Object','入力をファイルに保存しつつ出力',['tee-object','tee'],c=>{const p=opt(c.a,'filepath')||c.p[0];if(p&&c.in!=null)wr(c,p,plain(c.in)+'\n',c.f.has('append'));return c.in!=null?c.in:''});
+reg('grep','grep','文字列を検索 (Select-String の別名)',['grep'],c=>CM.sel.f(c));
+reg('wc','wc','行数・単語数・文字数 (Measure-Object の別名)',['wc'],c=>CM.mo.f(c));
+reg('head','head','先頭の行を表示 (-n 10)',['head'],c=>{const n=+(opt(c.a,'n')||10),L=src({...c,p:c.p.filter(x=>!/^\d+$/.test(x))});if(!L)throw new Error('使い方: head [-n 10] <ファイル>');return L.slice(0,n).join('\n')});
+reg('tail','tail','末尾の行を表示 (-n 10)',['tail'],c=>{const n=+(opt(c.a,'n')||10),L=src({...c,p:c.p.filter(x=>!/^\d+$/.test(x))});if(!L)throw new Error('使い方: tail [-n 10] <ファイル>');return L.slice(-n).join('\n')});
+reg('touch','touch','空のファイルを作成 / 更新日時を更新',['touch'],c=>{if(!c.p.length)throw new Error('使い方: touch <ファイル>');for(const p of c.p){const l=loc(c.t.cwd,p);if(!l.par||!l.name)throw new Error('パスが見つかりません。');if(l.node)l.node.m=now();else l.par.c[l.name]=mkF('')}save();return''});
+reg('which','which','コマンドの場所を表示',['which'],c=>{const n=c.p[0];if(!n)throw new Error('使い方: which <コマンド>');const id=AL[n.toLowerCase().replace(/\.exe$/,'')];if(!id)throw new Error(`${n}: コマンドが見つかりません`);return n.toLowerCase()===CM[id].n.toLowerCase()?CM[id].n:`${n} -> ${CM[id].n}`});
+reg('uname','uname','OS 名を表示 (-a で詳細)',['uname'],c=>c.f.has('a')?`Windows_NT ${DEV.name} 10.0.22631 x86_64`:'Windows_NT');
+reg('uptime','uptime','稼働時間を表示',['uptime'],c=>CM.gup.f(c));
+reg('pws','pwsh','新しい PowerShell タブを開く',['pwsh','powershell'],c=>{newTab('ps');return''});
+reg('cmdx','cmd','新しいコマンド プロンプト タブを開く',['cmd'],c=>{newTab('cmd');return''});
+reg('wtx','wt','新しいタブを開く (wt -p cmd など)',['wt'],c=>{const p=(opt(c.a,'p')||opt(c.a,'profile')||'').toLowerCase();newTab(/cmd|コマンド/.test(p)?'cmd':/gemini|ai/.test(p)?'ai':'ps');return''});
+reg('assoc','assoc','拡張子の関連付けを表示',['assoc'],c=>{const A={'.txt':'txtfile','.ps1':'Microsoft.PowerShellScript.1','.json':'jsonfile','.html':'htmlfile','.exe':'exefile','.bat':'batfile','.md':'mdfile'},q=c.p[0];if(q)return A[q.toLowerCase()]?q+'='+A[q.toLowerCase()]:`${q} の拡張子に関連付けられたファイルはありません`;return Object.entries(A).map(([k,v])=>k+'='+v).join('\n')});
+reg('tk','taskkill','プロセスを終了（模擬）',['taskkill','stop-process','kill'],c=>{const i=c.a.findIndex(x=>/^[\/-](im|pid|name|id)$/i.test(x)),n=i>=0?c.a[i+1]:c.p[0];if(!n)throw new Error('使い方: taskkill /IM <名前>');return`SUCCESS: プロセス "${n}" に終了シグナルを送信しました。（模擬）`});
+reg('pause','pause','キー入力を待つ',['pause'],c=>new Promise(res=>{c.t.print('続行するには何かキーを押してください . . .');const f=()=>{removeEventListener('keydown',f,true);c.t.abort=null;res('')};addEventListener('keydown',f,true);c.t.abort=f}));
+reg('rem','rem','コメント（何もしません）',['rem','::'],c=>'');
+reg('dns','Resolve-DnsName','DNS 名前解決 (DNS over HTTPS)',['nslookup','resolve-dnsname'],async c=>{const h=c.p[0];if(!h)throw new Error('使い方: nslookup <ホスト名> [-Type A|AAAA|MX|TXT]');const ty=(opt(c.a,'type')||'A').toUpperCase(),ac=new AbortController();c.t.abort=()=>ac.abort();
+ try{const r=await fetch(`https://dns.google/resolve?name=${encodeURIComponent(h)}&type=${ty}`,{signal:ac.signal}),j=await r.json();if(!j.Answer)return`*** ${h} が見つかりません: ${j.Status===3?'Non-existent domain':'応答がありません'}`;return'Server:  dns.google\nAddress:  8.8.8.8\n\nNon-authoritative answer:\n'+j.Answer.map(a=>`Name:    ${a.name.replace(/\.$/,'')}\nType:    ${a.type}\nTTL:     ${a.TTL}\nData:    ${a.data}\n`).join('\n')}
+ catch(e){throw new Error('nslookup: '+(e.name==='AbortError'?'中断しました':'DNS に問い合わせできません（ネットワーク制限の可能性）'))}finally{c.t.abort=null}});
+reg('cim','Get-CimInstance','システム情報を表示 (Win32_OperatingSystem など)',['get-ciminstance','gcim','get-wmiobject'],c=>{const k=(c.p[0]||opt(c.a,'classname')||'').toLowerCase(),T={win32_operatingsystem:[['Caption','Microsoft Windows 11 Pro'],['Version','10.0.22631'],['BuildNumber','22631'],['OSArchitecture','64-bit'],['CSName',DEV.name]],win32_computersystem:[['Name',DEV.name],['NumberOfLogicalProcessors',DEV.cores],['TotalPhysicalMemory',DEV.mem]],win32_processor:[['Name',navigator.platform],['NumberOfLogicalProcessors',DEV.cores]],win32_bios:[['Manufacturer','WinTerm'],['SMBIOSBIOSVersion','1.0']]},r=T[k];if(!r)throw new Error(`Get-CimInstance: クラス '${c.p[0]||''}' が見つかりません。対応: Win32_OperatingSystem, Win32_ComputerSystem, Win32_Processor, Win32_BIOS`);return'\n'+r.map(x=>x[0].padEnd(28)+': '+x[1]).join('\n')+'\n'});
+reg('gep','Get-ExecutionPolicy','実行ポリシーを表示',['get-executionpolicy'],c=>'RemoteSigned');
+reg('sep','Set-ExecutionPolicy','実行ポリシーを設定（模擬）',['set-executionpolicy'],c=>'');
+reg('say','Speak','テキストを読み上げ (SpeechSynthesis)',['say','speak'],c=>{const tx=(c.in!=null?plain(c.in):c.p.join(' ')).trim();if(!tx)throw new Error('使い方: say <テキスト>');if(!('speechSynthesis' in window))throw new Error('この環境では読み上げに対応していません。');const u=new SpeechSynthesisUtterance(tx);u.lang=/[\u3040-\u30ff\u4e00-\u9fff]/.test(tx)?'ja-JP':(DEV.lang||'en-US');speechSynthesis.cancel();speechSynthesis.speak(u);return''});
+reg('chist','Clear-History','コマンド履歴を消去',['clear-history'],c=>{S.hist=[];save();return''});
+reg('sal','Set-Alias','エイリアスを作成 (このセッションのみ)',['set-alias','new-alias','sal'],c=>{const[n,v]=c.p;if(!n||!v)throw new Error('使い方: Set-Alias <名前> <コマンド>');const id=AL[v.toLowerCase()];if(!id)throw new Error(`コマンド '${v}' が見つかりません。`);AL[n.toLowerCase()]=id;return''});
 /* ===== Gemini ===== */
 async function gem(t,prompt,live,hist){const k=S.set.apiKey;if(!k)throw new Error('Gemini APIキーが未設定です。\n  ・設定を開く: Ctrl + ,\n  ・または:     $env:GEMINI_API_KEY = "あなたのAPIキー"\nAPIキーは https://aistudio.google.com/apikey で取得できます。');
  const ac=new AbortController();t.abort=()=>ac.abort();let sp,id=0,box,full='';
  const stop=()=>{if(id){clearInterval(id);id=0;sp.remove()}};
  if(live){sp=t.print('');let i=0;const d=()=>sp.textContent='[ '+'|/-\\'[i++%4]+' ] Thinking...';d();id=setInterval(d,80)}
  try{const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(S.set.model)}:streamGenerateContent?alt=sse&key=${encodeURIComponent(k)}`,{method:'POST',headers:{'Content-Type':'application/json'},signal:ac.signal,
-   body:JSON.stringify({contents:[...(hist||[]),{role:'user',parts:[{text:prompt}]}],systemInstruction:{parts:[{text:S.set.sys}]}})});
+   body:JSON.stringify({contents:[...(hist||[]),{role:'user',parts:[{text:prompt}]}],systemInstruction:{parts:[{text:S.set.sys}]},generationConfig:{temperature:S.set.temp??1,maxOutputTokens:S.set.maxTok||8192}})});
   if(!r.ok){let m=String(r.status);try{m=(await r.json()).error.message}catch(e){}throw new Error('Gemini API エラー: '+m)}
   const rd=r.body.getReader(),dec=new TextDecoder();let buf='';
   for(;;){const{done,value}=await rd.read();if(done)break;buf+=dec.decode(value,{stream:true});const ls=buf.split('\n');buf=ls.pop();
@@ -777,12 +828,26 @@ const IC=(n,z=20,p='fluent')=>`<iconify-icon icon="${p}:${n}" width="${z}" heigh
 const isLightNow=()=>S.set.theme==='light'||(S.set.theme==='system'&&matchMedia('(prefers-color-scheme: light)').matches);
 const wallBg=(w,l)=>(w==='custom'&&S.set.wallImg)?`url(${S.set.wallImg}) center/cover`:WALLS[w||'bloom'][l?1:0];
 const setLook=(k,v)=>{S.set[k]=v;save();applyLook()};
-const urow=(ic,ti,d,ctl,go,dis)=>`<div class="sc${go?' cl':''}${dis?' dis':''}"${go?` data-go="${go}"`:''}><span class="si">${ic?(ic.startsWith('<')?ic:IC(ic,22)):''}</span><div class="tx">${ti}${d?`<small>${d}</small>`:''}</div><div class="ctl">${ctl||''}</div>${go?IC('chevron-right-20-regular',16):''}</div>`;
-const uex=(id,ic,ti,d,ctl,body)=>`<div class="sc cl ex" data-exp="${id}"><span class="si">${ic?(ic.startsWith('<')?ic:IC(ic,22)):''}</span><div class="tx">${ti}${d?`<small>${d}</small>`:''}</div><div class="ctl">${ctl||''}</div><span class="chev">${IC('chevron-down-20-regular',16)}</span></div><div class="exp"><div><div class="expin">${body}</div></div></div>`;
+const svg=d=>`<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const SV={globe:svg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>'),ime:svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 10h3M9.5 10v4M14 10v4h3"/>'),power:svg('<path d="M12 3v8"/><path d="M6.3 6.6a8 8 0 1011.4 0"/>'),play:svg('<path d="M8 5l11 7-11 7z"/>'),
+winnew:svg('<rect x="3" y="6" width="14" height="12" rx="2"/><path d="M20 8v10H9M10 9v6M7 12h6"/>'),resize:svg('<path d="M4 20L20 4M14 4h6v6M10 20H4v-6"/>'),cog:svg('<circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/>'),
+copy:svg('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/>'),trim:svg('<circle cx="6" cy="7" r="2.5"/><circle cx="6" cy="17" r="2.5"/><path d="M8 8.5L20 18M8 15.5L20 6"/>'),pointer:svg('<path d="M9 4l9 7-4 1 3 5-2 1-3-5-3 3z"/>'),
+corner:svg('<path d="M5 20V12a7 7 0 017-7h8"/>'),winbtn:svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M13 9h2M17 8.5l2 2M19 8.5l-2 2M9 9h2"/>'),drop:svg('<path d="M12 3s6 6.5 6 10.5a6 6 0 01-12 0C6 9.5 12 3 12 3z"/>'),
+noise:svg('<g fill="currentColor" stroke="none"><circle cx="6" cy="6" r="1.2"/><circle cx="12" cy="9" r="1.2"/><circle cx="18" cy="6" r="1.2"/><circle cx="8" cy="14" r="1.2"/><circle cx="15" cy="15" r="1.2"/><circle cx="6" cy="19" r="1.2"/><circle cx="12" cy="19" r="1.2"/><circle cx="19" cy="19" r="1.2"/></g>'),
+motion:svg('<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'),textbig:svg('<path d="M4 18L9 6l5 12M5.8 14h6.4M16 18l2.5-6 2.5 6M17 16h3"/>'),
+contrast:svg('<circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 000-18z" fill="currentColor"/>'),history:svg('<path d="M4 12a8 8 0 108-8 8 8 0 00-6 2.7M4 5v4h4M12 8v4l3 2"/>'),sync:svg('<path d="M20 11a8 8 0 00-14-4M4 5v4h4M4 13a8 8 0 0014 4M20 19v-4h-4"/>'),
+plug:svg('<path d="M9 3v4M15 3v4M7 7h10v5a5 5 0 01-10 0zM12 17v4"/>'),bold:svg('<path d="M7 5h6a3.5 3.5 0 010 7H7zM7 12h7a3.5 3.5 0 010 7H7z"/>'),linesp:svg('<path d="M9 6h11M9 12h11M9 18h11M4 8V4M4 4L2.5 5.5M4 4l1.5 1.5M4 16v4M4 20l-1.5-1.5M4 20l1.5-1.5"/>'),
+wrap:svg('<path d="M4 6h16M4 12h13a3 3 0 010 6h-4M13 16l-2 2 2 2M4 18h4"/>'),folder:svg('<path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>'),info:svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>'),
+scroll:svg('<path d="M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/>'),bar:svg('<rect x="15" y="4" width="4" height="16" rx="2"/><path d="M5 8h6M5 12h6M5 16h6"/>'),temp:svg('<path d="M10 14V5a2 2 0 014 0v9a4 4 0 11-4 0z"/>'),token:svg('<rect x="4" y="6" width="16" height="12" rx="2"/><path d="M8 10v4M12 10v4M16 10v4"/>'),
+clear:svg('<path d="M4 16l9-9a2 2 0 013 0l3 3a2 2 0 010 3l-6 6H8zM9 20h11"/>'),stop:svg('<rect x="6" y="6" width="12" height="12" rx="2"/>'),tabplus:svg('<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M12 9.5v6M9 12.5h6"/>'),tabx:svg('<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M9.5 10l5 5M14.5 10l-5 5"/>'),swap:svg('<path d="M4 8h13M13 4l4 4-4 4M20 16H7M11 12l-4 4 4 4"/>'),tabkey:svg('<path d="M5 8h14M5 12h14M5 16h9M17 14l3 2-3 2"/>'),dot:svg('<circle cx="12" cy="12" r="3"/>')};
+const SHI={'出力をクリア':'sv:clear','実行中の処理を中断':'sv:stop','設定を開く':'sv:cog','新しいタブ':'sv:tabplus','新しい PowerShell タブ':'sv:tabplus','新しいコマンド プロンプト タブ':'sv:tabplus','新しい Gemini AI Shell タブ':'sv:tabplus','コマンド パレット':'sv:play','タブを閉じる':'sv:tabx','タブを切り替え':'sv:swap','前 / 次のタブ':'sv:swap','コマンド・ファイル名を補完':'sv:tabkey','履歴を呼び出す':'sv:history'};
+const svIc=ic=>ic.startsWith('sv:')?(SV[ic.slice(3)]||SV.dot):ic.startsWith('<')?ic:IC(ic,22);
+const urow=(ic,ti,d,ctl,go,dis)=>`<div class="sc${go?' cl':''}${dis?' dis':''}"${go?` data-go="${go}"`:''}><span class="si">${ic?svIc(ic):''}</span><div class="tx">${ti}${d?`<small>${d}</small>`:''}</div><div class="ctl">${ctl||''}</div>${go?IC('chevron-right-20-regular',16):''}</div>`;
+const uex=(id,ic,ti,d,ctl,body)=>`<div class="sc cl ex" data-exp="${id}"><span class="si">${ic?svIc(ic):''}</span><div class="tx">${ti}${d?`<small>${d}</small>`:''}</div><div class="ctl">${ctl||''}</div><span class="chev">${IC('chevron-down-20-regular',16)}</span></div><div class="exp"><div><div class="expin">${body}</div></div></div>`;
 const utg=(id,on,dis)=>`<label class="tgl${dis?' dis':''}"><span>${on?'オン':'オフ'}</span><input type="checkbox" id="${id}" ${on?'checked':''}${dis?' disabled':''}><i></i></label>`;
 const usl=(id,o,v,dis)=>`<select class="tin" id="${id}"${dis?' disabled':''}>${o.map(x=>`<option value="${x[0]}" ${String(x[0])===String(v)?'selected':''}>${x[1]}</option>`).join('')}</select>`;
 const urg=(id,mn,mx,st,v,f)=>`<input type="range" id="${id}" min="${mn}" max="${mx}" step="${st}" value="${v}" style="width:200px"><span class="rv" id="${id}v">${f(v)}</span>`;
-const ukv=(ti,val,ic)=>urow(ic||'',ti,'',`<span class="kvv">${esc(String(val))}</span>`);
+const ukv=(ti,val,ic)=>urow(ic||'sv:info',ti,'',`<span class="kvv">${esc(String(val))}</span>`);
 const WTLOGO=z=>`<svg width="${z}" height="${z}" viewBox="0 0 48 48"><rect width="48" height="48" rx="11" fill="#1e222e"/><rect x="7" y="9" width="34" height="30" rx="4" fill="#0c0c0c" stroke="rgba(255,255,255,.2)"/><path d="M14 20l6 5-6 5M24 31h9" fill="none" stroke="#60cdff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const AVATAR=z=>S.set.avatar?`<img class="avimg" src="${S.set.avatar}" alt="" style="width:${z}px;height:${z}px">`:`<div class="av" style="width:${z}px;height:${z}px">${IC('person-24-filled',Math.round(z*.55))}</div>`;
 const refreshSettings=()=>{const s=tabs.find(x=>x.type==='settings');if(s&&cur===s&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||''))buildSettings(s)};
@@ -796,7 +861,7 @@ async function diag(q){const set=(id,v)=>{const e=q('#'+id);if(e)e.textContent=v
  set('dg1',await chk('./icons/apple-touch-icon.png'));set('dg2',await chk('./manifest.json'));set('dg3',await chk('./sw.js'));
  let sw='非対応';if('serviceWorker' in navigator){try{const r=await navigator.serviceWorker.getRegistration();sw=r?(r.active?'有効':'登録済み（起動待ち）'):'未登録'}catch(e){sw='取得できません'}}set('dg4',sw);
  const l=document.querySelector('link[rel="apple-touch-icon"]');set('dg5',l?(l.href.startsWith('data:')?'内蔵アイコンを使用':l.href):'なし');
- const v=window.visualViewport;set('dg6',`innerHeight ${innerHeight} / visualViewport ${v?Math.round(v.height):'-'} / screen ${screen.height} / #app ${Math.round($('#app').getBoundingClientRect().height)}`)}
+ const v=window.visualViewport;const pr=document.createElement('div');pr.style.cssText='position:fixed;visibility:hidden;height:100lvh;width:1px';document.body.append(pr);const lvh=pr.offsetHeight;pr.remove();set('dg6',`innerHeight ${innerHeight} / visualViewport ${v?Math.round(v.height):'-'} / lvh ${lvh} / screen ${screen.height} / html ${document.documentElement.scrollHeight} / #app ${Math.round($('#app').getBoundingClientRect().height)}`)}
 const devRows=()=>`<div class="sc"><span class="si">${IC('desktop-24-regular',32)}</span><div class="tx"><b style="font-size:18px">${esc(DEV.name)}</b><small>${esc(DEV.os)} · Safari ${esc(DEV.safari)}</small></div><div class="ctl"><button class="btn" id="cpd">仕様をコピー</button></div></div>`
  +'<div class="sech">デバイス</div>'+ukv('プロセッサ（論理コア数）',DEV.cores)+ukv('実装 RAM',DEV.mem)+ukv('タッチ ポイント',DEV.touch)+ukv('バッテリー',DEV.batt)
  +'<div class="sech">画面</div>'+ukv('画面の解像度',`${DEV.screen}（${DEV.dpr}x）`)+ukv('表示領域',DEV.css)+ukv('向き',DEV.orient)+ukv('配色の設定',DEV.dark?'ダーク':'ライト')+ukv('動きの軽減',DEV.reduced?'オン':'オフ')
@@ -829,59 +894,65 @@ function buildSettings(t){
   +urow('open-24-regular','API キーを取得する','Google AI Studio を新しいタブで開きます','','studio')
   +urow('bot-24-regular','モデル','プリセットから選ぶか、任意のモデルIDを入力できます',usl('mp',[...PRESETS.map(p=>[p,p]),['','カスタム…']],PRESETS.includes(S.set.model)?S.set.model:'')+`<input class="tin" id="mc" placeholder="カスタムモデルID" value="${esc(S.set.model)}">`)
   +`<div class="sc" style="flex-wrap:wrap"><span class="si">${IC('chat-24-regular',22)}</span><div class="tx">システム プロンプト<small>AI の性格・口調を設定します</small></div><textarea class="tin" id="sp" style="width:100%;min-height:90px">${esc(S.set.sys)}</textarea></div>`
-  +urow('text-bullet-list-ltr-24-regular','ストリーミング表示','回答を一文字ずつ表示します。オフにすると、回答が完成してから表示されます',utg('st',S.set.stream!==false));
+  +urow('text-bullet-list-ltr-24-regular','ストリーミング表示','回答を一文字ずつ表示します。オフにすると、回答が完成してから表示されます',utg('st',S.set.stream!==false))
+  +urow('sv:temp','温度','低いほど安定した回答、高いほど多様な回答になります',urg('tmp',0,2,.1,S.set.temp??1,v=>(+v).toFixed(1)))
+  +urow('sv:token','最大出力トークン数','回答の長さの上限',usl('mt',[[1024,'1024'],[2048,'2048'],[4096,'4096'],[8192,'8192']],S.set.maxTok||8192));
  let pg='';
  if(pgn==='startup')pg=urow(TI[S.set.profile]||TI.ps,'既定のプロファイル','[+] アイコンをクリックするか、新しい tab キーのバインドを入力すると表示されるプロファイルです。',usl('pf',[['ps','Windows PowerShell'],['cmd','コマンド プロンプト'],['ai','Gemini AI Shell']],S.set.profile))
   +urow('<svg width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 9l3 2.5L7 14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>','既定のターミナル アプリケーション','[スタート] メニューや [ファイル名を指定して実行] ダイアログなど、既存のセッションなしでコマンドライン アプリケーションを実行したときに起動するターミナル アプリケーション。',usl('dt0',[['a','Windows で自動的に選択する']],'a',true),'',true)
-  +urow('','言語 (再起動が必要)','アプリケーションの表示言語を選択します。これにより、既定の Windows インターフェイス言語が上書きされます。',usl('lg0',[['d','既定値']],'d',true),'',true)
-  +urow('','既定の IME 入力モード','既定で使用する言語を IME に通知します。IME に依存し、既定ではラテン文字を使用しない言語では、スタートアップ時に英語入力を強制するためにこの設定を使用できます。',usl('ime0',[['d','既定値']],'d',true),'',true)
-  +urow('','コンピューターのスタートアップ時に起動','Windows にログインすると、ターミナルが自動的に起動します。',utg('boot0',false,true),'',true)
-  +urow('','ターミナルの起動時','最初のターミナルの作成時に何が表示されるべきでしょうか。',usl('ls0',[['d','既定のプロファイルでタブを開く']],'d',true),'',true)
-  +urow('','新しいインスタンスの動作','新しい端末インスタンスを既存のウィンドウにアタッチする方法を制御します。',usl('ni0',[['d','新しいウィンドウを作成する']],'d',true),'',true)
-  +uex('size','','起動サイズ','最初の読み込み時にウィンドウに表示される行と列の数。文字数で計測されます。','<span class="kvv">120 × 30</span>','この環境では、ウィンドウの大きさは画面に合わせて自動で決まります。')
-  +uex('lp','','起動パラメーター','ターミナルの起動方法を制御する設定','<span class="kvv">既定, Windows の自動設定を使用する</span>','この環境では変更できません。')
+  +urow('sv:globe','言語 (再起動が必要)','アプリケーションの表示言語を選択します。これにより、既定の Windows インターフェイス言語が上書きされます。',usl('lg0',[['d','既定値']],'d',true),'',true)
+  +urow('sv:ime','既定の IME 入力モード','既定で使用する言語を IME に通知します。IME に依存し、既定ではラテン文字を使用しない言語では、スタートアップ時に英語入力を強制するためにこの設定を使用できます。',usl('ime0',[['d','既定値']],'d',true),'',true)
+  +urow('sv:power','コンピューターのスタートアップ時に起動','Windows にログインすると、ターミナルが自動的に起動します。',utg('boot0',false,true),'',true)
+  +urow('sv:play','ターミナルの起動時','最初のターミナルの作成時に何が表示されるべきでしょうか。',usl('ls0',[['d','既定のプロファイルでタブを開く']],'d',true),'',true)
+  +urow('sv:winnew','新しいインスタンスの動作','新しい端末インスタンスを既存のウィンドウにアタッチする方法を制御します。',usl('ni0',[['d','新しいウィンドウを作成する']],'d',true),'',true)
+  +uex('size','sv:resize','起動サイズ','最初の読み込み時にウィンドウに表示される行と列の数。文字数で計測されます。','<span class="kvv">120 × 30</span>','この環境では、ウィンドウの大きさは画面に合わせて自動で決まります。')
+  +uex('lp','sv:cog','起動パラメーター','ターミナルの起動方法を制御する設定','<span class="kvv">既定, Windows の自動設定を使用する</span>','この環境では変更できません。')
   +'<div class="sech">WinTerm</div>'
   +urow('flash-24-regular','高速スタートアップ','オンにすると、起動時のブート画面を表示しません',utg('fa',S.set.fast))
   +urow('image-24-regular','起動時のロゴ','新しいタブの先頭に表示するアスキーアート',usl('lg',[['winterm','WinTerm'],['win11','Windows 11'],['ps','PowerShell'],['custom','カスタムバナー'],['none','なし']],S.set.logo)+`<input class="tin" id="bn" placeholder="バナー文字 (英数字)" value="${esc(S.set.banner)}" style="min-width:140px;width:160px">`);
- else if(pgn==='interact')pg=urow('','選択時に自動的にコピー','テキストを選択すると、自動的にクリップボードにコピーされます。',utg('cs',!!S.set.copySel))
-  +urow('','末尾の空白を削除してコピー','コピーしたテキストの行末の空白を削除します。',utg('tw0',true,true),'',true)
-  +urow('','右クリックで貼り付け','右クリック (長押し) で貼り付けます。',utg('rc0',false,true),'',true);
+ else if(pgn==='interact')pg=urow('sv:copy','選択時に自動的にコピー','テキストを選択すると、自動的にクリップボードにコピーされます。',utg('cs',!!S.set.copySel))
+  +urow('sv:trim','末尾の空白を削除してコピー','コピーしたテキストの行末の空白を削除します。',utg('tw0',true,true),'',true)
+  +urow('sv:pointer','右クリックで貼り付け','右クリック (長押し) で貼り付けます。',utg('rc0',false,true),'',true)
+  +urow('sv:scroll','出力の自動スクロール','新しい出力が表示されたら、自動的に最下部へスクロールします。',utg('as',S.set.autoScroll!==false))
+  +urow('sv:bar','スクロール バーの表示','コンソールのスクロール バー',usl('sbr',[['auto','自動'],['always','常に表示'],['hidden','非表示']],S.set.sbar||'auto'))
+  +urow('history-24-regular','コマンド履歴を保存','オフにすると、↑ ↓ で呼び出せる履歴に追加されません',utg('hs',S.set.histSave!==false));
  else if(pgn==='look')pg=urow('weather-sunny-24-regular','テーマ','アプリケーションのテーマ',usl('th',[['dark','ダーク'],['light','ライト'],['system','Windows の既定に従う']],S.set.theme))
   +urow('image-24-regular','壁紙','Mica が映し込む背景',usl('wl',[...WALL_UI,...(S.set.wallImg?[['custom','カスタム画像']]:[])],S.set.wall||'bloom'))
   +uex('accent','color-24-regular','アクセント カラー','',`<span class="kvv"><i class="dot" style="background:${S.set.accent}"></i></span>`,`<div class="swg">${ACC.map(a=>`<button class="sw${a[0]===S.set.accent?' on':''}" data-c="${a[0]}" style="background:${a[0]}" title="${a[1]}" aria-label="${a[1]}"></button>`).join('')}</div>`)
   +urow('window-console-20-regular','タブの幅','等幅（Windows Terminal の既定は 240 px）',urg('tw',140,320,5,S.set.tabw||240,v=>v+' px'))
-  +urow('','タブの角丸','既定は 8 px',urg('tr',0,12,1,S.set.tabr??8,v=>v+' px'))
+  +urow('sv:corner','タブの角丸','既定は 8 px',urg('tr',0,12,1,S.set.tabr??8,v=>v+' px'))
   +urow('zoom-in-24-regular','UI のサイズ','タブバーと設定画面などの大きさ（文字だけでなく UI 全体）',urg('ui',80,140,5,Math.round((S.set.ui||1)*100),v=>v+'%'))
   +urow('arrow-up-24-regular','上部の余白','iPadOS のメニュー バーとタブバーの間隔',urg('tp',0,60,1,S.set.topPad??28,v=>v+' px'))
   +urow('arrow-down-24-regular','下部の補正','iPad の下端に余白が出る場合に増やします',urg('gf',0,60,1,S.set.gapFix||0,v=>v+' px'))
-  +urow('','ウィンドウ ボタンを表示','最小化・最大化・閉じるのボタンを右上に表示します（見た目のみ）',utg('wc',!!S.set.winctl));
+  +urow('sv:winbtn','ウィンドウ ボタンを表示','最小化・最大化・閉じるのボタンを右上に表示します（見た目のみ）',utg('wc',!!S.set.winctl));
  else if(pgn==='schemes')pg='<div class="note">配色は、ターミナルの背景色と文字色を決めます。選択すると、すべての PowerShell / コマンド プロンプト タブに適用されます。</div>'
   +SCHEMES_UI.map(x=>{const c=SCHEMES[x[0]],on=x[0]===S.set.scheme;return `<div class="sc cl scx${on?' on':''}" data-s="${x[0]}"><span class="si"></span><div class="tx">${x[1]}${x[0]==='campbell'?' (既定)':''}<small>背景 rgb(${c[0]}) / 文字 rgb(${c[1]})</small></div><div class="ctl"><span class="schp2" style="background:rgb(${c[0]});color:rgb(${c[1]})">PS C:\\&gt; _</span>${on?IC('checkmark-20-regular',18):''}</div></div>`}).join('');
  else if(pgn==='render')pg=urow('drop-24-regular','透過効果（Mica）','背景の壁紙を半透明の面に映し込みます',utg('mi',S.set.mica))
-  +urow('','ぼかしの強さ','映り込みの強さ（大きいほど柔らかくぼけます）',urg('bl',0,120,4,S.set.blur??60,v=>v+' px'))
-  +urow('','ノイズ テクスチャ','Acrylic 風の細かい質感を重ねます',utg('nz',S.set.noise!==false))
-  +urow('','アニメーションを減らす','画面の切り替えなどの動きを最小限にします',utg('rm',!!S.set.rm));
- else if(pgn==='compat')pg=urow('','大きい文字','コンソールと UI の文字を約 12% 大きくします',utg('bg',!!S.set.big))
-  +urow('','高いコントラスト','境界線と選択中の項目を強調します',utg('hc',!!S.set.hc))
+  +urow('sv:drop','ぼかしの強さ','映り込みの強さ（大きいほど柔らかくぼけます）',urg('bl',0,120,4,S.set.blur??60,v=>v+' px'))
+  +urow('sv:noise','ノイズ テクスチャ','Acrylic 風の細かい質感を重ねます',utg('nz',S.set.noise!==false))
+  +urow('sv:motion','アニメーションを減らす','画面の切り替えなどの動きを最小限にします',utg('rm',!!S.set.rm));
+ else if(pgn==='compat')pg=urow('sv:textbig','大きい文字','コンソールと UI の文字を約 12% 大きくします',utg('bg',!!S.set.big))
+  +urow('sv:contrast','高いコントラスト','境界線と選択中の項目を強調します',utg('hc',!!S.set.hc))
   +urow('history-24-regular','履歴の保存件数','↑ ↓ で呼び出せるコマンドの上限',usl('hm',[[100,'100 件'],[500,'500 件'],[1000,'1000 件']],S.set.histMax))
   +urow('info-24-regular','デバイスの診断','画面の大きさ、アイコン、ファイルの取得状況を確認できます','','device');
- else if(pgn==='actions')pg=SHORT.map(x=>urow('',x[0],'',`<span class="kb">${x[1]}</span>`+(x[2]?`<span class="kb">${x[2]}</span>`:''))).join('');
+ else if(pgn==='actions')pg=SHORT.map(x=>urow(SHI[x[0]]||'sv:dot',x[0],'',`<span class="kb">${x[1]}</span>`+(x[2]?`<span class="kb">${x[2]}</span>`:''))).join('');
  else if(pgn==='menu')pg='<div class="note">新しいタブ (⌄) メニューに表示される項目です。</div>'+[['ps','Windows PowerShell','Ctrl+Shift+1'],['cmd','コマンド プロンプト','Ctrl+Shift+2'],['ai','Gemini AI Shell','Ctrl+Shift+3']].map(x=>urow(TI[x[0]],x[1],'',`<span class="kb">${x[2]}</span>`)).join('');
  else if(pgn==='ext')pg=urow('puzzle-piece-24-regular','サービス ワーカーとキャッシュ','オフライン用のキャッシュです。アイコンや画面が更新されないときに削除して再読み込みします。',`<button class="btn" id="clc">キャッシュを削除して再読み込み</button>`)
-  +urow('','組み込みの拡張機能','Gemini AI Shell、仮想ファイル システム（C:）');
+  +urow('sv:plug','組み込みの拡張機能','Gemini AI Shell、仮想ファイル システム（C:）');
  else if(pgn==='p-default')pg=urow('text-font-24-regular','フォント','コンソールに使う等幅フォント',usl('ff',FONTS.map(f=>[f,f]),S.set.font))
   +urow('text-font-size-24-regular','フォント サイズ','コンソールの文字の大きさ',urg('fs',11,24,1,S.set.fs,v=>v+' px'))
   +`<div class="sc"><div class="tx">プレビュー<small>実際のコンソールに反映されます</small><pre id="pv" style="margin:10px 0 0;font:${S.set.fs}px/${S.set.lh||1.25} var(--ff);white-space:pre">PS C:\\Users\\User> Get-Date\nWednesday, November 25, 2026 8:54:00 AM</pre></div></div>`
-  +urow('','フォント ウェイト','文字の太さ',usl('fw',[[300,'Light'],[400,'Regular'],[500,'Medium'],[600,'Semibold'],[700,'Bold']],S.set.fw||400))
-  +urow('','行の間隔','行の高さの倍率',urg('lh',1,1.6,.05,S.set.lh||1.25,v=>(+v).toFixed(2)))
+  +urow('sv:bold','フォント ウェイト','文字の太さ',usl('fw',[[300,'Light'],[400,'Regular'],[500,'Medium'],[600,'Semibold'],[700,'Bold']],S.set.fw||400))
+  +urow('sv:linesp','行の間隔','行の高さの倍率',urg('lh',1,1.6,.05,S.set.lh||1.25,v=>(+v).toFixed(2)))
   +urow('color-24-regular','配色','コンソールの背景色と文字色',usl('sc2',SCHEMES_UI,S.set.scheme))
   +urow('color-background-24-regular','背景の不透明度','小さくすると背景の壁紙が透けて見えます',urg('al',30,100,5,Math.round(S.set.alpha*100),v=>v+'%'))
-  +urow('arrow-wrap-24-regular','行の折り返し','長い行を画面幅で折り返します',utg('wr',S.set.wrap));
+  +urow('arrow-wrap-24-regular','行の折り返し','長い行を画面幅で折り返します',utg('wr',S.set.wrap))
+  +urow('sv:folder','プロンプトにフルパスを表示','オフにすると、現在のフォルダー名だけを表示します（PowerShell）',utg('fp',S.set.fullPath!==false));
  else if(pgn==='p-ps')pg=urow(TI.ps,'PowerShell のバージョン','画面の表示と $PSVersionTable に反映されます',usl('psv',[['7','PowerShell 7.7.0'],['5','Windows PowerShell 5.1']],S.set.psver))
-  +urow('','コマンド ライン','',`<span class="kvv">${S.set.psver==='5'?'%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe':'pwsh.exe'}</span>`)
-  +urow('','開始ディレクトリ','',`<span class="kvv">%USERPROFILE%</span>`);
+  +urow('sv:play','コマンド ライン','',`<span class="kvv">${S.set.psver==='5'?'%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe':'pwsh.exe'}</span>`)
+  +urow('sv:folder','開始ディレクトリ','',`<span class="kvv">%USERPROFILE%</span>`);
  else if(pgn==='p-cmd')pg=urow(TI.cmd,'プロンプトの書式','$P=現在のパス、$G=> が使えます（prompt コマンドでも変更できます）',`<input class="tin" id="cpf" value="${esc(S.set.cmdPrompt||'$P$G')}">`)
-  +urow('','コマンド ライン','',`<span class="kvv">%SystemRoot%\\System32\\cmd.exe</span>`);
+  +urow('sv:play','コマンド ライン','',`<span class="kvv">%SystemRoot%\\System32\\cmd.exe</span>`);
  else if(pgn==='p-ai')pg=aiRows();
  else if(pgn==='backup')pg=urow('arrow-download-24-regular','エクスポート','設定・アカウント・コマンド履歴・仮想Cドライブを1つのJSONに保存します。iPad Safari は一定期間操作がないとデータが消えることがあるため、定期的な保存をおすすめします',`<button class="btn pri" id="ex">JSONを保存</button>`)
   +urow('arrow-upload-24-regular','インポート','バックアップのJSONから復元します (現在のデータは上書きされます)',`<button class="btn" id="im">JSONを読み込む</button><input type="file" id="if" accept=".json,application/json" hidden>`)
@@ -901,7 +972,8 @@ function buildSettings(t){
  on('sv','click',()=>{t.snap=JSON.stringify(S.set);save();toast('設定を保存しました')});
  on('dc','click',()=>{try{S.set=JSON.parse(t.snap)}catch(e){}save();applyLook();again();toast('変更を破棄しました')});
  on('pf','change',e=>{S.set.profile=e.target.value;save();again()});on('lg','change',e=>{S.set.logo=e.target.value;save()});on('bn','input',e=>{S.set.banner=e.target.value;save()});on('fa','change',e=>{S.set.fast=e.target.checked;save();again()});
- on('cs','change',e=>{S.set.copySel=e.target.checked;save();again()});
+ on('cs','change',e=>{S.set.copySel=e.target.checked;save();again()});on('as','change',e=>{S.set.autoScroll=e.target.checked;save();again()});on('sbr','change',e=>{setLook('sbar',e.target.value)});on('hs','change',e=>{S.set.histSave=e.target.checked;save();again()});
+ on('fp','change',e=>{S.set.fullPath=e.target.checked;save();tabs.forEach(x=>x.pr&&setPrompt(x));again()});on('tmp','input',e=>{S.set.temp=+e.target.value;save();q('#tmpv').textContent=(+e.target.value).toFixed(1)});on('mt','change',e=>{S.set.maxTok=+e.target.value;save()});
  on('th','change',e=>{setLook('theme',e.target.value);again()});on('wl','change',e=>{setLook('wall',e.target.value);again()});
  t.view.querySelectorAll('.sw').forEach(b=>b.onclick=()=>{S.set.accent=b.dataset.c;save();applyLook();t.view.querySelectorAll('.sw').forEach(x=>x.classList.toggle('on',x===b));const d=t.view.querySelector('.dot');if(d)d.style.background=S.set.accent});
  on('tw','input',e=>{setLook('tabw',+e.target.value);q('#twv').textContent=e.target.value+' px'});on('tr','input',e=>{setLook('tabr',+e.target.value);q('#trv').textContent=e.target.value+' px'});
@@ -995,14 +1067,14 @@ function buildW11(){
    const f=q('#avf');if(f)f.onchange=e=>{const file=e.target.files[0];if(!file)return;const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=192;const m=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,192,192);S.set.avatar=c.toDataURL('image/jpeg',.85);URL.revokeObjectURL(u);save();again();toast('プロフィール写真を変更しました')};im.src=u};
    const n=q('#un');if(n)n.oninput=e=>{S.set.name=e.target.value.trim()||'User';save();const pb=q('.pinfo b');if(pb)pb.textContent=S.set.name}}}
  else if(key==='time'){html=urow('clock-24-regular','日付と時刻','タイム ゾーン、自動設定、カレンダーの表示','','dt')+urow('globe-24-regular','言語と地域','Windows の言語、地域の形式','','lang')}
- else if(key==='dt'){html=urow('','現在の日時','',`<span class="kvv" id="clk"></span>`)+ukv('タイム ゾーン',DEV.tz);bind=()=>{const c=q('#clk'),u=()=>{if(c&&c.isConnected)c.textContent=new Date().toLocaleString('ja-JP')};u();const id=setInterval(()=>{if(!c||!c.isConnected)clearInterval(id);else u()},1000)}}
+ else if(key==='dt'){html=urow('sv:history','現在の日時','',`<span class="kvv" id="clk"></span>`)+ukv('タイム ゾーン',DEV.tz);bind=()=>{const c=q('#clk'),u=()=>{if(c&&c.isConnected)c.textContent=new Date().toLocaleString('ja-JP')};u();const id=setInterval(()=>{if(!c||!c.isConnected)clearInterval(id);else u()},1000)}}
  else if(key==='lang'){html=ukv('表示言語',DEV.lang)+ukv('優先する言語',DEV.langs||DEV.lang)}
  else if(key==='gaming'){html=urow('game-24-regular','ゲーム モード','','','na:ゲーム モード')+urow('video-24-regular','キャプチャ','','','na:キャプチャ')}
  else if(key==='access'){title='アクセシビリティ';html='<div class="sech" style="margin-top:0">視覚</div>'+urow('text-font-size-24-regular','テキストのサイズ','Windows とアプリ全体に表示されるテキスト サイズ','','text')+urow('sparkle-24-regular','視覚効果','スクロール バー、透明度、アニメーション、通知タイムアウト','','vfx')+urow('cursor-24-regular','マウス ポインターとタッチ','マウス ポインターの色、サイズ','','na:マウス ポインターとタッチ')+urow('text-t-24-regular','テキスト カーソル','外観と太さ、テキスト カーソル インジケーター','','na:テキスト カーソル')+urow('zoom-in-24-regular','拡大鏡','拡大鏡読み取り、ズーム レベルの増分','','na:拡大鏡')+urow('color-24-regular','カラー フィルター','色覚障害フィルター、グレースケール、反転','','na:カラー フィルター')+urow('layer-24-regular','画面の濃淡','画面に控えめな色のオーバーレイを追加して、見やすくします','','na:画面の濃淡')+urow('circle-half-fill-24-regular','コントラスト テーマ','弱視、光線過敏症のための配色テーマ','','contrast')+urow('speaker-2-24-regular','ナレーター','音声、詳細度、キーボード、点字','','na:ナレーター')+'<div class="sech">聴覚</div>'+urow('speaker-2-24-regular','オーディオ','モノラル オーディオ、オーディオ通知','','na:オーディオ')}
- else if(key==='text'){html=urow('text-font-size-24-regular','テキストのサイズ','UI 全体の大きさ',urg('ui',80,140,5,Math.round((S.set.ui||1)*100),v=>v+'%'))+urow('','コンソールの文字サイズ','',urg('fs',11,24,1,S.set.fs,v=>v+' px'))+`<div class="sc"><div class="tx">サンプル テキスト<small>これはサンプルです。テキストのサイズを確認してください。</small></div></div>`;
+ else if(key==='text'){html=urow('text-font-size-24-regular','テキストのサイズ','UI 全体の大きさ',urg('ui',80,140,5,Math.round((S.set.ui||1)*100),v=>v+'%'))+urow('sv:textbig','コンソールの文字サイズ','',urg('fs',11,24,1,S.set.fs,v=>v+' px'))+`<div class="sc"><div class="tx">サンプル テキスト<small>これはサンプルです。テキストのサイズを確認してください。</small></div></div>`;
   bind=()=>{const a=q('#ui');if(a)a.oninput=e=>{setLook('ui',+e.target.value/100);q('#uiv').textContent=e.target.value+'%'};const b=q('#fs');if(b)b.oninput=e=>{setLook('fs',+e.target.value);q('#fsv').textContent=e.target.value+' px'}}}
- else if(key==='vfx'){html=urow('sparkle-24-regular','透明効果','ウィンドウとサーフェスが半透明に見える',utg('mi',S.set.mica))+urow('','アニメーション効果','Windows でアニメーションを表示する',utg('an',!S.set.rm));
-  bind=()=>{const m=q('#mi');if(m)m.onchange=e=>{setLook('mica',e.target.checked);again()};const a=q('#an');if(a)a.onchange=e=>{setLook('rm',!e.target.checked);again()}}}
+ else if(key==='vfx'){html=urow('sparkle-24-regular','透明効果','ウィンドウとサーフェスが半透明に見える',utg('mi',S.set.mica))+urow('sv:motion','アニメーション効果','Windows でアニメーションを表示する',utg('an',!S.set.rm))+urow('sv:bar','スクロール バーを常に表示','コンソールのスクロール バーを常に表示します',utg('sbw',S.set.sbar==='always'));
+  bind=()=>{const m=q('#mi');if(m)m.onchange=e=>{setLook('mica',e.target.checked);again()};const a=q('#an');if(a)a.onchange=e=>{setLook('rm',!e.target.checked);again()};const w=q('#sbw');if(w)w.onchange=e=>{setLook('sbar',e.target.checked?'always':'auto');again()}}}
  else if(key==='contrast'){html=urow('circle-half-fill-24-regular','コントラスト テーマ','弱視、光線過敏症のための配色テーマ',utg('hc',!!S.set.hc));bind=()=>{const h=q('#hc');if(h)h.onchange=e=>{setLook('hc',e.target.checked);again()}}}
  else if(key==='privacy'){html=urow('shield-24-regular','Gemini へ送信されるデータ','AI への質問と、システム プロンプトだけを送信します。履歴や仮想ドライブの内容は送信されません')+urow('delete-24-regular','入力履歴','↑ ↓ で呼び出せる履歴を消去します',`<button class="btn" id="hclr">削除</button>`)+urow('location-24-regular','位置情報','WinTerm は位置情報を使用しません')+urow('clipboard-24-regular','クリップボード','コピー・貼り付けの操作でのみ使用します');
   bind=()=>{const h=q('#hclr');if(h)h.onclick=()=>{S.hist=[];save();toast('入力履歴を削除しました')}}}
@@ -1063,6 +1135,7 @@ addEventListener('keydown',e=>{if(!cur)return;if(/INPUT|TEXTAREA|SELECT/.test(e.
  if((M||e.altKey)&&/^Digit[1-9]$/.test(e.code)){e.preventDefault();const t=tabs[+e.code.slice(5)-1];t&&sel(t)}});
 /* ===== PWA ===== */
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+if(navigator.standalone===true||matchMedia('(display-mode: standalone)').matches)document.documentElement.classList.add('sa');
 /* ===== viewport fit ===== */
 (function(){const app=$('#app'),vv=window.visualViewport;const fit=()=>{const ae=document.activeElement,typing=ae&&/INPUT|TEXTAREA/.test(ae.tagName);
  if(vv&&typing&&Math.abs(vv.height-innerHeight)>2){app.style.height=(vv.height+vv.offsetTop)+'px';app.style.bottom='auto'}else{app.style.height='';app.style.bottom=''}
