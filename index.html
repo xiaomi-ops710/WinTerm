@@ -316,10 +316,93 @@ html.light.onset .tab.on{background:#f3f3f3}
 html.light.onset .tab.on::before{background:radial-gradient(circle at 0 0,transparent 7.5px,#f3f3f3 8px)}
 html.light.onset .tab.on::after{background:radial-gradient(circle at 100% 0,transparent 7.5px,#f3f3f3 8px)}
 .nomica .set{background:#202020}
+
+.npg{display:flex;margin-left:6px;height:32px;border-radius:4px;align-items:center}
+.npg:hover,.npg.open{background:rgba(255,255,255,.08)}
+.npg .bb{margin:0;border-radius:4px}.npg .bb:hover{background:rgba(255,255,255,.08)}
+#plus{margin-left:0}
+#menu{zoom:1;width:352px;max-width:92vw;padding:4px;top:41px;border-radius:8px;background:rgba(44,44,44,.97);border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 28px rgba(0,0,0,.5)}
+#menu div{height:40px;padding:0 12px;gap:14px;align-items:center;justify-content:flex-start;border-radius:4px;font-size:14px}
+#menu .mi{width:20px;display:grid;place-items:center;flex:none}#menu .ml{flex:1}
+#menu small{font-size:12px;color:#a0a0a0}
+#menu hr{border:0;border-top:1px solid rgba(255,255,255,.1);margin:4px 0}
+html.light #menu{background:rgba(250,250,250,.98)}html.light #menu small{color:#666}
+.cpm{align-items:start;padding-top:12vh;z-index:92}
+.cp{width:min(640px,92vw);border-radius:8px;overflow:hidden;background:rgba(44,44,44,.98);border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 40px rgba(0,0,0,.6);color:#fff;font-family:var(--uif)}
+.cp input{width:100%;height:44px;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.1);color:#fff;padding:0 14px;font:14px var(--uif);outline:0}
+.cpl{max-height:50vh;overflow:auto;padding:4px}
+.cpi{display:flex;justify-content:space-between;align-items:center;height:36px;padding:0 12px;border-radius:4px;font-size:14px;cursor:pointer}
+.cpi.on,.cpi:hover{background:rgba(255,255,255,.08)}.cpi small{color:#a0a0a0;font-size:12px}
+/* settings shared additions */
+.sc.dis{opacity:.5;pointer-events:none}
+.note{padding:6px 2px 12px;font-size:13px;color:rgba(255,255,255,.786)}
+.nsec{padding:14px 14px 4px;font-size:12px;font-weight:600;opacity:.85}
+.hb{width:40px;height:40px;margin:0 0 10px 0;border:0;border-radius:4px;background:transparent;color:inherit;display:grid;place-items:center;cursor:pointer}.hb:hover{background:rgba(255,255,255,.06)}
+.nav{display:flex;flex-direction:column}
+.ni-i{width:24px;height:24px;display:grid;place-items:center;flex:none}.ni-i svg{width:22px;height:22px}
+.ni .bdg{margin-left:auto;font-style:normal;font-size:11px;background:var(--accent);color:#000;border-radius:9px;padding:1px 8px}
+.nbot{margin-top:auto}
+.nav.compact{width:62px}.nav.compact .ni-t,.nav.compact .sbox,.nav.compact .nsec,.nav.compact .bdg,.nav.compact .pinfo{display:none}
+.pgw{flex:1;display:flex;flex-direction:column;min-width:0}
+.pgw .pg{flex:1;overflow:auto}
+.foot{flex:none;display:flex;gap:8px;justify-content:flex-end;padding:12px 24px;border-top:1px solid rgba(255,255,255,.08)}
+.foot .btn{min-width:96px}
+.wts .pg{max-width:none;margin:0;padding:6px 24px 20px 40px}
+.wts .pg h2{font-size:24px;line-height:32px;margin-bottom:16px}
+.schp2{font:12px var(--ff);padding:6px 12px;border-radius:4px;border:1px solid rgba(255,255,255,.12)}
+.scx.on{outline:1px solid var(--accent)}
+.sc small a,.lnk{color:var(--accent);cursor:pointer;text-decoration:none}
+/* Windows 11 settings overlay */
+.w11{position:fixed;inset:0;z-index:85;flex-direction:column;background:#202020!important;padding-top:calc(env(safe-area-inset-top,0px) + var(--toppad,28px));backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html.light .w11{background:#f3f3f3!important}
+.w11 .stb{height:48px;padding:0 0 0 12px;position:relative;gap:14px;flex:none;font-size:12px}
+.w11 .wsr{position:absolute;left:50%;top:8px;transform:translateX(-50%);width:min(516px,42vw)}
+.wsr input{width:100%;height:32px;border-radius:16px;border:1px solid rgba(255,255,255,.08);border-bottom-color:rgba(255,255,255,.45);background:rgba(255,255,255,.07);color:inherit;padding:0 14px 0 38px;font:14px var(--uif);outline:0}
+.wsr input:focus{border-bottom:2px solid var(--accent)}
+.wsr iconify-icon{position:absolute;left:13px;top:8px;opacity:.85}
+.wsrr{display:none;position:absolute;top:36px;left:0;right:0;background:rgba(44,44,44,.98);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:4px;z-index:3}
+.wsrr div{padding:8px 12px;border-radius:4px;font-size:14px;cursor:pointer}.wsrr div:hover{background:rgba(255,255,255,.08)}
+html.light .wsrr{background:#fff;color:#111}
+.wcs{margin-left:auto;display:flex;height:48px}.wcs button{width:46px;height:48px;border:0;background:transparent;color:inherit;display:grid;place-items:center}
+.wcs button:hover{background:rgba(255,255,255,.08)}.wcs button.cls:hover{background:#c42b1c;color:#fff}
+.w11 .nav{width:290px;padding:0 12px 12px}
+.w11 .prof{padding:6px 6px 18px}
+.w11 .ni{height:40px;gap:14px;padding:0 12px}
+.w11 .pg{margin:0 auto;max-width:1000px;width:100%;padding:0 32px 40px}
+.w11 .pgw{overflow:auto}
+.w11 .pg h2{font-size:28px;line-height:36px;margin:2px 0 20px}
+.hdev{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+.mon.sm{width:120px;height:70px;border-width:3px;border-radius:6px}
+.hdi{display:flex;flex-direction:column;gap:2px;flex:1;min-width:160px}.hdi b{font-size:18px;font-weight:600}.hdi span{font-size:14px;opacity:.85}
+.htiles{display:flex;gap:26px}.htile{display:flex;gap:12px;align-items:center}.htile svg{width:28px;height:28px}.htile b{display:block;font-size:14px;font-weight:600}.htile small{display:block;font-size:12px;opacity:.7}
+.hcols{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}.hcol{flex:1;min-width:300px}
+.hc{background:rgba(255,255,255,.0512);border:1px solid rgba(0,0,0,.1);border-radius:8px;margin-bottom:12px;overflow:hidden}
+.hch{padding:20px 22px 14px}.hch b{display:block;font-size:20px;font-weight:600}.hch small{display:block;margin-top:6px;font-size:14px;opacity:.8}
+.hc .sc{border:0;border-top:1px solid rgba(255,255,255,.06);border-radius:0;margin:0;background:transparent}
+.hcb{padding:4px 22px 18px}.stx{font-size:14px;margin:6px 0 12px}.sbar{height:2px;background:rgba(255,255,255,.3);margin-bottom:16px}.sbar i{display:block;height:2px;background:var(--accent);width:1%}
+.hct{padding:0 18px 20px;grid-template-columns:repeat(3,1fr);max-width:none}
+.updh{display:flex;align-items:center;gap:20px;margin:6px 0 24px;flex-wrap:wrap}.updt{flex:1;min-width:200px}.updt b{display:block;font-size:20px;font-weight:600}.updt small{opacity:.75;font-size:14px}
+.sech{font-size:14px;font-weight:600}
+.exrow{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.info{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid rgba(255,255,255,.08);border-radius:4px;background:rgba(255,255,255,.0512);margin-bottom:6px;font-size:14px}
+.infoi{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#000;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.info span:nth-child(2){flex:1}.info .btn{height:28px;padding:0 10px}
+.swg2{display:grid;grid-template-columns:repeat(9,minmax(0,64px));gap:3px}
+.swc{aspect-ratio:1;border:0;border-radius:2px;padding:0;display:grid;place-items:center;cursor:pointer}.swc.on{outline:2px solid #fff;outline-offset:-2px}
+.na{padding:60px 0;font-size:18px;text-align:center}.na small{display:block;margin-top:10px;font-size:13px;opacity:.7}
+html.light .hc,html.light .info{background:rgba(255,255,255,.7)}
+html.light .foot{border-color:rgba(0,0,0,.08)}
+html.light .note{color:rgba(0,0,0,.6)}
+@media(max-width:760px){.w11 .nav{width:auto;flex-direction:row}.w11 .prof{display:none}.swg2{grid-template-columns:repeat(6,1fr)}}
+
+#bar{z-index:30}
+.ex .kvv,.sc .ctl .kvv{white-space:nowrap;max-width:none}
+.wts .pg{padding-top:12px}
+.tab.on .tt{font-weight:400}
 </style></head><body>
 <div id="boot"><div class="bw"><div class="bl"><i></i><i></i><i></i><i></i></div></div><div class="bsw"><svg class="bsp" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="58 24"/></svg></div></div>
 <div id="app">
- <div id="bar"><div id="tabs"></div><div class="bb" id="plus" title="新しいタブ (⌘T)"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div><div class="bb" id="drop" title="メニュー"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.2 4.4L6 8.2l3.8-3.8" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div><div style="flex:1"></div><div class="bb" id="gear" title="設定 (⌘,)"><iconify-icon icon="fluent:settings-20-regular" width="20" height="20"></iconify-icon></div><div class="wc"><button data-w="min" aria-label="最小化"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 5.5h10" stroke="currentColor" stroke-width="1"/></svg></button><button data-w="max" aria-label="最大化"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor"/></svg></button><button data-w="close" class="cls" aria-label="閉じる"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor" stroke-width="1"/></svg></button></div>
+ <div id="bar"><div id="tabs"></div><div class="npg"><div class="bb" id="plus" title="新しいタブ (⌘T)"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div><div class="bb" id="drop" title="メニュー"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.2 4.4L6 8.2l3.8-3.8" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div></div><div style="flex:1"></div><div class="bb" id="gear" title="設定 (⌘,)"><iconify-icon icon="fluent:settings-20-regular" width="20" height="20"></iconify-icon></div><div class="wc"><button data-w="min" aria-label="最小化"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 5.5h10" stroke="currentColor" stroke-width="1"/></svg></button><button data-w="max" aria-label="最大化"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor"/></svg></button><button data-w="close" class="cls" aria-label="閉じる"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor" stroke-width="1"/></svg></button></div>
   <div id="menu"></div></div>
  <div id="views"></div>
 </div>
@@ -337,7 +420,7 @@ const initVfs=()=>mkD({Users:mkD({User:mkD({Desktop:mkD(),Documents:mkD({'notes.
  'sample.ps1':mkF('# サンプルスクリプト\n$name = "Windows Terminal"\nWrite-Output "Hello, $name!"\nGet-ChildItem | Sort-Object Name\n')})}),Windows:mkD({System32:mkD()}),'Program Files':mkD()});
 let S={};try{S=JSON.parse(localStorage.getItem(LS))||{}}catch(e){}
 S=Object.assign({set:{},env:{},hist:[],vfs:null,secrets:false},S);
-S.set=Object.assign({apiKey:'',model:'gemini-3.8-flash',sys:'あなたは Windows Terminal に組み込まれた親切なAIアシスタントです。回答は簡潔に、日本語のプレーンテキストで答えてください。',alpha:1,fs:15,logo:'winterm',profile:'ps',banner:'WINDOWS',fast:false,theme:'dark',accent:'#60cdff',mica:true,font:'Cascadia Code',wrap:false,histMax:500,name:'User',avatar:'',stream:true,scheme:'campbell',wall:'bloom',blur:60,noise:true,tabr:8,tabw:240,fw:400,lh:1.25,rm:false,hc:false,big:false,topPad:28,gapFix:0,ui:1,winctl:false},S.set);
+S.set=Object.assign({apiKey:'',model:'gemini-3.8-flash',sys:'あなたは Windows Terminal に組み込まれた親切なAIアシスタントです。回答は簡潔に、日本語のプレーンテキストで答えてください。',alpha:1,fs:15,logo:'winterm',profile:'ps',banner:'WINDOWS',fast:false,theme:'dark',accent:'#60cdff',mica:true,font:'Cascadia Code',wrap:false,histMax:500,name:'User',avatar:'',stream:true,scheme:'campbell',wall:'bloom',blur:60,noise:true,tabr:8,tabw:240,fw:400,lh:1.25,rm:false,hc:false,big:false,topPad:28,gapFix:0,ui:1,winctl:false,psver:'7',cmdPrompt:'$P$G',copySel:false,devName:'',updAt:0,wallImg:'',recentAcc:[]},S.set);
 if(!S.vfs)S.vfs=initVfs();
 if(!S.v){S.v=2;if(S.set.logo==='win11')S.set.logo='winterm'}
 if(S.v<4){S.v=4;S.set.tabw=240;S.set.tabr=8;S.set.alpha=1;S.set.topPad=28}
@@ -350,7 +433,7 @@ grad:["linear-gradient(135deg,#0f2027,#203a43 50%,#2c5364)","linear-gradient(135
 const SCHEMES={campbell:['12,12,12','204,204,204'],onehalf:['30,30,30','220,223,228'],solarized:['0,43,54','131,148,150'],pshell:['1,36,86','204,204,204']};
 const applyLook=()=>{const sc=SCHEMES[S.set.scheme]||SCHEMES.campbell;document.documentElement.style.setProperty('--bgc',sc[0]);document.documentElement.style.setProperty('--fg','rgb('+sc[1]+')');const r=document.documentElement,st=r.style;st.setProperty('--alpha',S.set.alpha);st.setProperty('--fs',S.set.fs+'px');st.setProperty('--accent',S.set.accent);st.setProperty('--ff',`'${S.set.font}', Consolas, monospace`);
  const L=S.set.theme==='light'||(S.set.theme==='system'&&matchMedia('(prefers-color-scheme: light)').matches);
- r.classList.toggle('light',L);r.classList.toggle('nomica',!S.set.mica);r.classList.toggle('nowrap',!S.set.wrap);r.classList.toggle('rm',!!S.set.rm);r.classList.toggle('hc',!!S.set.hc);r.classList.toggle('nonoise',S.set.noise===false);st.setProperty('--blur',(S.set.blur??60)+'px');st.setProperty('--tabr',(S.set.tabr??6)+'px');st.setProperty('--tabw',(S.set.tabw||235)+'px');st.setProperty('--fw',S.set.fw||400);st.setProperty('--lh',S.set.lh||1.25);st.setProperty('--wall',WALLS[S.set.wall||'bloom'][L?1:0]);st.setProperty('--fs',Math.round(S.set.fs*(S.set.big?1.12:1))+'px');st.setProperty('--accent',S.set.hc?'#ffff00':S.set.accent);st.setProperty('--toppad',(S.set.topPad??28)+'px');st.setProperty('--gapfix',(S.set.gapFix||0)+'px');st.setProperty('--ui',S.set.ui||1);st.setProperty('--tabc',L?'rgba(250,250,250,'+S.set.alpha+')':'rgba('+sc[0]+','+S.set.alpha+')');r.classList.toggle('winctl',!!S.set.winctl)};
+ r.classList.toggle('light',L);r.classList.toggle('nomica',!S.set.mica);r.classList.toggle('nowrap',!S.set.wrap);r.classList.toggle('rm',!!S.set.rm);r.classList.toggle('hc',!!S.set.hc);r.classList.toggle('nonoise',S.set.noise===false);st.setProperty('--blur',(S.set.blur??60)+'px');st.setProperty('--tabr',(S.set.tabr??6)+'px');st.setProperty('--tabw',(S.set.tabw||235)+'px');st.setProperty('--fw',S.set.fw||400);st.setProperty('--lh',S.set.lh||1.25);st.setProperty('--wall',(S.set.wall==='custom'&&S.set.wallImg)?'url('+S.set.wallImg+') center/cover no-repeat':WALLS[S.set.wall||'bloom'][L?1:0]);st.setProperty('--fs',Math.round(S.set.fs*(S.set.big?1.12:1))+'px');st.setProperty('--accent',S.set.hc?'#ffff00':S.set.accent);st.setProperty('--toppad',(S.set.topPad??28)+'px');st.setProperty('--gapfix',(S.set.gapFix||0)+'px');st.setProperty('--ui',S.set.ui||1);st.setProperty('--tabc',L?'rgba(250,250,250,'+S.set.alpha+')':'rgba('+sc[0]+','+S.set.alpha+')');r.classList.toggle('winctl',!!S.set.winctl)};
 const getEnv=n=>{const u=n.toUpperCase();if(u==='GEMINI_API_KEY')return S.set.apiKey;if(u==='GEMINI_MODEL')return S.set.model;
  const d={USERNAME:'User',COMPUTERNAME:'WT-PWA',OS:'Windows_NT',USERPROFILE:'C:\\Users\\User',SYSTEMROOT:'C:\\Windows',PATH:'C:\\Windows\\System32;C:\\Windows'};return S.env[u]??d[u]??''};
 const setEnv=(n,v)=>{const u=n.toUpperCase();if(u==='GEMINI_API_KEY')S.set.apiKey=v;else if(u==='GEMINI_MODEL')S.set.model=v;else S.env[u]=v;save();refreshSettings()};
@@ -390,8 +473,8 @@ function closeTab(t){t.dead=true;t.abort&&t.abort();t.view.remove();const i=tabs
  if(!tabs.length)newTab('ps');else sel(tabs[Math.min(i,tabs.length-1)])}
 function newTab(type){if(type==='settings'){const o=tabs.find(x=>x.type==='settings');if(o)return sel(o)}
  const t={id:nid++,type,cwd:['Users','User'],title:TT[type],hi:-1,conv:[],fresh:true};const v=document.createElement('div');v.className='view';t.view=v;$('#views').append(v);tabs.push(t);
- if(type==='settings')t.page='gemini';else buildConsole(t);sel(t);return t}
-const setPrompt=t=>{t.pr.textContent=t.type==='ps'?`PS ${pstr(t.cwd)}> `:t.type==='cmd'?(t.promptFmt||'$P$G').replace(/\$P\$G/i,pstr(t.cwd)+'>').replace(/\$P/i,pstr(t.cwd)).replace(/\$G/i,'>'):'Gemini> '};
+ if(type==='settings')t.page='startup';else buildConsole(t);sel(t);return t}
+const setPrompt=t=>{t.pr.textContent=t.type==='ps'?`PS ${pstr(t.cwd)}> `:t.type==='cmd'?(t.promptFmt||S.set.cmdPrompt||'$P$G').replace(/\$P\$G/i,pstr(t.cwd)+'>').replace(/\$P/i,pstr(t.cwd)).replace(/\$G/i,'>'):'Gemini> '};
 function hlHtml(v){let first=true;return v.replace(/("[^"]*"?|'[^']*'?)|(\s+)|(\|)|([^\s"'|]+)/g,(m,s,w,p,x)=>{if(s)return`<span class="cy">${esc(s)}</span>`;if(w)return w;if(p){first=true;return'|'}
  let c='';if(first){first=false;c=AL[x.toLowerCase()]?'y':'r'}else if(/^-/.test(x))c='gr';else if(/^\$/.test(x))c='gn';return`<span class="${c}">${esc(x)}</span>`})}
 function buildConsole(t){t.view.innerHTML='<div class="con"><div class="inl"><span class="pr"></span><div class="iw"><div class="hl"></div><input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="go"></div></div></div>';
@@ -406,6 +489,7 @@ function buildConsole(t){t.view.innerHTML='<div class="con"><div class="inl"><sp
  const upd=()=>{t.hl.innerHTML=hlHtml(t.inp.value);t.hl.scrollLeft=t.inp.scrollLeft};t.upd=upd;
  t.inp.addEventListener('input',upd);t.inp.addEventListener('scroll',upd);
  t.con.addEventListener('click',()=>{if(!getSelection().toString())t.inp.focus()});
+ t.con.addEventListener('mouseup',()=>{if(S.set.copySel){const x=getSelection().toString();if(x&&navigator.clipboard)navigator.clipboard.writeText(x).catch(()=>{})}});
  t.inp.addEventListener('keydown',e=>{
   if(e.key==='Enter'){e.preventDefault();const v=t.inp.value;t.inp.value='';t.hi=-1;upd();run(t,v)}
   else if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();const h=S.hist;if(e.key==='ArrowUp'){if(t.hi<0)t.hi=h.length;t.hi=Math.max(0,t.hi-1)}else{if(t.hi<0)return;t.hi++}
@@ -415,7 +499,7 @@ function buildConsole(t){t.view.innerHTML='<div class="con"><div class="inl"><sp
  header(t);setPrompt(t)}
 function header(t){if(t.type==='ai'){t.print('Gemini AI Shell — コマンド不要で、そのまま自然言語で話しかけられます。(exit で終了)\n'+(S.set.apiKey?'':'APIキーが未設定です。Ctrl + , で設定を開いてください。\n'));return}
  const lg=S.set.logo;if(lg==='winterm')t.html(bannerH('WinTerm').slice(H0.length));else if(lg==='win11')t.html(winLogoH().slice(H0.length));else if(lg==='ps')t.html(bannerH('>_').slice(H0.length));else if(lg==='custom')t.html(bannerH(S.set.banner||'HELLO').slice(H0.length));
- t.print(t.type==='ps'?'\nPowerShell 7.7.0\nCopyright (c) Microsoft Corporation.\n\nhttps://aka.ms/powershell\nType \'help\' to get help.\n':'\nMicrosoft Windows [Version 10.0.22631.4317]\n(c) Microsoft Corporation. All rights reserved.\n')}
+ t.print(t.type==='ps'?(S.set.psver==='5'?'Windows PowerShell 5.1\nCopyright (C) Microsoft Corporation.All rights reserved.\n':'\nPowerShell 7.7.0\nCopyright (c) Microsoft Corporation.\n\nhttps://aka.ms/powershell\nType \'help\' to get help.\n'):'\nMicrosoft Windows [Version 10.0.22631.4317]\n(c) Microsoft Corporation. All rights reserved.\n')}
 function complete(t){const v=t.inp.value;let cands,pre,word;
  if(t.tc&&t.tc.val===v){t.tc.i=(t.tc.i+1)%t.tc.list.length}else{
   const m=/[^\s|]*$/.exec(v);word=m[0].replace(/^"/,'');pre=v.slice(0,v.length-m[0].length);const first=/^\s*$/.test(pre.split('|').pop());
@@ -437,6 +521,7 @@ async function run(t,line){t.busy=true;t.inl.style.display='none';
  try{await exec(t,line)}catch(e){t.print(String(e.message||e),'r')}
  t.busy=false;if(!t.dead){t.inl.style.display='';setPrompt(t);t.inp.focus();t.scroll()}}
 async function exec(t,line){line=line.trim();if(!line)return;let m;
+ if(/^(start\s+)?ms-settings:/i.test(line)){openW11(msKey(line));return}
  if(t.type==='cmd')line=line.replace(/^(cd|chdir)(\.\.|\\|\/)/i,'$1 $2');
  if(t.type==='ai'){if(/^exit$/i.test(line))return closeTab(t);if(/^(cls|clear)$/i.test(line))return t.clear();
   if(ART_RE.test(line)){t.print(await gemArt(t,line),'art');return}
@@ -499,7 +584,7 @@ reg('sel','Select-String','ファイル内の文字列を検索',['sls','findstr
 reg('echo','Write-Output','テキストを出力',['echo','write-host','write'],c=>c.a.join(' '));
 reg('cls','Clear-Host','画面をクリア',['cls','clear'],c=>{c.t.clear();return''});
 reg('exit','exit','現在のタブを閉じる',['exit'],c=>{closeTab(c.t);return''});
-reg('psv','$PSVersionTable','PowerShell のバージョン情報',['$psversiontable'],c=>{const R=[['PSVersion','7.7.0'],['PSEdition','Core'],['GitCommitId','7.7.0'],['OS','Microsoft Windows 10.0.22631'],['Platform','Win32NT'],['PSCompatibleVersions','{1.0, 2.0, 3.0, 4.0...}'],['PSRemotingProtocolVersion','2.3'],['SerializationVersion','1.1.0.1'],['CLRVersion','N/A']];
+reg('psv','$PSVersionTable','PowerShell のバージョン情報',['$psversiontable'],c=>{const R=S.set.psver==='5'?[['PSVersion','5.1.26100.9818'],['PSEdition','Desktop'],['PSCompatibleVersions','{1.0, 2.0, 3.0, 4.0...}'],['BuildVersion','10.0.26100.9818'],['CLRVersion','4.0.30319.42000'],['WSManStackVersion','3.0'],['PSRemotingProtocolVersion','2.3'],['SerializationVersion','1.1.0.1']]:[['PSVersion','7.7.0'],['PSEdition','Core'],['GitCommitId','7.7.0'],['OS','Microsoft Windows 10.0.22631'],['Platform','Win32NT'],['PSCompatibleVersions','{1.0, 2.0, 3.0, 4.0...}'],['PSRemotingProtocolVersion','2.3'],['SerializationVersion','1.1.0.1'],['CLRVersion','N/A']];
  return H(`\n<span class="gn">${'Name'.padEnd(31)}Value</span>\n<span class="gn">${'----'.padEnd(31)}-----</span>\n`+R.map(r=>`<span class="cy">${r[0].padEnd(31)}</span>${esc(r[1])}`).join('\n')+'\n')});
 reg('systeminfo','systeminfo','システム情報を表示',['systeminfo'],c=>{const L=[['Host Name',DEV.name],['OS Name',DEV.os],['OS Version','10.0.22631 Build 22631'],['System Type','x64-based PC'],['Processor(s)',DEV.cores+' logical processors'],['Total Physical Memory',DEV.mem],
  ['Input Locale',navigator.language],['Time Zone',Intl.DateTimeFormat().resolvedOptions().timeZone],['Browser',navigator.userAgent.slice(0,70)],['Network',navigator.onLine?'Connected':'Disconnected']];return'\n'+L.map(l=>(l[0]+':').padEnd(26)+l[1]).join('\n')+'\n'});
@@ -534,6 +619,7 @@ reg('setmodel','Set-AiModel','Gemini のモデルを設定',['set-aimodel'],c=>{
 reg('getmodel','Get-AiModel','現在の Gemini モデルを表示',['get-aimodel'],c=>S.set.model);
 reg('god','godmode','解放されたシークレットコマンド一覧',['godmode'],c=>{if(!S.secrets)throw new Error('まだ解放されていません。ヒント: mkdir GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}');return godList()});
 const godList=()=>'\n【神モード: シークレットコマンド】\n  telnet towel.blinkenlights.nl   ASCII スター・ウォーズ風アニメ\n  curl ascii.live/parrot          パーティーパロット\n  curl ascii.live/nyan            ニャンキャット\n  winver                          Windows のバージョン情報\n  sl                              蒸気機関車\n  cmatrix                         マトリックス\n  clipsay <テキスト>              クリッピー\n  banner / figlet <テキスト>      巨大文字\n  winfetch / neofetch             システム情報\n  img2ascii [-color]              画像をアスキーアート化\n';
+reg('mss','ms-settings','Windows の設定を開く（start ms-settings:personalization など）',['ms-settings:','ms-settings'],c=>{openW11('home');return''});
 /* ===== extra commands ===== */
 const src=c=>{if(c.in!=null)return plain(c.in).replace(/\n$/,'').split('\n');const f=c.p[0]&&loc(c.t.cwd,c.p[0]);return f&&f.node&&f.node.t==='f'?f.node.c.replace(/\n$/,'').split('\n'):null};
 const wr=(c,p,v,app)=>{const l=loc(c.t.cwd,p);if(!l.par||!l.name)throw new Error('指定されたパスが見つかりません。');if(app&&l.node&&l.node.t==='f')l.node.c+=v;else l.par.c[l.name]=mkF(v);l.par.m=now();save()};
@@ -559,7 +645,7 @@ reg('rand','Get-Random','乱数を返す',['get-random'],c=>{const mx=+(opt(c.a,
 /* ===== additional commands ===== */
 const DEL=ms=>new Promise(r=>setTimeout(r,ms));
 const SVC=[['AppXSvc','Running','AppX Deployment Service'],['Audiosrv','Running','Windows Audio'],['BFE','Running','Base Filtering Engine'],['Dhcp','Running','DHCP Client'],['Spooler','Stopped','Print Spooler'],['WSearch','Running','Windows Search'],['wuauserv','Stopped','Windows Update'],['WinDefend','Running','Microsoft Defender Antivirus Service'],['Winmgmt','Running','Windows Management Instrumentation']];
-reg('start','Start-Process','URL を新しいタブで開く',['start','saps','start-process'],c=>{const a=c.p[0];if(!a)throw new Error('使い方: start <URL>');if(/^https?:\/\//i.test(a)){window.open(a,'_blank','noopener');return''}throw new Error(`Start-Process: '${a}' を開けません。この環境で開けるのは URL のみです。`)});
+reg('start','Start-Process','URL を新しいタブで開く',['start','saps','start-process'],c=>{const a=c.p[0];if(!a)throw new Error('使い方: start <URL>');if(/^ms-settings:/i.test(a)){openW11(msKey(a));return''}if(/^https?:\/\//i.test(a)){window.open(a,'_blank','noopener');return''}throw new Error(`Start-Process: '${a}' を開けません。この環境で開けるのは URL のみです。`)});
 reg('attrib','attrib','ファイル属性を表示',['attrib'],c=>{if(!c.p[0])throw new Error('使い方: attrib <ファイル>');return expand(c.t.cwd,c.p[0]).map(l=>{if(!l.node)return`ファイルが見つかりません - ${c.p[0]}`;const d=l.node.t==='d';return`${d?'    ':'A   '}${d?'D':' '}  ${pstr(l.parts)}`}).join('\n')});
 reg('fc','fc','2つのファイルを比較',['fc','compare'],c=>{const[a,b]=c.p;const A=a&&expand(c.t.cwd,a)[0],B=b&&expand(c.t.cwd,b)[0];if(!A||!B||!A.node||!B.node||A.node.t!=='f'||B.node.t!=='f')throw new Error('FC: ファイルを 2 つ指定してください。');const x=A.node.c.split('\n'),y=B.node.c.split('\n'),o=[];for(let i=0;i<Math.max(x.length,y.length);i++)if(x[i]!==y[i])o.push(`***** ${a}`,x[i]??'',`***** ${b}`,y[i]??'');return o.length?o.join('\n'):'FC: 相違は見つかりませんでした'});
 reg('sfc','sfc','システム ファイルの整合性を検査（シミュレーション）',['sfc'],async c=>{const T=c.t;let stop=false;T.abort=()=>{stop=true};T.print('Windows リソース保護を検証しています。');for(let i=0;i<=100&&!stop;i+=10){T.print(`検証 ${i}%`);await DEL(160)}T.abort=null;return stop?'\n中断しました。':'\n検証 100% 完了\nWindows リソース保護は、整合性違反を検出しませんでした。'});
@@ -678,213 +764,302 @@ const ANIM={loop(t,mk,ms){return new Promise(res=>{const el=t.html('');el.style.
   return this.loop(t,i=>`<span style="color:hsl(${i*36%360} 90% 62%)">${esc(A[i%2])}</span>\n\n<span class="gr">Ctrl + C で停止</span>`,110)},
  nyan(t){const tr=['#ff3030','#ff9a00','#ffee00','#33ff33','#3399ff','#9933ff'],cat=[[' ,-----------.   /\\_/\\',' | : . : . : |  ( ^.^ )',' | . : . : . |~~/> w <',' `-----------\'   "   "'],[' ,-----------.    /\\_/\\',' | . : . : . |   ( ^o^ )',' | : . : . : |~~~/> w <',' `-----------\'    "  "']];
   return this.loop(t,i=>{const f=cat[i%2],pad=' '.repeat(i%6);return '\n'+f.map((l,j)=>`${pad}<span style="color:${tr[(j+i)%6]}">${'~'.repeat(10-(i%2))}</span>${esc(l)}`).join('\n')+'\n\n<span class="gr">Ctrl + C で停止</span>'},140)}};
-/* ===== Settings (Windows 11) ===== */
+/* ===== Settings (Windows Terminal / Windows 11) ===== */
 const PRESETS=['gemini-3.8-flash','gemini-3.5-flash-lite'];
 const ACC=[['#60cdff','青（既定）'],['#6ccb5f','緑'],['#b4a0ff','紫'],['#ff99a4','ピンク'],['#fce100','黄'],['#f7630c','オレンジ']];
 const FONTS=['Cascadia Code','Cascadia Mono','Consolas','Menlo','Courier New'];
-const SCHEMES_UI=[['campbell','Campbell（既定）'],['onehalf','One Half Dark'],['solarized','Solarized Dark'],['pshell','Windows PowerShell（青）']];
-const WALL_UI=[['bloom','Bloom（既定）'],['solid','ソリッド ダーク'],['blue','ソリッド ブルー'],['grad','グラデーション']];
-const NAV=[['gemini','Gemini AI','bot'],['personal','個人用設定','paint'],['terminal','ターミナル','term'],['startup','起動とプロファイル','win'],['display','ディスプレイ','display'],['access','アクセシビリティ','access'],['privacy','プライバシーとデータ','shield'],['keys','キーボード ショートカット','kbd'],['backup','バックアップと復元','db'],['about','WinTerm について','info']];
-const DETAIL={account:'アカウント',device:'デバイスの仕様'};
-const SUB={'p-bg':['personal','背景'],'p-color':['personal','色'],'p-tabs':['personal','タブバー']};
+const SCHEMES_UI=[['campbell','Campbell'],['onehalf','One Half Dark'],['solarized','Solarized Dark'],['pshell','Campbell Powershell']];
+const WALL_UI=[['bloom','Bloom'],['solid','ソリッド ダーク'],['blue','ソリッド ブルー'],['grad','グラデーション']];
+const WINCOL=['#ffb900','#ff8c00','#f7630c','#ca5010','#da3b01','#ef6950','#d13438','#ff4343','#e74856','#e81123','#ea005e','#c30052','#e3008c','#bf0077','#c239b3','#9a0089','#0078d7','#0063b1','#8e8cd8','#6b69d6','#8764b8','#744da9','#b146c2','#881798','#0099bc','#2d7d9a','#00b7c3','#038387','#00b294','#018574','#00cc6a','#10893e','#7a7574','#5d5a58','#68768a','#515c6b','#567c73','#486860','#498205','#107c10','#767676','#4c4a48','#69797e','#4a5459','#647c64','#525e54','#847545','#7e735f'];
 const THEMES=[['Windows（ダーク）','dark','bloom','#60cdff','campbell'],['Windows（ライト）','light','bloom','#0078d4','campbell'],['グロー','dark','grad','#6ccb5f','onehalf'],['ミッドナイト','dark','blue','#b4a0ff','solarized'],['サンセット','dark','solid','#f7630c','campbell'],['フロー','light','grad','#ff99a4','campbell']];
-const wallBg=(w,l)=>WALLS[w||'bloom'][l?1:0];
-const FC={bot:'fluent-color:bot-24',paint:'fluent-color:paint-brush-24',db:'fluent-color:database-24'};
-const NI={
-term:`<svg width="22" height="22" viewBox="0 0 24 24"><rect x="2" y="3.5" width="20" height="17" rx="3" fill="#2b88d8"/><path d="M6.5 9l3 3-3 3M11.5 15h6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-win:`<svg width="22" height="22" viewBox="0 0 24 24"><rect x="2" y="3.5" width="20" height="17" rx="2.5" fill="#f3f3f3" stroke="#8a8a8a"/><rect x="2" y="3.5" width="20" height="5" rx="2.5" fill="#0078d4"/><rect x="5" y="11" width="6" height="7" rx="1" fill="#60cdff"/></svg>`,
-kbd:`<svg width="22" height="22" viewBox="0 0 24 24"><rect x="2" y="5.5" width="20" height="13" rx="2.5" fill="#e6e6e6" stroke="#8a8a8a"/><g fill="#7a7a7a"><rect x="5" y="8.5" width="2.2" height="2" rx=".4"/><rect x="8.5" y="8.5" width="2.2" height="2" rx=".4"/><rect x="12" y="8.5" width="2.2" height="2" rx=".4"/><rect x="15.5" y="8.5" width="2.2" height="2" rx=".4"/><rect x="7" y="13" width="10" height="2" rx=".4"/></g></svg>`,
-info:`<svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#0078d4"/><rect x="11" y="10.5" width="2" height="7" rx="1" fill="#fff"/><circle cx="12" cy="7.5" r="1.4" fill="#fff"/></svg>`,
-access:`<svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.5" fill="#2b88d8"/><path d="M5 9.5h14M12 9.5v5l-3 6M12 14.5l3 6" fill="none" stroke="#2b88d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-shield:`<svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 2.5l7.5 3v5.5c0 4.6-3.2 8.4-7.5 10.5C7.7 19.4 4.5 15.6 4.5 11V5.5z" fill="#4a9be8"/></svg>`};
-NI.display=`<svg width="22" height="22" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2" fill="#3b9cf0"/><rect x="4" y="6" width="16" height="9" rx="1" fill="#bfe0ff"/><path d="M9 20h6M12 17v3" stroke="#7a7a7a" stroke-width="2" stroke-linecap="round"/></svg>`;
-const NAVIC=k=>NI[k]||`<iconify-icon icon="${FC[k]}" width="22" height="22"></iconify-icon>`;
+const SHORT=[['出力をクリア','⌘K','Ctrl+L'],['実行中の処理を中断','Ctrl+C',''],['設定を開く','⌘,','Ctrl+,'],['新しいタブ','⌘T',''],['新しい PowerShell タブ','Ctrl+Shift+1',''],['新しいコマンド プロンプト タブ','Ctrl+Shift+2',''],['新しい Gemini AI Shell タブ','Ctrl+Shift+3',''],['コマンド パレット','⌘⇧P','Ctrl+Shift+P'],['タブを閉じる','⌘W',''],['タブを切り替え','⌘1〜9','Alt+1〜9'],['前 / 次のタブ','⌘⇧[  ⌘⇧]','Ctrl+Tab'],['コマンド・ファイル名を補完','Tab',''],['履歴を呼び出す','↑ ↓','']];
+const IC=(n,z=20,p='fluent')=>`<iconify-icon icon="${p}:${n}" width="${z}" height="${z}"></iconify-icon>`;
+const isLightNow=()=>S.set.theme==='light'||(S.set.theme==='system'&&matchMedia('(prefers-color-scheme: light)').matches);
+const wallBg=(w,l)=>(w==='custom'&&S.set.wallImg)?`url(${S.set.wallImg}) center/cover`:WALLS[w||'bloom'][l?1:0];
+const setLook=(k,v)=>{S.set[k]=v;save();applyLook()};
+const urow=(ic,ti,d,ctl,go,dis)=>`<div class="sc${go?' cl':''}${dis?' dis':''}"${go?` data-go="${go}"`:''}><span class="si">${ic?(ic.startsWith('<')?ic:IC(ic,22)):''}</span><div class="tx">${ti}${d?`<small>${d}</small>`:''}</div><div class="ctl">${ctl||''}</div>${go?IC('chevron-right-20-regular',16):''}</div>`;
+const uex=(id,ic,ti,d,ctl,body)=>`<div class="sc cl ex" data-exp="${id}"><span class="si">${ic?(ic.startsWith('<')?ic:IC(ic,22)):''}</span><div class="tx">${ti}${d?`<small>${d}</small>`:''}</div><div class="ctl">${ctl||''}</div><span class="chev">${IC('chevron-down-20-regular',16)}</span></div><div class="exp"><div><div class="expin">${body}</div></div></div>`;
+const utg=(id,on,dis)=>`<label class="tgl${dis?' dis':''}"><span>${on?'オン':'オフ'}</span><input type="checkbox" id="${id}" ${on?'checked':''}${dis?' disabled':''}><i></i></label>`;
+const usl=(id,o,v,dis)=>`<select class="tin" id="${id}"${dis?' disabled':''}>${o.map(x=>`<option value="${x[0]}" ${String(x[0])===String(v)?'selected':''}>${x[1]}</option>`).join('')}</select>`;
+const urg=(id,mn,mx,st,v,f)=>`<input type="range" id="${id}" min="${mn}" max="${mx}" step="${st}" value="${v}" style="width:200px"><span class="rv" id="${id}v">${f(v)}</span>`;
+const ukv=(ti,val,ic)=>urow(ic||'',ti,'',`<span class="kvv">${esc(String(val))}</span>`);
 const WTLOGO=z=>`<svg width="${z}" height="${z}" viewBox="0 0 48 48"><rect width="48" height="48" rx="11" fill="#1e222e"/><rect x="7" y="9" width="34" height="30" rx="4" fill="#0c0c0c" stroke="rgba(255,255,255,.2)"/><path d="M14 20l6 5-6 5M24 31h9" fill="none" stroke="#60cdff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const AVATAR=z=>S.set.avatar?`<img class="avimg" src="${S.set.avatar}" alt="" style="width:${z}px;height:${z}px">`:`<div class="av" style="width:${z}px;height:${z}px">${IC('person-24-filled',Math.round(z*.55))}</div>`;
-const isLightNow=()=>S.set.theme==='light'||(S.set.theme==='system'&&matchMedia('(prefers-color-scheme: light)').matches);
-const SHORT=[['出力をクリア','⌘K','Ctrl+L'],['実行中の処理を中断','Ctrl+C',''],['設定を開く','⌘,','Ctrl+,'],['新しいタブ','⌘T',''],['タブを閉じる','⌘W',''],['タブを切り替え','⌘1〜9','Alt+1〜9'],['前 / 次のタブ','⌘⇧[  ⌘⇧]','Ctrl+Tab'],['コマンド・ファイル名を補完','Tab',''],['履歴を呼び出す','↑ ↓',''],['コピー','⌘C','Ctrl+Shift+C'],['貼り付け','⌘V','Ctrl+Shift+V'],['すべて選択','⌘A','Ctrl+A']];
-const IC=(n,z=20,p='fluent')=>`<iconify-icon icon="${p}:${n}" width="${z}" height="${z}"></iconify-icon>`;
 const refreshSettings=()=>{const s=tabs.find(x=>x.type==='settings');if(s&&cur===s&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||''))buildSettings(s)};
+const insetsTxt=()=>{const p=document.createElement('div');p.style.cssText='position:fixed;visibility:hidden;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)';document.body.append(p);const c=getComputedStyle(p),v=[c.paddingTop,c.paddingRight,c.paddingBottom,c.paddingLeft].map(x=>Math.round(parseFloat(x)||0));p.remove();return v.join(' / ')+' px（上 / 右 / 下 / 左）'};
+const DEV=(()=>{const ua=navigator.userAgent,m=re=>{const x=re.exec(ua);return x?x[1].replace(/_/g,'.'):''};const ios=m(/OS (\d+[_.]\d+(?:[_.]\d+)?)/),sf=m(/Version\/([\d.]+)/),pad=/iPad/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),vv=window.visualViewport||{width:innerWidth,height:innerHeight},mq=q=>matchMedia(q).matches;
+ return{name:S.set.devName||(pad?'iPad':(/iPhone/.test(ua)?'iPhone':(navigator.platform||'デバイス'))),os:pad?'iPadOS '+(ios||''):(ios?'iOS '+ios:'不明'),ua,safari:sf||'不明',cores:navigator.hardwareConcurrency||'不明',mem:navigator.deviceMemory?navigator.deviceMemory+' GB（概算）':'取得不可（Safari 非対応）',touch:navigator.maxTouchPoints||0,screen:`${screen.width} × ${screen.height}`,dpr:devicePixelRatio||1,css:`${Math.round(vv.width)} × ${Math.round(vv.height)}`,lang:navigator.language||'不明',langs:(navigator.languages||[]).join(', '),tz:Intl.DateTimeFormat().resolvedOptions().timeZone,online:navigator.onLine,standalone:mq('(display-mode: standalone)')||navigator.standalone===true,dark:mq('(prefers-color-scheme: dark)'),reduced:mq('(prefers-reduced-motion: reduce)'),orient:mq('(orientation: landscape)')?'横向き':'縦向き',cookie:navigator.cookieEnabled,batt:'取得不可（Safari 非対応）',conn:navigator.connection?navigator.connection.effectiveType:'取得不可（Safari 非対応）'}})();
+const devSummary=()=>[`デバイス: ${DEV.name}`,`OS: ${DEV.os}`,`Safari: ${DEV.safari}`,`画面: ${DEV.screen} (${DEV.dpr}x)`,`表示領域: ${DEV.css}`,`言語: ${DEV.lang}`,`タイムゾーン: ${DEV.tz}`,`論理コア数: ${DEV.cores}`].join('\n');
+reg('gci2','Get-ComputerInfo','コンピューターの情報を表示',['get-computerinfo','gcinfo'],c=>`\nCsName                      : ${DEV.name}\nOsName                      : ${DEV.os}\nBrowserName                 : Safari ${DEV.safari}\nCsNumberOfLogicalProcessors : ${DEV.cores}\nCsTotalPhysicalMemory       : ${DEV.mem}\nOsLanguage                  : ${DEV.lang}\nTimeZone                    : ${DEV.tz}\nLocalDateTime               : ${fd(now())}\nNetworkStatus               : ${DEV.online?'Online':'Offline'}\nDisplayMode                 : ${DEV.standalone?'Standalone (ホーム画面)':'Browser'}\n`);
 const chk=async u=>{try{const r=await fetch(u,{cache:'no-store'});return r.ok?'取得できました ('+r.status+')':'失敗 ('+r.status+')'}catch(e){return'取得できません'}};
 async function diag(q){const set=(id,v)=>{const e=q('#'+id);if(e)e.textContent=v};
  set('dg1',await chk('./icons/apple-touch-icon.png'));set('dg2',await chk('./manifest.json'));set('dg3',await chk('./sw.js'));
  let sw='非対応';if('serviceWorker' in navigator){try{const r=await navigator.serviceWorker.getRegistration();sw=r?(r.active?'有効':'登録済み（起動待ち）'):'未登録'}catch(e){sw='取得できません'}}set('dg4',sw);
  const l=document.querySelector('link[rel="apple-touch-icon"]');set('dg5',l?(l.href.startsWith('data:')?'内蔵アイコンを使用':l.href):'なし');
  const v=window.visualViewport;set('dg6',`innerHeight ${innerHeight} / visualViewport ${v?Math.round(v.height):'-'} / screen ${screen.height} / #app ${Math.round($('#app').getBoundingClientRect().height)}`)}
-const insetsTxt=()=>{const p=document.createElement('div');p.style.cssText='position:fixed;visibility:hidden;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)';document.body.append(p);const c=getComputedStyle(p),v=[c.paddingTop,c.paddingRight,c.paddingBottom,c.paddingLeft].map(x=>Math.round(parseFloat(x)||0));p.remove();return v.join(' / ')+' px（上 / 右 / 下 / 左）'};
-const DEV=(()=>{const ua=navigator.userAgent,m=re=>{const x=re.exec(ua);return x?x[1].replace(/_/g,'.'):''};const ios=m(/OS (\d+[_.]\d+(?:[_.]\d+)?)/),sf=m(/Version\/([\d.]+)/),pad=/iPad/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),vv=window.visualViewport||{width:innerWidth,height:innerHeight},mq=q=>matchMedia(q).matches;
- return{name:pad?'iPad':(/iPhone/.test(ua)?'iPhone':(navigator.platform||'デバイス')),os:pad?'iPadOS '+(ios||''):(ios?'iOS '+ios:'不明'),ua,safari:sf||'不明',cores:navigator.hardwareConcurrency||'不明',mem:navigator.deviceMemory?navigator.deviceMemory+' GB（概算）':'取得不可（Safari 非対応）',touch:navigator.maxTouchPoints||0,screen:`${screen.width} × ${screen.height}`,dpr:devicePixelRatio||1,css:`${Math.round(vv.width)} × ${Math.round(vv.height)}`,lang:navigator.language||'不明',langs:(navigator.languages||[]).join(', '),tz:Intl.DateTimeFormat().resolvedOptions().timeZone,online:navigator.onLine,standalone:mq('(display-mode: standalone)')||navigator.standalone===true,dark:mq('(prefers-color-scheme: dark)'),reduced:mq('(prefers-reduced-motion: reduce)'),orient:mq('(orientation: landscape)')?'横向き':'縦向き',cookie:navigator.cookieEnabled,batt:'取得不可（Safari 非対応）',conn:navigator.connection?navigator.connection.effectiveType:'取得不可（Safari 非対応）'}})();
-const devSummary=()=>[`デバイス: ${DEV.name}`,`OS: ${DEV.os}`,`Safari: ${DEV.safari}`,`画面: ${DEV.screen} (${DEV.dpr}x)`,`表示領域: ${DEV.css}`,`言語: ${DEV.lang}`,`タイムゾーン: ${DEV.tz}`,`論理コア数: ${DEV.cores}`].join('\n');
-reg('gci2','Get-ComputerInfo','コンピューターの情報を表示',['get-computerinfo','gcinfo'],c=>`\nCsName                      : ${DEV.name}\nOsName                      : ${DEV.os}\nBrowserName                 : Safari ${DEV.safari}\nCsNumberOfLogicalProcessors : ${DEV.cores}\nCsTotalPhysicalMemory       : ${DEV.mem}\nOsLanguage                  : ${DEV.lang}\nTimeZone                    : ${DEV.tz}\nLocalDateTime               : ${fd(now())}\nNetworkStatus               : ${DEV.online?'Online':'Offline'}\nDisplayMode                 : ${DEV.standalone?'Standalone (ホーム画面)':'Browser'}\n`);
+const devRows=()=>`<div class="sc"><span class="si">${IC('desktop-24-regular',32)}</span><div class="tx"><b style="font-size:18px">${esc(DEV.name)}</b><small>${esc(DEV.os)} · Safari ${esc(DEV.safari)}</small></div><div class="ctl"><button class="btn" id="cpd">仕様をコピー</button></div></div>`
+ +'<div class="sech">デバイス</div>'+ukv('プロセッサ（論理コア数）',DEV.cores)+ukv('実装 RAM',DEV.mem)+ukv('タッチ ポイント',DEV.touch)+ukv('バッテリー',DEV.batt)
+ +'<div class="sech">画面</div>'+ukv('画面の解像度',`${DEV.screen}（${DEV.dpr}x）`)+ukv('表示領域',DEV.css)+ukv('向き',DEV.orient)+ukv('配色の設定',DEV.dark?'ダーク':'ライト')+ukv('動きの軽減',DEV.reduced?'オン':'オフ')
+ +`<div class="sc"><span class="si"></span><div class="tx">セーフエリア<small id="ins">計測中…</small></div></div>`
+ +'<div class="sech">OS とブラウザ</div>'+ukv('OS',DEV.os)+ukv('Safari',DEV.safari)+ukv('言語',DEV.lang+(DEV.langs?`（${DEV.langs}）`:''))+ukv('タイムゾーン',DEV.tz)+ukv('接続状態',DEV.online?'オンライン':'オフライン')+ukv('表示モード',DEV.standalone?'ホーム画面 (スタンドアロン)':'ブラウザ')+ukv('稼働時間',Math.round(performance.now()/60000)+' 分')+ukv('Cookie',DEV.cookie?'有効':'無効')+ukv('ネットワーク情報',DEV.conn)
+ +`<div class="sc"><span class="si"></span><div class="tx">保存領域<small id="stor">計測中…</small></div></div>`
+ +`<div class="sc"><span class="si"></span><div class="tx">この WinTerm のデータ<small>${(JSON.stringify(S).length/1024).toFixed(1)} KB（localStorage）</small></div></div>`;
+const devBind=q=>{const ins=q('#ins');if(ins)ins.textContent=insetsTxt();const st=q('#stor');
+ if(navigator.storage&&navigator.storage.estimate)navigator.storage.estimate().then(e=>{const el=q('#stor');if(el)el.textContent=`${(e.usage/1048576).toFixed(1)} MB 使用 / ${(e.quota/1073741824).toFixed(1)} GB 上限`}).catch(()=>{const el=q('#stor');if(el)el.textContent='取得不可'});
+ else if(st)st.textContent='取得不可（Safari 非対応）';
+ const cp=q('#cpd');if(cp)cp.onclick=()=>navigator.clipboard.writeText(devSummary()).then(()=>toast('デバイス情報をコピーしました')).catch(()=>toast('コピーできませんでした'))};
+const thumbH=(th,i)=>`<button class="thm${S.set.theme===th[1]&&(S.set.wall||'bloom')===th[2]&&S.set.accent===th[3]?' on':''}" data-th="${i}" title="${th[0]}" style="background:${wallBg(th[2],th[1]==='light')}"><span class="thw ${th[1]==='light'?'l':''}"><i style="background:${th[3]}"></i></span></button>`;
+const monH=()=>`<div class="mon" style="background:${wallBg(S.set.wall,isLightNow())}"><div class="thw big ${isLightNow()?'l':''}"><b></b><b class="s"></b><i style="background:${S.set.accent}"></i></div></div>`;
+const applyTheme=i=>{const th=THEMES[i];S.set.theme=th[1];S.set.wall=th[2];S.set.accent=th[3];S.set.scheme=th[4];save();applyLook();toast('テーマ「'+th[0]+'」を適用しました')};
+const pickPhoto=cb=>{const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=()=>{const file=f.files[0];if(!file)return;const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{const c=document.createElement('canvas'),k=Math.min(1,1600/Math.max(im.width,im.height));c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.set.wallImg=c.toDataURL('image/jpeg',.8);S.set.wall='custom';URL.revokeObjectURL(u);save();applyLook();cb()};im.src=u};f.click()};
+const openWT=pg=>{let t=tabs.find(x=>x.type==='settings');if(!t){newTab('settings');t=tabs.find(x=>x.type==='settings')}t.page=pg;sel(t)};
+
+/* ----- Windows Terminal settings ----- */
+const WTN=[['startup','スタートアップ','window-console-20-regular'],['interact','操作','cursor-24-regular'],['look','外観','paint-brush-24-regular'],['schemes','配色','color-24-regular'],['render','レンダリング','laptop-24-regular'],['compat','互換性','wrench-24-regular'],['actions','操作','keyboard-24-regular','新規'],['menu','新しいタブ メニュー','text-bullet-list-ltr-24-regular'],['ext','拡張機能','puzzle-piece-24-regular']];
+const WTP=[['p-default','既定値','layer-24-regular'],['p-ps','Windows PowerShell',TI.ps],['p-cmd','コマンド プロンプト',TI.cmd],['p-ai','Gemini AI Shell',TI.ai]];
+const WTSUB={device:['compat','デバイスの診断']};
+const WTALL=[...WTN,...WTP];
 function buildSettings(t){
- const row=(ic,ti,d,ctl,go)=>`<div class="sc${go?' cl':''}"${go?` data-go="${go}"`:''}><span class="si">${ic?IC(ic,22):''}</span><div class="tx">${ti}${d?`<small>${d}</small>`:''}</div><div class="ctl">${ctl||''}</div>${go?IC('chevron-right-20-regular',16):''}</div>`;
- const EX=(id,ic,ti,d,ctl,body)=>`<div class="sc cl ex" data-exp="${id}"><span class="si">${ic?IC(ic,22):''}</span><div class="tx">${ti}${d?`<small>${d}</small>`:''}</div><div class="ctl">${ctl||''}</div><span class="chev">${IC('chevron-down-20-regular',16)}</span></div><div class="exp"><div><div class="expin">${body}</div></div></div>`;
- const tg=(id,on)=>`<label class="tgl"><span>${on?'オン':'オフ'}</span><input type="checkbox" id="${id}" ${on?'checked':''}><i></i></label>`;
- const sl=(id,o,v)=>`<select class="tin" id="${id}">${o.map(x=>`<option value="${x[0]}" ${String(x[0])===String(v)?'selected':''}>${x[1]}</option>`).join('')}</select>`;
- const rg=(id,mn,mx,st,v,f)=>`<input type="range" id="${id}" min="${mn}" max="${mx}" step="${st}" value="${v}" style="width:200px"><span class="rv" id="${id}v">${f(v)}</span>`;
- const kv=(ti,val,ic)=>row(ic||'',ti,'',`<span class="kvv">${esc(String(val))}</span>`);
- const pgn=t.page||'gemini';
- const sb=SUB[pgn],navKey=sb?sb[0]:pgn,nv=NAV.find(n=>n[0]===pgn),pnv=sb&&NAV.find(n=>n[0]===sb[0]);
- const titleHtml=sb?`<a class="bca" data-bc="${sb[0]}">${pnv[1]}</a><i class="bci">›</i><span>${sb[1]}</span>`:esc(nv?nv[1]:(DETAIL[pgn]||'設定'));
+ if(!WTALL.find(n=>n[0]===t.page)&&!WTSUB[t.page]&&t.page!=='backup')t.page='startup';
+ if(!t.snap)t.snap=JSON.stringify(S.set);
+ const pgn=t.page,sb=WTSUB[pgn],navKey=sb?sb[0]:pgn,nv=WTALL.find(n=>n[0]===pgn);
+ const title=sb?`<a class="bca" data-bc="${sb[0]}">${WTALL.find(n=>n[0]===sb[0])[1]}</a><i class="bci">›</i><span>${sb[1]}</span>`:esc(pgn==='backup'?'JSON ファイル':nv[1]);
  const curScheme=SCHEMES_UI.find(x=>x[0]===S.set.scheme)||SCHEMES_UI[0];
- const curWall=WALL_UI.find(x=>x[0]===(S.set.wall||'bloom'))||WALL_UI[0];
- let pg='';
- if(pgn==='gemini')pg=row('key-24-regular','API キー','Google AI Studio で発行したキー。この端末の localStorage にのみ保存されます',`<input class="tin" id="k" type="password" placeholder="AIza..." value="${esc(S.set.apiKey)}" autocomplete="off" autocapitalize="off"><button class="btn" id="kv">表示</button><button class="btn" id="kd">削除</button>`)
-  +row('open-24-regular','API キーを取得する','Google AI Studio を新しいタブで開きます','','studio')
-  +row('bot-24-regular','モデル','プリセットから選ぶか、任意のモデルIDを入力できます',sl('mp',[...PRESETS.map(p=>[p,p]),['','カスタム…']],PRESETS.includes(S.set.model)?S.set.model:'')+`<input class="tin" id="mc" placeholder="カスタムモデルID" value="${esc(S.set.model)}">`)
+ const aiRows=()=>urow('key-24-regular','API キー','Google AI Studio で発行したキー。この端末の localStorage にのみ保存されます',`<input class="tin" id="k" type="password" placeholder="AIza..." value="${esc(S.set.apiKey)}" autocomplete="off" autocapitalize="off"><button class="btn" id="kv">表示</button><button class="btn" id="kd">削除</button>`)
+  +urow('open-24-regular','API キーを取得する','Google AI Studio を新しいタブで開きます','','studio')
+  +urow('bot-24-regular','モデル','プリセットから選ぶか、任意のモデルIDを入力できます',usl('mp',[...PRESETS.map(p=>[p,p]),['','カスタム…']],PRESETS.includes(S.set.model)?S.set.model:'')+`<input class="tin" id="mc" placeholder="カスタムモデルID" value="${esc(S.set.model)}">`)
   +`<div class="sc" style="flex-wrap:wrap"><span class="si">${IC('chat-24-regular',22)}</span><div class="tx">システム プロンプト<small>AI の性格・口調を設定します</small></div><textarea class="tin" id="sp" style="width:100%;min-height:90px">${esc(S.set.sys)}</textarea></div>`
-  +row('text-bullet-list-ltr-24-regular','ストリーミング表示','回答を一文字ずつ表示します。オフにすると、回答が完成してから表示されます',tg('st',S.set.stream!==false));
- else if(pgn==='personal')pg=`<div class="persrow"><div class="mon" style="background:${wallBg(S.set.wall,isLightNow())}"><div class="thw big ${isLightNow()?'l':''}"><b></b><b class="s"></b><i style="background:${S.set.accent}"></i></div></div><div class="thgrid"><div class="thh">テーマを選択して適用する</div><div class="thtiles">${THEMES.map((th,i)=>`<button class="thm${S.set.theme===th[1]&&(S.set.wall||'bloom')===th[2]&&S.set.accent===th[3]?' on':''}" data-th="${i}" title="${th[0]}" style="background:${wallBg(th[2],th[1]==='light')}"><span class="thw ${th[1]==='light'?'l':''}"><i style="background:${th[3]}"></i></span></button>`).join('')}</div></div></div>`
-  +row('image-24-regular','背景','背景画像、色、スライドショー','','p-bg')
-  +row('color-24-regular','色','アクセント カラー、透過効果、モード','','p-color')
-  +row('tab-desktop-24-regular','タブバー','タブの幅と角丸','','p-tabs');
- else if(pgn==='p-bg')pg=`<div class="wlgrid">${WALL_UI.map(w=>`<button class="wlt${(S.set.wall||'bloom')===w[0]?' on':''}" data-w="${w[0]}" style="background:${wallBg(w[0],isLightNow())}"><span>${w[1]}</span></button>`).join('')}</div>`;
- else if(pgn==='p-color')pg=row('weather-sunny-24-regular','モードを選ぶ','Windows とアプリに表示される色を変更します',sl('th',[['dark','ダーク'],['light','ライト'],['system','Windows の既定に従う']],S.set.theme))
-  +row('drop-24-regular','透過効果（Mica）','ウィンドウとサーフェスを半透明にします',tg('mi',S.set.mica))
-  +EX('accent','color-24-regular','アクセント カラー','手動で選択',`<span class="kvv"><i class="dot" style="background:${S.set.accent}"></i></span>`,`<div class="swg">${ACC.map(a=>`<button class="sw${a[0]===S.set.accent?' on':''}" data-c="${a[0]}" style="background:${a[0]}" title="${a[1]}" aria-label="${a[1]}"></button>`).join('')}</div>`)
-  +row('','ぼかしの強さ','映り込みの強さ（大きいほど柔らかくぼけます）',rg('bl',0,120,4,S.set.blur??60,v=>v+' px'))
-  +row('','ノイズ テクスチャ','Acrylic 風の細かい質感を重ねます',tg('nz',S.set.noise!==false));
- else if(pgn==='p-tabs')pg=row('window-console-20-regular','タブの幅','タブ 1 つの幅（Windows Terminal の既定は 240 px）',rg('tw',140,320,5,S.set.tabw||240,v=>v+' px'))
-  +row('','タブの角丸','タブ上部の角の丸み（既定は 8 px）',rg('tr',0,12,1,S.set.tabr??8,v=>v+' px'))
-  +row('','ウィンドウ ボタン','最小化・最大化・閉じるのボタンを右上に表示します（見た目のみ）',tg('wc',!!S.set.winctl));
- else if(pgn==='display')pg=row('zoom-in-24-regular','UI のサイズ','タブバーと設定画面などの大きさ（文字だけでなく UI 全体）',rg('ui',80,140,5,Math.round((S.set.ui||1)*100),v=>v+'%'))
-  +row('arrow-up-24-regular','上部の余白','iPadOS のメニュー バーとタブバーの間隔',rg('tp',0,60,1,S.set.topPad??28,v=>v+' px'))
-  +row('arrow-down-24-regular','下部の補正','iPad の下端に余白が出る場合に増やします',rg('gf',0,60,1,S.set.gapFix||0,v=>v+' px'))
-  +row('text-font-size-24-regular','コンソールの文字サイズ','コンソールの文字の大きさ',rg('fs2',11,24,1,S.set.fs,v=>v+' px'))
-  +row('info-24-regular','画面の情報','現在の表示領域と安全領域を確認できます','','device');
- else if(pgn==='terminal')pg=row('text-font-24-regular','フォント','コンソールに使う等幅フォント',sl('ff',FONTS.map(f=>[f,f]),S.set.font))
-  +row('text-font-size-24-regular','フォント サイズ','コンソールの文字の大きさ',rg('fs',11,24,1,S.set.fs,v=>v+' px'))
+  +urow('text-bullet-list-ltr-24-regular','ストリーミング表示','回答を一文字ずつ表示します。オフにすると、回答が完成してから表示されます',utg('st',S.set.stream!==false));
+ let pg='';
+ if(pgn==='startup')pg=urow(TI[S.set.profile]||TI.ps,'既定のプロファイル','[+] アイコンをクリックするか、新しい tab キーのバインドを入力すると表示されるプロファイルです。',usl('pf',[['ps','Windows PowerShell'],['cmd','コマンド プロンプト'],['ai','Gemini AI Shell']],S.set.profile))
+  +urow('<svg width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 9l3 2.5L7 14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>','既定のターミナル アプリケーション','[スタート] メニューや [ファイル名を指定して実行] ダイアログなど、既存のセッションなしでコマンドライン アプリケーションを実行したときに起動するターミナル アプリケーション。',usl('dt0',[['a','Windows で自動的に選択する']],'a',true),'',true)
+  +urow('','言語 (再起動が必要)','アプリケーションの表示言語を選択します。これにより、既定の Windows インターフェイス言語が上書きされます。',usl('lg0',[['d','既定値']],'d',true),'',true)
+  +urow('','既定の IME 入力モード','既定で使用する言語を IME に通知します。IME に依存し、既定ではラテン文字を使用しない言語では、スタートアップ時に英語入力を強制するためにこの設定を使用できます。',usl('ime0',[['d','既定値']],'d',true),'',true)
+  +urow('','コンピューターのスタートアップ時に起動','Windows にログインすると、ターミナルが自動的に起動します。',utg('boot0',false,true),'',true)
+  +urow('','ターミナルの起動時','最初のターミナルの作成時に何が表示されるべきでしょうか。',usl('ls0',[['d','既定のプロファイルでタブを開く']],'d',true),'',true)
+  +urow('','新しいインスタンスの動作','新しい端末インスタンスを既存のウィンドウにアタッチする方法を制御します。',usl('ni0',[['d','新しいウィンドウを作成する']],'d',true),'',true)
+  +uex('size','','起動サイズ','最初の読み込み時にウィンドウに表示される行と列の数。文字数で計測されます。','<span class="kvv">120 × 30</span>','この環境では、ウィンドウの大きさは画面に合わせて自動で決まります。')
+  +uex('lp','','起動パラメーター','ターミナルの起動方法を制御する設定','<span class="kvv">既定, Windows の自動設定を使用する</span>','この環境では変更できません。')
+  +'<div class="sech">WinTerm</div>'
+  +urow('flash-24-regular','高速スタートアップ','オンにすると、起動時のブート画面を表示しません',utg('fa',S.set.fast))
+  +urow('image-24-regular','起動時のロゴ','新しいタブの先頭に表示するアスキーアート',usl('lg',[['winterm','WinTerm'],['win11','Windows 11'],['ps','PowerShell'],['custom','カスタムバナー'],['none','なし']],S.set.logo)+`<input class="tin" id="bn" placeholder="バナー文字 (英数字)" value="${esc(S.set.banner)}" style="min-width:140px;width:160px">`);
+ else if(pgn==='interact')pg=urow('','選択時に自動的にコピー','テキストを選択すると、自動的にクリップボードにコピーされます。',utg('cs',!!S.set.copySel))
+  +urow('','末尾の空白を削除してコピー','コピーしたテキストの行末の空白を削除します。',utg('tw0',true,true),'',true)
+  +urow('','右クリックで貼り付け','右クリック (長押し) で貼り付けます。',utg('rc0',false,true),'',true);
+ else if(pgn==='look')pg=urow('weather-sunny-24-regular','テーマ','アプリケーションのテーマ',usl('th',[['dark','ダーク'],['light','ライト'],['system','Windows の既定に従う']],S.set.theme))
+  +urow('image-24-regular','壁紙','Mica が映し込む背景',usl('wl',[...WALL_UI,...(S.set.wallImg?[['custom','カスタム画像']]:[])],S.set.wall||'bloom'))
+  +uex('accent','color-24-regular','アクセント カラー','',`<span class="kvv"><i class="dot" style="background:${S.set.accent}"></i></span>`,`<div class="swg">${ACC.map(a=>`<button class="sw${a[0]===S.set.accent?' on':''}" data-c="${a[0]}" style="background:${a[0]}" title="${a[1]}" aria-label="${a[1]}"></button>`).join('')}</div>`)
+  +urow('window-console-20-regular','タブの幅','等幅（Windows Terminal の既定は 240 px）',urg('tw',140,320,5,S.set.tabw||240,v=>v+' px'))
+  +urow('','タブの角丸','既定は 8 px',urg('tr',0,12,1,S.set.tabr??8,v=>v+' px'))
+  +urow('zoom-in-24-regular','UI のサイズ','タブバーと設定画面などの大きさ（文字だけでなく UI 全体）',urg('ui',80,140,5,Math.round((S.set.ui||1)*100),v=>v+'%'))
+  +urow('arrow-up-24-regular','上部の余白','iPadOS のメニュー バーとタブバーの間隔',urg('tp',0,60,1,S.set.topPad??28,v=>v+' px'))
+  +urow('arrow-down-24-regular','下部の補正','iPad の下端に余白が出る場合に増やします',urg('gf',0,60,1,S.set.gapFix||0,v=>v+' px'))
+  +urow('','ウィンドウ ボタンを表示','最小化・最大化・閉じるのボタンを右上に表示します（見た目のみ）',utg('wc',!!S.set.winctl));
+ else if(pgn==='schemes')pg='<div class="note">配色は、ターミナルの背景色と文字色を決めます。選択すると、すべての PowerShell / コマンド プロンプト タブに適用されます。</div>'
+  +SCHEMES_UI.map(x=>{const c=SCHEMES[x[0]],on=x[0]===S.set.scheme;return `<div class="sc cl scx${on?' on':''}" data-s="${x[0]}"><span class="si"></span><div class="tx">${x[1]}${x[0]==='campbell'?' (既定)':''}<small>背景 rgb(${c[0]}) / 文字 rgb(${c[1]})</small></div><div class="ctl"><span class="schp2" style="background:rgb(${c[0]});color:rgb(${c[1]})">PS C:\\&gt; _</span>${on?IC('checkmark-20-regular',18):''}</div></div>`}).join('');
+ else if(pgn==='render')pg=urow('drop-24-regular','透過効果（Mica）','背景の壁紙を半透明の面に映し込みます',utg('mi',S.set.mica))
+  +urow('','ぼかしの強さ','映り込みの強さ（大きいほど柔らかくぼけます）',urg('bl',0,120,4,S.set.blur??60,v=>v+' px'))
+  +urow('','ノイズ テクスチャ','Acrylic 風の細かい質感を重ねます',utg('nz',S.set.noise!==false))
+  +urow('','アニメーションを減らす','画面の切り替えなどの動きを最小限にします',utg('rm',!!S.set.rm));
+ else if(pgn==='compat')pg=urow('','大きい文字','コンソールと UI の文字を約 12% 大きくします',utg('bg',!!S.set.big))
+  +urow('','高いコントラスト','境界線と選択中の項目を強調します',utg('hc',!!S.set.hc))
+  +urow('history-24-regular','履歴の保存件数','↑ ↓ で呼び出せるコマンドの上限',usl('hm',[[100,'100 件'],[500,'500 件'],[1000,'1000 件']],S.set.histMax))
+  +urow('info-24-regular','デバイスの診断','画面の大きさ、アイコン、ファイルの取得状況を確認できます','','device');
+ else if(pgn==='actions')pg=SHORT.map(x=>urow('',x[0],'',`<span class="kb">${x[1]}</span>`+(x[2]?`<span class="kb">${x[2]}</span>`:''))).join('');
+ else if(pgn==='menu')pg='<div class="note">新しいタブ (⌄) メニューに表示される項目です。</div>'+[['ps','Windows PowerShell','Ctrl+Shift+1'],['cmd','コマンド プロンプト','Ctrl+Shift+2'],['ai','Gemini AI Shell','Ctrl+Shift+3']].map(x=>urow(TI[x[0]],x[1],'',`<span class="kb">${x[2]}</span>`)).join('');
+ else if(pgn==='ext')pg=urow('puzzle-piece-24-regular','サービス ワーカーとキャッシュ','オフライン用のキャッシュです。アイコンや画面が更新されないときに削除して再読み込みします。',`<button class="btn" id="clc">キャッシュを削除して再読み込み</button>`)
+  +urow('','組み込みの拡張機能','Gemini AI Shell、仮想ファイル システム（C:）');
+ else if(pgn==='p-default')pg=urow('text-font-24-regular','フォント','コンソールに使う等幅フォント',usl('ff',FONTS.map(f=>[f,f]),S.set.font))
+  +urow('text-font-size-24-regular','フォント サイズ','コンソールの文字の大きさ',urg('fs',11,24,1,S.set.fs,v=>v+' px'))
   +`<div class="sc"><div class="tx">プレビュー<small>実際のコンソールに反映されます</small><pre id="pv" style="margin:10px 0 0;font:${S.set.fs}px/${S.set.lh||1.25} var(--ff);white-space:pre">PS C:\\Users\\User> Get-Date\nWednesday, November 25, 2026 8:54:00 AM</pre></div></div>`
-  +row('','フォント ウェイト','文字の太さ',sl('fw',[[300,'Light'],[400,'Regular'],[500,'Medium'],[600,'Semibold'],[700,'Bold']],S.set.fw||400))
-  +row('','行の間隔','行の高さの倍率',rg('lh',1,1.6,.05,S.set.lh||1.25,v=>(+v).toFixed(2)))
-  +EX('scheme','color-24-regular','配色','コンソールの背景色と文字色',`<span class="kvv">${curScheme[1]}</span>`,`<div class="schg">${SCHEMES_UI.map(x=>{const c=SCHEMES[x[0]];return `<button class="schc${x[0]===S.set.scheme?' on':''}" data-s="${x[0]}"><div class="schp" style="background:rgb(${c[0]});color:rgb(${c[1]})">PS C:\\Users\\User&gt; _</div><span>${x[1]}</span></button>`}).join('')}</div>`)
-  +row('color-background-24-regular','背景の不透明度','小さくすると背景の壁紙が透けて見えます',rg('al',30,100,5,Math.round(S.set.alpha*100),v=>v+'%'))
-  +row('arrow-wrap-24-regular','行の折り返し','長い行を画面幅で折り返します',tg('wr',S.set.wrap))
-  +row('history-24-regular','履歴の保存件数','↑ ↓ で呼び出せるコマンドの上限',sl('hm',[[100,'100 件'],[500,'500 件'],[1000,'1000 件']],S.set.histMax));
- else if(pgn==='startup')pg=row('window-console-20-regular','既定のプロファイル','＋ ボタンで開くシェル',sl('pf',[['ps','PowerShell'],['cmd','コマンド プロンプト'],['ai','Gemini AI Shell']],S.set.profile))
-  +row('image-24-regular','起動時のロゴ','新しいタブの先頭に表示するアスキーアート',sl('lg',[['winterm','WinTerm'],['win11','Windows 11'],['ps','PowerShell'],['custom','カスタムバナー'],['none','なし']],S.set.logo)+`<input class="tin" id="bn" placeholder="バナー文字 (英数字)" value="${esc(S.set.banner)}" style="min-width:140px;width:160px">`)
-  +row('flash-24-regular','高速スタートアップ','オンにすると、起動時のブート画面を表示しません',tg('fa',S.set.fast));
- else if(pgn==='access')pg=row('accessibility-24-regular','動きを減らす','アニメーションを最小限にします（Windows の「動きの効果」に相当）',tg('rm',!!S.set.rm))
-  +row('','高いコントラスト','境界線と選択中の項目を白で強調します',tg('hc',!!S.set.hc))
-  +row('','大きい文字','コンソールと UI の文字を約 12% 大きくします',tg('bg',!!S.set.big));
- else if(pgn==='privacy')pg=row('shield-24-regular','Gemini へ送信されるデータ','AI への質問と、設定のシステム プロンプトだけを送信します。コマンドの履歴や仮想ドライブの内容は送信しません')
-  +row('delete-24-regular','入力履歴を削除','↑ ↓ で呼び出せる履歴をすべて消去します',`<button class="btn" id="hclr">削除</button>`)
-  +row('info-24-regular','この端末に保存されているデータ','localStorage 内の WinTerm のデータ量',`<span class="kvv">${(JSON.stringify(S).length/1024).toFixed(1)} KB</span>`);
- else if(pgn==='keys')pg=SHORT.map(x=>row('',x[0],'',`<span class="kb">${x[1]}</span>`+(x[2]?`<span class="kb">${x[2]}</span>`:''))).join('');
- else if(pgn==='backup')pg=row('arrow-download-24-regular','エクスポート','設定・アカウント・コマンド履歴・仮想Cドライブを1つのJSONに保存します。iPad Safari は一定期間操作がないとデータが消えることがあるため、定期的な保存をおすすめします',`<button class="btn pri" id="ex">JSONを保存</button>`)
-  +row('arrow-upload-24-regular','インポート','バックアップのJSONから復元します (現在のデータは上書きされます)',`<button class="btn" id="im">JSONを読み込む</button><input type="file" id="if" accept=".json,application/json" hidden>`)
-  +row('delete-24-regular','すべてのデータを削除','設定・履歴・仮想Cドライブを初期状態に戻します',`<button class="btn dng" id="rs">削除…</button>`);
- else if(pgn==='about')pg=`<div class="sc" style="gap:18px">${WTLOGO(52)}<div class="tx"><b style="font-size:18px">WinTerm</b><small>バージョン 1.4.0</small></div></div>`
-  +row('desktop-24-regular','デバイスの仕様',`${esc(DEV.name)} · ${esc(DEV.os)}`,'','device')
-  +row('window-console-20-regular','仮想シェル','PowerShell 7.7.0 / コマンド プロンプト (Windows 11 Pro 10.0.22631.4317 を模擬)')
-  +row('shield-24-regular','プライバシー','実際の PC やサーバーには接続しません。AI 機能を使う場合のみ Gemini API と通信します')
-  +row('info-24-regular','ライセンス','非公式の学習用 Web 再現です。Microsoft / Windows とは関係ありません');
- else if(pgn==='device'){
-  pg=`<div class="sc"><span class="si">${IC('desktop-24-regular',32)}</span><div class="tx"><b style="font-size:18px">${esc(DEV.name)}</b><small>${esc(DEV.os)} · Safari ${esc(DEV.safari)}</small></div><div class="ctl"><button class="btn" id="cpd">仕様をコピー</button></div></div>`
-   +'<div class="sech">デバイス</div>'
-   +kv('プロセッサ（論理コア数）',DEV.cores,'')
-   +kv('実装 RAM',DEV.mem,'')
-   +kv('タッチ ポイント',DEV.touch,'')
-   +kv('バッテリー',DEV.batt,'')
-   +'<div class="sech">画面</div>'
-   +kv('画面の解像度',`${DEV.screen}（${DEV.dpr}x）`,'')
-   +kv('表示領域',DEV.css,'')
-   +kv('向き',DEV.orient,'')
-   +kv('配色の設定',DEV.dark?'ダーク':'ライト','')
-   +kv('動きの軽減',DEV.reduced?'オン':'オフ','')
-   +`<div class="sc"><span class="si"></span><div class="tx">セーフエリア<small id="ins">計測中…</small></div></div>`
-   +'<div class="sech">OS とブラウザ</div>'
-   +kv('OS',DEV.os,'')
-   +kv('Safari',DEV.safari,'')
-   +kv('言語',DEV.lang+(DEV.langs?`（${DEV.langs}）`:''),'globe-24-regular')
-   +kv('タイムゾーン',DEV.tz,'clock-24-regular')
-   +kv('接続状態',DEV.online?'オンライン':'オフライン','')
-   +kv('表示モード',DEV.standalone?'ホーム画面 (スタンドアロン)':'ブラウザ','')
-   +kv('稼働時間',Math.round(performance.now()/60000)+' 分','')
-   +kv('Cookie',DEV.cookie?'有効':'無効','')
-   +kv('ネットワーク情報',DEV.conn,'')
-   +`<div class="sc"><span class="si"></span><div class="tx">保存領域<small id="stor">計測中…</small></div></div>`
-   +`<div class="sc"><span class="si"></span><div class="tx">この WinTerm のデータ<small>${(JSON.stringify(S).length/1024).toFixed(1)} KB（localStorage）</small></div></div>`
-   +'<div class="sech">アプリ アイコンとレイアウトの診断</div>'+['dg1|アイコン ファイル (icons/apple-touch-icon.png)','dg2|manifest.json','dg3|sw.js','dg4|Service Worker','dg5|ホーム画面用アイコン','dg6|画面の高さ (px)'].map(x=>{const[i,n]=x.split('|');return`<div class="sc"><span class="si"></span><div class="tx">${n}<small id="${i}">確認中…</small></div></div>`}).join('')+EX('ua','info-24-regular','ユーザー エージェント','',``,`<code class="ua">${esc(DEV.ua)}</code>`);
- }
- else pg=`<div class="acc">${AVATAR(120)}<div class="accbtns"><button class="btn" id="avb">写真を変更</button><button class="btn" id="avd">削除</button><input type="file" id="avf" accept="image/*" hidden></div></div>`
-  +row('person-24-regular','ユーザー名','アカウント ページとプロフィールに表示されます',`<input class="tin" id="un" value="${esc(S.set.name)}" maxlength="40">`)
-  +row('shield-24-regular','アカウントの種類','ローカル アカウント（この端末内のみ）')
-  +row('folder-24-regular','ユーザー フォルダー','C:\\Users\\User（仮想 C: ドライブ）');
- t.view.innerHTML=`<div class="set"><div class="stb"><button class="btn bk" id="bk" title="${DETAIL[pgn]?'戻る':'閉じる'}">${IC('arrow-left-24-regular',18)}</button>${DETAIL[pgn]?esc(DETAIL[pgn]):'設定'}</div><div class="sbody"><div class="nav"><div class="prof" id="pfc">${AVATAR(56)}<div class="pinfo"><b>${esc(S.set.name)}</b><span>ローカル アカウント</span></div></div><div class="sbox"><input id="ss" placeholder="設定の検索">${IC('search-20-regular',16)}</div>${NAV.map(n=>`<div class="ni ${n[0]===navKey?'on':''}" data-k="${n[0]}">${NAVIC(n[2])}<span>${n[1]}</span></div>`).join('')}</div><div class="pg"><h2>${titleHtml}</h2>${pg}</div></div></div>`;
- const q=s=>t.view.querySelector(s);
- const again=()=>buildSettings(t);
+  +urow('','フォント ウェイト','文字の太さ',usl('fw',[[300,'Light'],[400,'Regular'],[500,'Medium'],[600,'Semibold'],[700,'Bold']],S.set.fw||400))
+  +urow('','行の間隔','行の高さの倍率',urg('lh',1,1.6,.05,S.set.lh||1.25,v=>(+v).toFixed(2)))
+  +urow('color-24-regular','配色','コンソールの背景色と文字色',usl('sc2',SCHEMES_UI,S.set.scheme))
+  +urow('color-background-24-regular','背景の不透明度','小さくすると背景の壁紙が透けて見えます',urg('al',30,100,5,Math.round(S.set.alpha*100),v=>v+'%'))
+  +urow('arrow-wrap-24-regular','行の折り返し','長い行を画面幅で折り返します',utg('wr',S.set.wrap));
+ else if(pgn==='p-ps')pg=urow(TI.ps,'PowerShell のバージョン','画面の表示と $PSVersionTable に反映されます',usl('psv',[['7','PowerShell 7.7.0'],['5','Windows PowerShell 5.1']],S.set.psver))
+  +urow('','コマンド ライン','',`<span class="kvv">${S.set.psver==='5'?'%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe':'pwsh.exe'}</span>`)
+  +urow('','開始ディレクトリ','',`<span class="kvv">%USERPROFILE%</span>`);
+ else if(pgn==='p-cmd')pg=urow(TI.cmd,'プロンプトの書式','$P=現在のパス、$G=> が使えます（prompt コマンドでも変更できます）',`<input class="tin" id="cpf" value="${esc(S.set.cmdPrompt||'$P$G')}">`)
+  +urow('','コマンド ライン','',`<span class="kvv">%SystemRoot%\\System32\\cmd.exe</span>`);
+ else if(pgn==='p-ai')pg=aiRows();
+ else if(pgn==='backup')pg=urow('arrow-download-24-regular','エクスポート','設定・アカウント・コマンド履歴・仮想Cドライブを1つのJSONに保存します。iPad Safari は一定期間操作がないとデータが消えることがあるため、定期的な保存をおすすめします',`<button class="btn pri" id="ex">JSONを保存</button>`)
+  +urow('arrow-upload-24-regular','インポート','バックアップのJSONから復元します (現在のデータは上書きされます)',`<button class="btn" id="im">JSONを読み込む</button><input type="file" id="if" accept=".json,application/json" hidden>`)
+  +urow('delete-24-regular','すべてのデータを削除','設定・履歴・仮想Cドライブを初期状態に戻します',`<button class="btn dng" id="rs">削除…</button>`);
+ else if(pgn==='device')pg=devRows()+'<div class="sech">アプリ アイコンとレイアウトの診断</div>'+['dg1|アイコン ファイル (icons/apple-touch-icon.png)','dg2|manifest.json','dg3|sw.js','dg4|Service Worker','dg5|ホーム画面用アイコン','dg6|画面の高さ (px)'].map(x=>{const[i,n]=x.split('|');return`<div class="sc"><span class="si"></span><div class="tx">${n}<small id="${i}">確認中…</small></div></div>`}).join('')+uex('ua','info-24-regular','ユーザー エージェント','','',`<code class="ua">${esc(DEV.ua)}</code>`);
+ const navItem=n=>`<div class="ni ${n[0]===navKey?'on':''}" data-k="${n[0]}"><span class="ni-i">${n[2].startsWith('<')?n[2]:IC(n[2],20)}</span><span class="ni-t">${n[1]}</span>${n[3]?`<em class="bdg">${n[3]}</em>`:''}</div>`;
+ t.view.innerHTML=`<div class="set wts"><div class="sbody"><div class="nav"><button class="hb" id="hb" title="ナビゲーション">${IC('navigation-24-regular',20)}</button><div class="sbox"><input id="ss" placeholder="設定の検索">${IC('search-20-regular',16)}</div>${WTN.map(navItem).join('')}<div class="nsec">プロファイル</div>${WTP.map(navItem).join('')}<div class="ni" id="addp"><span class="ni-i">${IC('add-24-regular',20)}</span><span class="ni-t">新しいプロファイルを追加します</span></div><div class="ni nbot ${pgn==='backup'?'on':''}" data-k="backup"><span class="ni-i">${IC('settings-24-regular',20)}</span><span class="ni-t">JSON ファイルを開く</span></div></div><div class="pgw"><div class="pg"><h2>${title}</h2>${pg}</div><div class="foot"><button class="btn pri" id="sv">保存</button><button class="btn" id="dc">変更を破棄する</button></div></div></div></div>`;
+ const q=s=>t.view.querySelector(s),on=(id,ev,fn)=>{const e=q('#'+id);if(e)e['on'+ev]=fn},again=()=>buildSettings(t);
  t.view.querySelectorAll('input[type=range]').forEach(r=>{const u=()=>r.style.setProperty('--p',((r.value-r.min)/(r.max-r.min)*100)+'%');u();r.addEventListener('input',u)});
- q('#bk').onclick=()=>{if(SUB[pgn]){t.page=SUB[pgn][0];again()}else if(DETAIL[pgn]){t.page=t.prev||'gemini';again()}else closeTab(t)};
+ t.view.querySelectorAll('.ni[data-k]').forEach(n=>n.onclick=()=>{t.page=n.dataset.k;again()});
  t.view.querySelectorAll('[data-bc]').forEach(a=>a.onclick=()=>{t.page=a.dataset.bc;again()});
- t.view.querySelectorAll('.ni').forEach(n=>n.onclick=()=>{t.page=n.dataset.k;again()});
- q('#pfc').onclick=()=>{t.prev=t.page;t.page='account';again()};
- q('#ss').oninput=e=>{const v=e.target.value.toLowerCase();t.view.querySelectorAll('.ni').forEach(n=>n.style.display=n.textContent.toLowerCase().includes(v)?'':'none')};
  t.view.querySelectorAll('.ex').forEach(el=>el.onclick=e=>{if(e.target.closest('input,select,textarea,label,button'))return;el.classList.toggle('open');el.nextElementSibling.classList.toggle('open')});
- t.view.querySelectorAll('.cl[data-go]').forEach(el=>el.onclick=()=>{const g=el.dataset.go;if(g==='studio'){window.open('https://aistudio.google.com/apikey','_blank','noopener');return}t.prev=t.page;t.page=g;again()});
- const setLook=(k,v)=>{S.set[k]=v;save();applyLook()};
- if(pgn==='gemini'){q('#k').oninput=e=>{S.set.apiKey=e.target.value.trim();save()};q('#kv').onclick=()=>{const k=q('#k');k.type=k.type==='password'?'text':'password';q('#kv').textContent=k.type==='password'?'表示':'隠す'};
-  q('#kd').onclick=()=>{S.set.apiKey='';save();again();toast('APIキーを削除しました')};
-  q('#mp').onchange=e=>{if(e.target.value){S.set.model=e.target.value;q('#mc').value=e.target.value;save()}else q('#mc').focus()};
-  q('#mc').oninput=e=>{S.set.model=e.target.value.trim()||PRESETS[0];q('#mp').value=PRESETS.includes(S.set.model)?S.set.model:'';save()};
-  q('#sp').oninput=e=>{S.set.sys=e.target.value;save()};
-  q('#st').onchange=e=>{S.set.stream=e.target.checked;save();again()}}
- if(pgn==='personal'){t.view.querySelectorAll('.thm').forEach(b=>b.onclick=()=>{const th=THEMES[+b.dataset.th];S.set.theme=th[1];S.set.wall=th[2];S.set.accent=th[3];S.set.scheme=th[4];save();applyLook();again();toast('テーマ「'+th[0]+'」を適用しました')})}
- if(pgn==='p-bg'){t.view.querySelectorAll('.wlt').forEach(b=>b.onclick=()=>{setLook('wall',b.dataset.w);again()})}
- if(pgn==='p-color'){q('#th').onchange=e=>{setLook('theme',e.target.value);again()};
-  t.view.querySelectorAll('.sw').forEach(b=>b.onclick=()=>{S.set.accent=b.dataset.c;save();applyLook();t.view.querySelectorAll('.sw').forEach(x=>x.classList.toggle('on',x===b));const d=t.view.querySelector('.dot');if(d)d.style.background=S.set.accent});
-  q('#mi').onchange=e=>{setLook('mica',e.target.checked);again()};
-  q('#bl').oninput=e=>{setLook('blur',+e.target.value);q('#blv').textContent=e.target.value+' px'};
-  q('#nz').onchange=e=>{setLook('noise',e.target.checked);again()}}
- if(pgn==='p-tabs'){q('#tw').oninput=e=>{setLook('tabw',+e.target.value);q('#twv').textContent=e.target.value+' px'};
-  q('#tr').oninput=e=>{setLook('tabr',+e.target.value);q('#trv').textContent=e.target.value+' px'};
-  q('#wc').onchange=e=>{setLook('winctl',e.target.checked);again()}}
- if(pgn==='display'){q('#ui').oninput=e=>{setLook('ui',+e.target.value/100);q('#uiv').textContent=e.target.value+'%'};
-  q('#tp').oninput=e=>{setLook('topPad',+e.target.value);q('#tpv').textContent=e.target.value+' px'};
-  q('#gf').oninput=e=>{setLook('gapFix',+e.target.value);q('#gfv').textContent=e.target.value+' px'};
-  q('#fs2').oninput=e=>{setLook('fs',+e.target.value);q('#fs2v').textContent=e.target.value+' px'}}
- if(pgn==='terminal'){q('#ff').onchange=e=>{setLook('font',e.target.value)};
-  q('#fs').oninput=e=>{setLook('fs',+e.target.value);q('#fsv').textContent=S.set.fs+' px';q('#pv').style.font=`${S.set.fs}px/${S.set.lh||1.25} var(--ff)`};
-  q('#fw').onchange=e=>{setLook('fw',+e.target.value)};
-  q('#lh').oninput=e=>{setLook('lh',+e.target.value);q('#lhv').textContent=(+e.target.value).toFixed(2);q('#pv').style.lineHeight=S.set.lh};
-  t.view.querySelectorAll('.schc').forEach(b=>b.onclick=()=>{S.set.scheme=b.dataset.s;save();applyLook();t.view.querySelectorAll('.schc').forEach(x=>x.classList.toggle('on',x===b));const sum=t.view.querySelector('[data-exp="scheme"] .kvv');if(sum)sum.textContent=(SCHEMES_UI.find(x=>x[0]===S.set.scheme)||SCHEMES_UI[0])[1]});
-  q('#al').oninput=e=>{S.set.alpha=+e.target.value/100;q('#alv').textContent=e.target.value+'%';applyLook();save()};
-  q('#wr').onchange=e=>{setLook('wrap',e.target.checked);again()};
-  q('#hm').onchange=e=>{S.set.histMax=+e.target.value;save()}}
- if(pgn==='startup'){q('#pf').onchange=e=>{S.set.profile=e.target.value;save()};q('#lg').onchange=e=>{S.set.logo=e.target.value;save()};
-  q('#bn').oninput=e=>{S.set.banner=e.target.value;save()};
-  q('#fa').onchange=e=>{S.set.fast=e.target.checked;save();again()}}
- if(pgn==='access'){q('#rm').onchange=e=>{setLook('rm',e.target.checked);again()};q('#hc').onchange=e=>{setLook('hc',e.target.checked);again()};q('#bg').onchange=e=>{setLook('big',e.target.checked);again()}}
- if(pgn==='privacy'){const hc=q('#hclr');if(hc)hc.onclick=()=>{S.hist=[];save();toast('入力履歴を削除しました');again()}}
- if(pgn==='backup'){q('#ex').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({app:'winterm',version:4,state:S},null,1)],{type:'application/json'}));a.download='winterm-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(a);a.click();a.remove();toast('バックアップを書き出しました')};
-  q('#im').onclick=()=>q('#if').click();
-  q('#if').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(x=>{try{const j=JSON.parse(x);if(!j.state||!j.state.vfs)throw 0;S=Object.assign({set:{},env:{},hist:[],vfs:null,secrets:false,v:2},j.state);S.set=Object.assign({apiKey:'',model:'gemini-3.8-flash',sys:'',alpha:1,fs:15,logo:'winterm',profile:'ps',banner:'WINDOWS',fast:false,theme:'dark',accent:'#60cdff',mica:true,font:'Cascadia Code',wrap:false,histMax:500,name:'User',avatar:'',stream:true,scheme:'campbell',wall:'bloom',blur:60,noise:true,tabr:8,tabw:240,fw:400,lh:1.25,rm:false,hc:false,big:false,topPad:28,gapFix:0,ui:1,winctl:false},S.set);save();applyLook();toast('復元しました');again()}catch(er){toast('読み込めないファイルです')}})};
-  q('#rs').onclick=()=>{if(confirm('設定・履歴・仮想Cドライブをすべて削除します。よろしいですか？')){try{localStorage.removeItem(LS)}catch(e){}location.reload()}}}
- if(pgn==='account'){q('#avb').onclick=()=>q('#avf').click();
-  q('#avd').onclick=()=>{S.set.avatar='';save();again()};
-  q('#avf').onchange=e=>{const f=e.target.files[0];if(!f)return;const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=192;const m=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,192,192);S.set.avatar=c.toDataURL('image/jpeg',.85);URL.revokeObjectURL(u);save();again();toast('プロフィール写真を変更しました')};im.src=u};
-  q('#un').oninput=e=>{S.set.name=e.target.value.trim()||'User';save();const b=q('#pfc b');if(b)b.textContent=S.set.name}}
- if(pgn==='device'){diag(q);const ins=q('#ins');if(ins)ins.textContent=insetsTxt();
-  const st=q('#stor');
-  if(navigator.storage&&navigator.storage.estimate)navigator.storage.estimate().then(e=>{const el=q('#stor');if(el)el.textContent=`${(e.usage/1048576).toFixed(1)} MB 使用 / ${(e.quota/1073741824).toFixed(1)} GB 上限`}).catch(()=>{const el=q('#stor');if(el)el.textContent='取得不可'});
-  else if(st)st.textContent='取得不可（Safari 非対応）';
-  const cp=q('#cpd');if(cp)cp.onclick=()=>navigator.clipboard.writeText(devSummary()).then(()=>toast('デバイス情報をコピーしました')).catch(()=>toast('コピーできませんでした'))}
+ t.view.querySelectorAll('.cl[data-go]').forEach(el=>el.onclick=()=>{const g=el.dataset.go;if(g==='studio'){window.open('https://aistudio.google.com/apikey','_blank','noopener');return}t.page=g;again()});
+ on('hb','click',()=>q('.nav').classList.toggle('compact'));
+ on('addp','click',()=>toast('この環境では、プロファイルを追加できません'));
+ on('ss','input',e=>{const v=e.target.value.toLowerCase();t.view.querySelectorAll('.ni[data-k]').forEach(n=>n.style.display=n.textContent.toLowerCase().includes(v)?'':'none')});
+ on('sv','click',()=>{t.snap=JSON.stringify(S.set);save();toast('設定を保存しました')});
+ on('dc','click',()=>{try{S.set=JSON.parse(t.snap)}catch(e){}save();applyLook();again();toast('変更を破棄しました')});
+ on('pf','change',e=>{S.set.profile=e.target.value;save();again()});on('lg','change',e=>{S.set.logo=e.target.value;save()});on('bn','input',e=>{S.set.banner=e.target.value;save()});on('fa','change',e=>{S.set.fast=e.target.checked;save();again()});
+ on('cs','change',e=>{S.set.copySel=e.target.checked;save();again()});
+ on('th','change',e=>{setLook('theme',e.target.value);again()});on('wl','change',e=>{setLook('wall',e.target.value);again()});
+ t.view.querySelectorAll('.sw').forEach(b=>b.onclick=()=>{S.set.accent=b.dataset.c;save();applyLook();t.view.querySelectorAll('.sw').forEach(x=>x.classList.toggle('on',x===b));const d=t.view.querySelector('.dot');if(d)d.style.background=S.set.accent});
+ on('tw','input',e=>{setLook('tabw',+e.target.value);q('#twv').textContent=e.target.value+' px'});on('tr','input',e=>{setLook('tabr',+e.target.value);q('#trv').textContent=e.target.value+' px'});
+ on('ui','input',e=>{setLook('ui',+e.target.value/100);q('#uiv').textContent=e.target.value+'%'});on('tp','input',e=>{setLook('topPad',+e.target.value);q('#tpv').textContent=e.target.value+' px'});on('gf','input',e=>{setLook('gapFix',+e.target.value);q('#gfv').textContent=e.target.value+' px'});
+ on('wc','change',e=>{setLook('winctl',e.target.checked);again()});
+ t.view.querySelectorAll('.scx').forEach(b=>b.onclick=()=>{S.set.scheme=b.dataset.s;save();applyLook();again()});
+ on('mi','change',e=>{setLook('mica',e.target.checked);again()});on('bl','input',e=>{setLook('blur',+e.target.value);q('#blv').textContent=e.target.value+' px'});on('nz','change',e=>{setLook('noise',e.target.checked);again()});on('rm','change',e=>{setLook('rm',e.target.checked);again()});
+ on('bg','change',e=>{setLook('big',e.target.checked);again()});on('hc','change',e=>{setLook('hc',e.target.checked);again()});on('hm','change',e=>{S.set.histMax=+e.target.value;save()});
+ on('clc','click',async()=>{try{for(const k of await caches.keys())await caches.delete(k);const rs=await navigator.serviceWorker.getRegistrations();for(const r of rs)await r.unregister()}catch(e){}location.reload()});
+ on('ff','change',e=>setLook('font',e.target.value));on('fs','input',e=>{setLook('fs',+e.target.value);q('#fsv').textContent=S.set.fs+' px';const pv=q('#pv');if(pv)pv.style.font=`${S.set.fs}px/${S.set.lh||1.25} var(--ff)`});
+ on('fw','change',e=>setLook('fw',+e.target.value));on('lh','input',e=>{setLook('lh',+e.target.value);q('#lhv').textContent=(+e.target.value).toFixed(2);const pv=q('#pv');if(pv)pv.style.lineHeight=S.set.lh});
+ on('sc2','change',e=>setLook('scheme',e.target.value));on('al','input',e=>{S.set.alpha=+e.target.value/100;q('#alv').textContent=e.target.value+'%';applyLook();save()});on('wr','change',e=>{setLook('wrap',e.target.checked);again()});
+ on('psv','change',e=>{S.set.psver=e.target.value;save();again();toast('新しいタブから反映されます')});
+ on('cpf','input',e=>{S.set.cmdPrompt=e.target.value||'$P$G';save();tabs.forEach(x=>x.pr&&setPrompt(x))});
+ on('k','input',e=>{S.set.apiKey=e.target.value.trim();save()});on('kv','click',()=>{const k=q('#k');k.type=k.type==='password'?'text':'password';q('#kv').textContent=k.type==='password'?'表示':'隠す'});
+ on('kd','click',()=>{S.set.apiKey='';save();again();toast('APIキーを削除しました')});
+ on('mp','change',e=>{if(e.target.value){S.set.model=e.target.value;q('#mc').value=e.target.value;save()}else q('#mc').focus()});
+ on('mc','input',e=>{S.set.model=e.target.value.trim()||PRESETS[0];q('#mp').value=PRESETS.includes(S.set.model)?S.set.model:'';save()});
+ on('sp','input',e=>{S.set.sys=e.target.value;save()});on('st','change',e=>{S.set.stream=e.target.checked;save();again()});
+ on('ex','click',()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({app:'winterm',version:5,state:S},null,1)],{type:'application/json'}));a.download='winterm-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(a);a.click();a.remove();toast('バックアップを書き出しました')});
+ on('im','click',()=>q('#if').click());
+ on('if','change',e=>{const f=e.target.files[0];if(!f)return;f.text().then(x=>{try{const j=JSON.parse(x);if(!j.state||!j.state.vfs)throw 0;const keep=S.set;S=Object.assign({set:{},env:{},hist:[],vfs:null,secrets:false,v:4},j.state);S.set=Object.assign({},keep,S.set);save();applyLook();toast('復元しました');again()}catch(er){toast('読み込めないファイルです')}})});
+ on('rs','click',()=>{if(confirm('設定・履歴・仮想Cドライブをすべて削除します。よろしいですか？')){try{localStorage.removeItem(LS)}catch(e){}location.reload()}});
+ if(pgn==='device'){diag(q);devBind(q)}
+}
+
+/* ----- Windows 11 Settings ----- */
+const W11I={
+home:'<svg viewBox="0 0 24 24"><path d="M12 3L2.5 11.5H5V20h5v-6h4v6h5v-8.5h2.5z" fill="#f2994a"/><rect x="10" y="14" width="4" height="6" fill="#c76b1f"/></svg>',
+system:'<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="1.5" fill="#33a8e8"/><rect x="2" y="4" width="20" height="3" fill="#1b86c8"/><rect x="8" y="18" width="8" height="2" rx="1" fill="#8a8a8a"/></svg>',
+bt:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#1f7ae0"/><path d="M8.5 8.5l7 7-3.5 3V5l3.5 3-7 7" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>',
+net:'<svg viewBox="0 0 24 24"><path d="M12 19.5l-3-3.2a4.3 4.3 0 016 0z" fill="#33a8e8"/><path d="M4 9.8a11 11 0 0116 0l-2 2.2a8 8 0 00-12 0z" fill="#1b86c8"/><path d="M6.8 13.2a7 7 0 0110.4 0l-2 2.1a4 4 0 00-6.4 0z" fill="#2b97da"/></svg>',
+brush:'<svg viewBox="0 0 24 24"><path d="M20 3.5l-9.5 9.5 2 2L22 5.5z" fill="#9aa3ad"/><path d="M9.5 13.5c-2.6 0-4 1.7-4 4 0 1.1-.9 2-2 2.5 3.6 1 8.5.4 8.5-3.6z" fill="#f2994a"/></svg>',
+apps:'<svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" fill="#6c8cae"/><rect x="13" y="3" width="8" height="8" fill="#33a8e8"/><rect x="3" y="13" width="8" height="8" fill="#9aa7b5"/><rect x="13" y="13" width="8" height="8" fill="#5b7894"/></svg>',
+acct:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5" fill="#2cc38e"/><path d="M3.5 21c0-5 3.5-7.5 8.5-7.5s8.5 2.5 8.5 7.5z" fill="#1ea57a"/></svg>',
+time:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#33a8e8"/><path d="M5 9c3-3 6-1 7 1s4 1 6 3" stroke="#7fd37a" stroke-width="2.5" fill="none"/><circle cx="8" cy="16" r="5" fill="#fff" stroke="#6b7a8a"/><path d="M8 13.5V16l2 1" stroke="#444" stroke-width="1" fill="none"/></svg>',
+game:'<svg viewBox="0 0 24 24"><rect x="2" y="6.5" width="20" height="11" rx="5.5" fill="#8d96a0"/><path d="M7 10v4M5 12h4" stroke="#fff" stroke-width="1.6"/><circle cx="16" cy="11" r="1.2" fill="#fff"/><circle cx="18.5" cy="13" r="1.2" fill="#fff"/></svg>',
+acc:'<svg viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.5" fill="#2b88d8"/><path d="M5 9.5h14M12 9.5v5l-3 6M12 14.5l3 6" fill="none" stroke="#2b88d8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+priv:'<svg viewBox="0 0 24 24"><path d="M12 2.5l8 3v6c0 5-3.4 8.6-8 10.5C7.4 20.1 4 16.5 4 11.5v-6z" fill="#9aa3ad"/><path d="M12 2.5v19c4.6-1.9 8-5.5 8-10.5v-6z" fill="#7d8791"/></svg>',
+upd:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#1f8fe8"/><path d="M6.5 11a5.5 5.5 0 019.3-3.2M17.5 13a5.5 5.5 0 01-9.3 3.2" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M16.2 4.5l.5 4.2-4.2-.5M7.8 19.5l-.5-4.2 4.2.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'};
+const W11N=[['home','ホーム','home'],['system','システム','system'],['bt','Bluetooth とデバイス','bt'],['net','ネットワークとインターネット','net'],['personal','個人用設定','brush'],['apps','アプリ','apps'],['accounts','アカウント','acct'],['time','時刻と言語','time'],['gaming','ゲーム','game'],['access','アクセシビリティ','acc'],['privacy','プライバシーとセキュリティ','priv'],['update','Windows Update','upd']];
+const W11S={bg:['personal','背景'],color:['personal','色'],text:['access','テキストのサイズ'],vfx:['access','視覚効果'],contrast:['access','コントラスト テーマ'],about:['system','詳細情報'],disp:['system','ディスプレイ'],store:['system','ストレージ'],wifi:['net','Wi-Fi'],dt:['time','日付と時刻'],lang:['time','言語と地域'],na:['home','']};
+const W11IDX=[...W11N.map(n=>[n[1],n[0]]),...Object.entries(W11S).filter(([k])=>k!=='na').map(([k,v])=>[v[1],k]),['アクセント カラー','color'],['ダーク モード','color'],['透明効果','color'],['更新プログラムのチェック','update'],['タイムゾーン','dt'],['デバイスの名前','about']];
+const msKey=s=>{const m=/ms-settings:([\w-]*)/i.exec(s),k=(m&&m[1]||'').toLowerCase();return({personalization:'personal','personalization-background':'bg','personalization-colors':'color',windowsupdate:'update',about:'about',display:'disp',network:'net','network-wifi':'wifi',easeofaccess:'access',privacy:'privacy',yourinfo:'accounts',dateandtime:'dt',storagesense:'store',bluetooth:'bt',apps:'apps',gaming:'gaming'})[k]||'home'};
+let W11={p:'home',param:''};
+const w11Time=()=>{if(!S.set.updAt)return'未確認';const d=new Date(S.set.updAt);return(d.toDateString()===new Date().toDateString()?'今日、':'')+d.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})};
+function openW11(p){let el=$('#w11');if(!el){el=document.createElement('div');el.id='w11';el.className='w11 set';document.body.append(el)}W11.p=p||'home';W11.param='';buildW11()}
+function closeW11(){const el=$('#w11');if(el)el.remove();cur&&cur.inp&&cur.inp.focus()}
+function buildW11(){
+ const el=$('#w11');if(!el)return;const key=W11.p,sub=W11S[key],nav=sub?sub[0]:key,q=s=>el.querySelector(s),again=()=>buildW11();
+ const go=k=>{if(k.startsWith('na:')){W11.p='na';W11.param=k.slice(3)}else if(k==='tabbar'){closeW11();openWT('look');return}else if(k==='wtjson'){closeW11();openWT('backup');return}else W11.p=k;buildW11()};
+ const card=(h,d,body)=>`<div class="hc"><div class="hch"><b>${h}</b>${d?`<small>${d}</small>`:''}</div>${body}</div>`;
+ const na=t=>urow('','','');
+ const pv=()=>`<div class="persrow">${monH()}${key==='personal'?`<div class="thgrid"><div class="thh">テーマを選択して適用する</div><div class="thtiles">${THEMES.map(thumbH).join('')}</div></div>`:''}</div>`;
+ const accAll=S.set.hc?'#ffff00':S.set.accent;
+ let title=sub?sub[1]:(W11N.find(n=>n[0]===key)||[0,''])[1],html='',bind=()=>{};
+ if(key==='home'){title='ホーム';html=`<div class="hdev"><div class="mon sm" style="background:${wallBg(S.set.wall,isLightNow())}"></div><div class="hdi"><b>${esc(DEV.name)}</b><span>${esc(DEV.os)}</span><a class="lnk" id="rn">名前の変更</a></div><div class="htiles"><div class="htile">${W11I.net}<div><b>${navigator.onLine?'接続済み':'未接続'}</b><small>${navigator.onLine?'オンライン':'オフライン'}</small></div></div><div class="htile cl" data-go="update">${W11I.upd}<div><b>Windows Update</b><small>最終チェック日時: ${w11Time()}</small></div></div></div></div>`
+  +`<div class="hcols"><div class="hcol">`
+  +card('推奨の設定','最近使用した設定と一般的に使用される設定',urow('cursor-24-regular','マウス','','','na:マウス')+urow('wifi-1-24-regular','Wi-Fi','',utg('hwf',navigator.onLine,true),'wifi')+urow('tab-desktop-24-regular','タブバー','WinTerm のタブバーの設定','','tabbar'))
+  +card('Bluetooth デバイス','デバイスの管理、追加、削除',urow('bluetooth-24-regular','Bluetooth','Bluetooth はこの環境から制御できません',utg('hbt',false,true))+urow('add-24-regular','デバイスの追加','','','na:デバイスの追加'))
+  +`</div><div class="hcol">`
+  +card('ストレージ','この端末で WinTerm が使っている領域',`<div class="hcb"><div class="stx" id="stx">計測中…</div><div class="sbar"><i id="sbi"></i></div><button class="btn" data-go="store">ストレージの詳細</button></div>`+urow('arrow-sync-24-regular','バックアップ','設定と仮想ドライブを JSON に保存','','wtjson'))
+  +card('デバイスをカスタマイズする','',`<div class="thtiles hct">${THEMES.slice(0,3).map(thumbH).join('')}</div>`)
+  +`</div></div>`;
+  bind=()=>{const r=q('#rn');if(r)r.onclick=()=>{const n=prompt('このデバイスの新しい名前を入力してください',DEV.name);if(n&&n.trim()){S.set.devName=n.trim();DEV.name=n.trim();save();again()}};
+   if(navigator.storage&&navigator.storage.estimate)navigator.storage.estimate().then(e=>{const x=q('#stx');if(x)x.textContent=`${(e.quota/1073741824).toFixed(0)} GB 中 ${(e.usage/1048576).toFixed(1)} MB 使用済み`;const b=q('#sbi');if(b)b.style.width=Math.max(1,e.usage/e.quota*100)+'%'}).catch(()=>{const x=q('#stx');if(x)x.textContent='取得できません'});
+   else{const x=q('#stx');if(x)x.textContent='取得できません'}}}
+ else if(key==='system'){html=urow(W11I.system,'ディスプレイ','表示領域、解像度、モード','','disp')+urow('speaker-2-24-regular','サウンド','','','na:サウンド')+urow('alert-24-regular','通知','','','na:通知')+urow('battery-charge-24-regular','電源とバッテリー','','','na:電源とバッテリー')+urow('storage-24-regular','ストレージ','使用量と履歴','','store')+urow('info-24-regular','詳細情報','デバイスの仕様、名前の変更','','about')}
+ else if(key==='about'){html=devRows();bind=()=>devBind(q)}
+ else if(key==='disp'){html=ukv('表示領域',DEV.css)+ukv('画面の解像度',`${DEV.screen}（${DEV.dpr}x）`)+ukv('向き',DEV.orient)+urow('weather-sunny-24-regular','モード','ダーク / ライト、または Windows の設定に従います',usl('th',[['dark','ダーク'],['light','ライト'],['system','Windows の既定に従う']],S.set.theme))+urow('zoom-in-24-regular','拡大/縮小','UI 全体の大きさ',urg('ui',80,140,5,Math.round((S.set.ui||1)*100),v=>v+'%'));
+  bind=()=>{const a=q('#th');if(a)a.onchange=e=>{setLook('theme',e.target.value);again()};const b=q('#ui');if(b)b.oninput=e=>{setLook('ui',+e.target.value/100);q('#uiv').textContent=e.target.value+'%'}}}
+ else if(key==='store'){html=`<div class="hc"><div class="hcb"><div class="stx" id="stx">計測中…</div><div class="sbar"><i id="sbi"></i></div></div></div>`+urow('delete-24-regular','入力履歴を削除',`${S.hist.length} 件`,`<button class="btn" id="hclr">削除</button>`)+urow('storage-24-regular','WinTerm のデータ',`${(JSON.stringify(S).length/1024).toFixed(1)} KB（localStorage）`);
+  bind=()=>{if(navigator.storage&&navigator.storage.estimate)navigator.storage.estimate().then(e=>{const x=q('#stx');if(x)x.textContent=`${(e.quota/1073741824).toFixed(0)} GB 中 ${(e.usage/1048576).toFixed(1)} MB 使用済み`;const b=q('#sbi');if(b)b.style.width=Math.max(1,e.usage/e.quota*100)+'%'});const h=q('#hclr');if(h)h.onclick=()=>{S.hist=[];save();toast('入力履歴を削除しました');again()}}}
+ else if(key==='bt'){html=card('Bluetooth','',urow('bluetooth-24-regular','Bluetooth','Bluetooth はこの環境から制御できません',utg('hbt',false,true)))+urow('add-24-regular','デバイス','Bluetooth デバイスを追加','','na:デバイス')+urow('cursor-24-regular','マウス','','','na:マウス')+urow('keyboard-24-regular','キーボード','','','na:キーボード')}
+ else if(key==='net'){html=urow(W11I.net,'Wi-Fi',navigator.onLine?'接続済み':'未接続',`<span class="kvv">${DEV.conn}</span>`,'wifi')+urow('airplane-24-regular','機内モード','','','na:機内モード')+urow('globe-24-regular','プロキシ','','','na:プロキシ')}
+ else if(key==='wifi'){html=ukv('接続の状態',navigator.onLine?'接続済み':'未接続')+ukv('接続の種類',DEV.conn)+ukv('言語',DEV.lang)}
+ else if(key==='personal'){html=pv()+urow('image-24-regular','背景','背景画像、色、スライドショー','','bg')+urow('color-24-regular','色','アクセント カラー、透明効果、配色テーマ','','color')+urow('paint-brush-24-regular','テーマ','インストール、作成、管理','','na:テーマ')+urow('lightbulb-24-regular','動的ライティング','接続されているデバイス、効果、アプリの設定','','na:動的ライティング')+urow('lock-closed-24-regular','ロック画面','ロック画面の画像、アプリ、アニメーション','','na:ロック画面')+urow('keyboard-24-regular','テキスト入力','タッチ キーボード、音声入力、絵文字など、入力方式エディター','','na:テキスト入力')+urow('window-24-regular','スタート','最近使ったアプリ、アイテム、フォルダー','','na:スタート')+urow('tab-desktop-24-regular','タスク バー（タブバー）','WinTerm のタブバーの設定','','tabbar');
+  bind=()=>el.querySelectorAll('.thm').forEach(b=>b.onclick=()=>{applyTheme(+b.dataset.th);again()})}
+ else if(key==='bg'){html=pv()+(S.set.bgInfoX?'':`<div class="info"><span class="infoi">i</span><span>背景画像は、この端末の中にだけ保存されます。</span><button class="btn" id="bgx">×</button></div>`)
+  +uex('bgc','image-24-regular','背景をカスタマイズ','画像の背景は現在の画面に適用されます。',usl('bgt',[['i','画像']],'i'),`<div class="sech" style="margin-top:0">最近使った画像</div><div class="wlgrid">${[...WALL_UI,...(S.set.wallImg?[['custom','カスタム画像']]:[])].map(w=>`<button class="wlt${(S.set.wall||'bloom')===w[0]?' on':''}" data-w="${w[0]}" style="background:${wallBg(w[0],isLightNow())}"><span>${w[1]}</span></button>`).join('')}</div><div class="exrow"><span>写真の選択</span><button class="btn" id="bgp">写真を参照</button></div>`)
+  +'<div class="sech">関連設定</div>'+urow('circle-half-fill-24-regular','コントラスト テーマ','弱視、光線過敏症のための配色テーマ','','contrast');
+  bind=()=>{const x=q('#bgx');if(x)x.onclick=()=>{S.set.bgInfoX=1;save();again()};const e=q('[data-exp="bgc"]');if(e){e.classList.add('open');e.nextElementSibling.classList.add('open')}el.querySelectorAll('.wlt').forEach(b=>b.onclick=()=>{setLook('wall',b.dataset.w);again()});const p=q('#bgp');if(p)p.onclick=()=>pickPhoto(again)}}
+ else if(key==='color'){const rec=(S.set.recentAcc||[]);html=pv()+urow('paint-brush-24-regular','モードを選ぶ','Windows とアプリに表示される色を変更します',usl('th',[['dark','ダーク'],['light','ライト'],['system','Windows の既定に従う']],S.set.theme))
+  +urow('sparkle-24-regular','透明効果','ウィンドウとサーフェスが半透明に見える',utg('mi',S.set.mica))
+  +uex('acx','color-24-regular','アクセントカラー','',usl('acm',[['m','手動']],'m'),`${rec.length?`<div class="sech" style="margin-top:0">最近使用した色</div><div class="swg2">${rec.map(c=>`<button class="swc" data-c="${c}" style="background:${c}"></button>`).join('')}</div>`:''}<div class="sech">Windows の色</div><div class="swg2">${WINCOL.map(c=>`<button class="swc${c===S.set.accent?' on':''}" data-c="${c}" style="background:${c}">${c===S.set.accent?'<svg width="14" height="14" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-6.5" stroke="#fff" stroke-width="1.6" fill="none"/></svg>':''}</button>`).join('')}</div>`);
+  bind=()=>{const e=q('[data-exp="acx"]');if(e){e.classList.add('open');e.nextElementSibling.classList.add('open')}const a=q('#th');if(a)a.onchange=ev=>{setLook('theme',ev.target.value);again()};const m=q('#mi');if(m)m.onchange=ev=>{setLook('mica',ev.target.checked);again()};
+   el.querySelectorAll('.swc').forEach(b=>b.onclick=()=>{const c=b.dataset.c;S.set.accent=c;S.set.recentAcc=[c,...(S.set.recentAcc||[]).filter(x=>x!==c)].slice(0,5);save();applyLook();again()})}}
+ else if(key==='apps'){html=urow(WTLOGO(22),'WinTerm','バージョン 1.5.0',`<span class="kvv">インストール済み</span>`)+urow('apps-24-regular','インストールされているアプリ','','','na:インストールされているアプリ')+urow('app-folder-24-regular','既定のアプリ','','','na:既定のアプリ')}
+ else if(key==='accounts'){html=`<div class="acc">${AVATAR(120)}<div class="accbtns"><button class="btn" id="avb">写真を変更</button><button class="btn" id="avd">削除</button><input type="file" id="avf" accept="image/*" hidden></div></div>`+urow('person-24-regular','ユーザー名','プロフィールに表示されます',`<input class="tin" id="un" value="${esc(S.set.name)}" maxlength="40">`)+urow('shield-24-regular','アカウントの種類','ローカル アカウント（この端末内のみ）')+urow('folder-24-regular','ユーザー フォルダー','C:\\Users\\User（仮想 C: ドライブ）');
+  bind=()=>{const b=q('#avb');if(b)b.onclick=()=>q('#avf').click();const d=q('#avd');if(d)d.onclick=()=>{S.set.avatar='';save();again()};
+   const f=q('#avf');if(f)f.onchange=e=>{const file=e.target.files[0];if(!file)return;const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=192;const m=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,192,192);S.set.avatar=c.toDataURL('image/jpeg',.85);URL.revokeObjectURL(u);save();again();toast('プロフィール写真を変更しました')};im.src=u};
+   const n=q('#un');if(n)n.oninput=e=>{S.set.name=e.target.value.trim()||'User';save();const pb=q('.pinfo b');if(pb)pb.textContent=S.set.name}}}
+ else if(key==='time'){html=urow('clock-24-regular','日付と時刻','タイム ゾーン、自動設定、カレンダーの表示','','dt')+urow('globe-24-regular','言語と地域','Windows の言語、地域の形式','','lang')}
+ else if(key==='dt'){html=urow('','現在の日時','',`<span class="kvv" id="clk"></span>`)+ukv('タイム ゾーン',DEV.tz);bind=()=>{const c=q('#clk'),u=()=>{if(c&&c.isConnected)c.textContent=new Date().toLocaleString('ja-JP')};u();const id=setInterval(()=>{if(!c||!c.isConnected)clearInterval(id);else u()},1000)}}
+ else if(key==='lang'){html=ukv('表示言語',DEV.lang)+ukv('優先する言語',DEV.langs||DEV.lang)}
+ else if(key==='gaming'){html=urow('game-24-regular','ゲーム モード','','','na:ゲーム モード')+urow('video-24-regular','キャプチャ','','','na:キャプチャ')}
+ else if(key==='access'){title='アクセシビリティ';html='<div class="sech" style="margin-top:0">視覚</div>'+urow('text-font-size-24-regular','テキストのサイズ','Windows とアプリ全体に表示されるテキスト サイズ','','text')+urow('sparkle-24-regular','視覚効果','スクロール バー、透明度、アニメーション、通知タイムアウト','','vfx')+urow('cursor-24-regular','マウス ポインターとタッチ','マウス ポインターの色、サイズ','','na:マウス ポインターとタッチ')+urow('text-t-24-regular','テキスト カーソル','外観と太さ、テキスト カーソル インジケーター','','na:テキスト カーソル')+urow('zoom-in-24-regular','拡大鏡','拡大鏡読み取り、ズーム レベルの増分','','na:拡大鏡')+urow('color-24-regular','カラー フィルター','色覚障害フィルター、グレースケール、反転','','na:カラー フィルター')+urow('layer-24-regular','画面の濃淡','画面に控えめな色のオーバーレイを追加して、見やすくします','','na:画面の濃淡')+urow('circle-half-fill-24-regular','コントラスト テーマ','弱視、光線過敏症のための配色テーマ','','contrast')+urow('speaker-2-24-regular','ナレーター','音声、詳細度、キーボード、点字','','na:ナレーター')+'<div class="sech">聴覚</div>'+urow('speaker-2-24-regular','オーディオ','モノラル オーディオ、オーディオ通知','','na:オーディオ')}
+ else if(key==='text'){html=urow('text-font-size-24-regular','テキストのサイズ','UI 全体の大きさ',urg('ui',80,140,5,Math.round((S.set.ui||1)*100),v=>v+'%'))+urow('','コンソールの文字サイズ','',urg('fs',11,24,1,S.set.fs,v=>v+' px'))+`<div class="sc"><div class="tx">サンプル テキスト<small>これはサンプルです。テキストのサイズを確認してください。</small></div></div>`;
+  bind=()=>{const a=q('#ui');if(a)a.oninput=e=>{setLook('ui',+e.target.value/100);q('#uiv').textContent=e.target.value+'%'};const b=q('#fs');if(b)b.oninput=e=>{setLook('fs',+e.target.value);q('#fsv').textContent=e.target.value+' px'}}}
+ else if(key==='vfx'){html=urow('sparkle-24-regular','透明効果','ウィンドウとサーフェスが半透明に見える',utg('mi',S.set.mica))+urow('','アニメーション効果','Windows でアニメーションを表示する',utg('an',!S.set.rm));
+  bind=()=>{const m=q('#mi');if(m)m.onchange=e=>{setLook('mica',e.target.checked);again()};const a=q('#an');if(a)a.onchange=e=>{setLook('rm',!e.target.checked);again()}}}
+ else if(key==='contrast'){html=urow('circle-half-fill-24-regular','コントラスト テーマ','弱視、光線過敏症のための配色テーマ',utg('hc',!!S.set.hc));bind=()=>{const h=q('#hc');if(h)h.onchange=e=>{setLook('hc',e.target.checked);again()}}}
+ else if(key==='privacy'){html=urow('shield-24-regular','Gemini へ送信されるデータ','AI への質問と、システム プロンプトだけを送信します。履歴や仮想ドライブの内容は送信されません')+urow('delete-24-regular','入力履歴','↑ ↓ で呼び出せる履歴を消去します',`<button class="btn" id="hclr">削除</button>`)+urow('location-24-regular','位置情報','WinTerm は位置情報を使用しません')+urow('clipboard-24-regular','クリップボード','コピー・貼り付けの操作でのみ使用します');
+  bind=()=>{const h=q('#hclr');if(h)h.onclick=()=>{S.hist=[];save();toast('入力履歴を削除しました')}}}
+ else if(key==='update'){html=`<div class="updh"><div class="updi">${W11I.upd.replace('<svg','<svg width="84" height="84"')}</div><div class="updt"><b>最新の状態です</b><small>最終チェック日時: ${w11Time()}</small></div><button class="btn pri" id="chk">更新プログラムのチェック</button></div>`
+  +'<div class="sech">その他のオプション</div>'+urow('megaphone-24-regular','利用可能になったらすぐに最新の更新プログラムを入手する','セキュリティ以外の最新の更新プログラム、修正、機能強化がロールアウトされたら、いち早く入手しましょう。 <a class="lnk">詳細情報</a>',utg('uo',true,true))
+  +urow('pause-24-regular','更新の一時停止','更新を一時停止する期日を選択してください。 <a class="lnk">詳細情報</a>',`<button class="btn" disabled>日付を選択</button>`)+urow('history-24-regular','更新の履歴','','','na:更新の履歴')+urow('settings-24-regular','詳細オプション','配信の最適化、オプションの更新プログラム、アクティブ時間、その他の更新設定','','na:詳細オプション')
+  +uex('uh','globe-24-regular','Windows Update のヘルプ','','',`<a class="lnk">問題のある更新プログラムを簡単にアンインストールする</a><br><a class="lnk">保留中の更新プログラムの簡単なインストール</a><br><a class="lnk">デバイス ドライバーの手動更新</a>`);
+  bind=()=>{const b=q('#chk');if(b)b.onclick=async()=>{b.disabled=true;b.textContent='確認しています…';q('.updt b').textContent='更新プログラムを確認しています…';try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.update()}catch(e){}await sleep(1500);S.set.updAt=now();save();again()}}}
+ else{title=W11.param||'設定';html=`<div class="na">この環境では使用できません。<br><small>WinTerm は Web 上の再現のため、この項目は用意していません。</small></div>`}
+ const parentKey=sub?sub[0]:(key==='home'?null:'home');
+ const navH=W11N.map(n=>`<div class="ni ${n[0]===nav?'on':''}" data-k="${n[0]}"><span class="ni-i">${W11I[n[2]]}</span><span class="ni-t">${n[1]}</span></div>`).join('');
+ const hd=sub&&key!=='na'?`<a class="bca" data-bc="${sub[0]}">${(W11N.find(n=>n[0]===sub[0])||[0,''])[1]}</a><i class="bci">›</i><span>${esc(title)}</span>`:esc(title);
+ el.innerHTML=`<div class="stb"><button class="btn bk" id="wb" ${parentKey?'':'style="opacity:.35"'}>${IC('arrow-left-24-regular',18)}</button><span>設定</span><div class="wsr"><input id="wss" placeholder="設定の検索" autocomplete="off">${IC('search-20-regular',16)}<div class="wsrr" id="wsrr"></div></div><div class="wcs"><button data-w="min">${'<svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 5.5h10" stroke="currentColor"/></svg>'}</button><button data-w="max"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor"/></svg></button><button data-w="close" class="cls"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"/></svg></button></div></div><div class="sbody"><div class="nav"><div class="prof" id="wpf">${AVATAR(60)}<div class="pinfo"><b>${esc(S.set.name)}</b><span>ローカル アカウント</span></div></div>${navH}</div><div class="pgw"><div class="pg"><h2>${hd}</h2>${html}</div></div></div>`;
+ el.querySelectorAll('input[type=range]').forEach(r=>{const u=()=>r.style.setProperty('--p',((r.value-r.min)/(r.max-r.min)*100)+'%');u();r.addEventListener('input',u)});
+ el.querySelectorAll('.ni[data-k]').forEach(n=>n.onclick=()=>{W11.p=n.dataset.k;buildW11()});
+ el.querySelectorAll('[data-go]').forEach(n=>n.onclick=()=>go(n.dataset.go));
+ el.querySelectorAll('[data-bc]').forEach(a=>a.onclick=()=>{W11.p=a.dataset.bc;buildW11()});
+ el.querySelectorAll('.ex').forEach(x=>x.onclick=e=>{if(e.target.closest('input,select,textarea,label,button'))return;x.classList.toggle('open');x.nextElementSibling.classList.toggle('open')});
+ q('#wpf').onclick=()=>{W11.p='accounts';buildW11()};
+ q('#wb').onclick=()=>{if(parentKey){W11.p=parentKey;buildW11()}};
+ el.querySelectorAll('.wcs button').forEach(b=>b.onclick=()=>{if(b.dataset.w==='close')closeW11();else toast('ウィンドウの操作はこの環境では使えません')});
+ const ws=q('#wss'),wr=q('#wsrr');ws.oninput=()=>{const v=ws.value.trim().toLowerCase();const r=v?W11IDX.filter(x=>x[0].toLowerCase().includes(v)).slice(0,7):[];wr.innerHTML=r.map(x=>`<div data-k="${x[1]}">${esc(x[0])}</div>`).join('');wr.style.display=r.length?'block':'none'};
+ wr.onclick=e=>{const d=e.target.closest('[data-k]');if(d){W11.p=d.dataset.k;buildW11()}};
+ bind();
 }
 
 /* ===== global UI ===== */
-const MENU=[['PowerShell','ps','⌘T'],['コマンド プロンプト','cmd',''],['Gemini AI Shell','ai',''],['設定','settings','⌘,']];
-$('#menu').innerHTML=MENU.map(m=>`<div data-t="${m[1]}"><span>${m[0]}</span><small>${m[2]}</small></div>`).join('');
-$('#menu').onclick=e=>{const d=e.target.closest('[data-t]');if(d){newTab(d.dataset.t);$('#menu').style.display='none'}};
-$('#drop').onclick=e=>{e.stopPropagation();const m=$('#menu');m.style.display=m.style.display==='block'?'none':'block'};
-$('#plus').onclick=()=>newTab(S.set.profile||'ps');$('#gear').onclick=()=>newTab('settings');document.querySelectorAll('.wc button').forEach(b=>b.onclick=()=>toast('ウィンドウの操作はこの環境では使えません'));addEventListener('click',()=>$('#menu').style.display='none');
-addEventListener('keydown',e=>{if(!cur)return;if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&e.target!==cur.inp&&!((e.metaKey||e.ctrlKey)&&e.key===','))return;const k=e.key.toLowerCase(),M=e.metaKey,C=e.ctrlKey,nx=d=>{const i=tabs.indexOf(cur);sel(tabs[(i+d+tabs.length)%tabs.length])};
+const MICON={ps:TI.ps,cmd:TI.cmd,ai:TI.ai,settings:IC('settings-20-regular',16),palette:IC('flash-20-regular',16),about:IC('question-circle-20-regular',16)};
+const MENU=[['ps','Windows PowerShell','Ctrl+Shift+1'],['cmd','コマンド プロンプト','Ctrl+Shift+2'],['ai','Gemini AI Shell','Ctrl+Shift+3'],'-',['settings','設定','Ctrl+,'],['palette','コマンド パレット','Ctrl+Shift+P'],['about','バージョン情報','']];
+$('#menu').innerHTML=MENU.map(m=>m==='-'?'<hr>':`<div data-t="${m[0]}"><span class="mi">${MICON[m[0]]}</span><span class="ml">${m[1]}</span><small>${m[2]}</small></div>`).join('');
+const nxTab=d=>{const i=tabs.indexOf(cur);sel(tabs[(i+d+tabs.length)%tabs.length])};
+function showAbout(){const m=document.createElement('div');m.className='modal';m.innerHTML=`<div class="dlg"><div style="display:flex;gap:14px;align-items:center;margin-bottom:14px">${WTLOGO(48)}<b style="font-size:20px">WinTerm</b></div><div style="line-height:1.8">バージョン: 1.5.0<br>Windows Terminal を Web で再現した、非公式のアプリです。<br>仮想 PowerShell: ${S.set.psver==='5'?'5.1':'7.7.0'}</div><div style="text-align:right;margin-top:20px"><button class="btn pri">OK</button></div></div>`;document.body.append(m);const c=()=>m.remove();m.querySelector('button').onclick=c;m.onclick=e=>{if(e.target===m)c()}}
+const PCMDS=[['新しい Windows PowerShell タブ','Ctrl+Shift+1',()=>newTab('ps')],['新しいコマンド プロンプト タブ','Ctrl+Shift+2',()=>newTab('cmd')],['新しい Gemini AI Shell タブ','Ctrl+Shift+3',()=>newTab('ai')],['設定を開く','Ctrl+,',()=>openWT('startup')],['Windows の設定を開く','',()=>openW11('home')],['出力をクリア','⌘K',()=>cur&&cur.clear&&cur.clear()],['タブを閉じる','⌘W',()=>cur&&closeTab(cur)],['次のタブ','Ctrl+Tab',()=>nxTab(1)],['前のタブ','Ctrl+Shift+Tab',()=>nxTab(-1)],['テーマ: ダーク','',()=>setLook('theme','dark')],['テーマ: ライト','',()=>setLook('theme','light')],['バージョン情報','',showAbout]];
+function openPalette(){if($('#cp'))return;const m=document.createElement('div');m.id='cp';m.className='modal cpm';m.innerHTML='<div class="cp"><input placeholder="コマンド名を入力してください" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="cpl"></div></div>';document.body.append(m);
+ const inp=m.querySelector('input'),lst=m.querySelector('.cpl');let k=0,items=[];
+ const draw=()=>{const f=inp.value.toLowerCase();items=PCMDS.filter(c=>c[0].toLowerCase().includes(f));k=Math.min(k,Math.max(0,items.length-1));lst.innerHTML=items.map((c,i)=>`<div class="cpi${i===k?' on':''}" data-i="${i}"><span>${esc(c[0])}</span><small>${c[1]}</small></div>`).join('')||'<div class="cpi"><span>一致するコマンドがありません</span></div>'};
+ const close=()=>{m.remove();cur&&cur.inp&&cur.inp.focus()},run=i=>{const c=items[i];if(!c)return;close();c[2]()};
+ inp.oninput=()=>{k=0;draw()};
+ inp.onkeydown=e=>{if(e.key==='Escape'){e.preventDefault();close()}else if(e.key==='ArrowDown'){e.preventDefault();k=Math.min(items.length-1,k+1);draw()}else if(e.key==='ArrowUp'){e.preventDefault();k=Math.max(0,k-1);draw()}else if(e.key==='Enter'){e.preventDefault();run(k)}};
+ lst.onclick=e=>{const d=e.target.closest('[data-i]');if(d)run(+d.dataset.i)};m.onclick=e=>{if(e.target===m)close()};draw();inp.focus()}
+const closeMenu=()=>{$('#menu').style.display='none';const g=document.querySelector('.npg');if(g)g.classList.remove('open')};
+$('#menu').onclick=e=>{const d=e.target.closest('[data-t]');if(!d)return;closeMenu();const k=d.dataset.t;if(k==='palette')openPalette();else if(k==='about')showAbout();else if(k==='settings')openWT('startup');else newTab(k)};
+$('#drop').onclick=e=>{e.stopPropagation();const m=$('#menu'),g=document.querySelector('.npg');if(m.style.display==='block'){closeMenu();return}m.style.left=g.offsetLeft+'px';m.style.display='block';g.classList.add('open')};
+$('#plus').onclick=()=>newTab(S.set.profile||'ps');$('#gear').onclick=()=>openWT('startup');
+document.querySelectorAll('.wc button').forEach(b=>b.onclick=()=>toast('ウィンドウの操作はこの環境では使えません'));
+addEventListener('click',closeMenu);
+addEventListener('keydown',e=>{if(!cur)return;if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&e.target!==cur.inp&&!((e.metaKey||e.ctrlKey)&&e.key===','))return;const k=e.key.toLowerCase(),M=e.metaKey,C=e.ctrlKey;
+ if(e.key==='Escape'&&$('#w11')){e.preventDefault();closeW11();return}
+ if((C||M)&&e.shiftKey&&k==='p'){e.preventDefault();openPalette();return}
+ if(C&&e.shiftKey&&/^Digit[1-3]$/.test(e.code)){e.preventDefault();newTab(['ps','cmd','ai'][+e.code.slice(5)-1]);return}
  if((M&&!e.shiftKey&&k==='k')||(C&&k==='l')){if(cur.con){e.preventDefault();cur.clear()}return}
  if(C&&k==='c'){if(getSelection().toString())return;e.preventDefault();if(cur.busy){cur.print('^C','gr');cur.abort&&cur.abort()}else if(cur.inp){cur.html(esc(cur.pr.textContent+cur.inp.value)+'<span class="gr">^C</span>');cur.inp.value='';cur.upd()}return}
- if((M||C)&&e.key===','){e.preventDefault();newTab('settings');return}
+ if((M||C)&&e.key===','){e.preventDefault();openWT('startup');return}
  if(M&&!e.shiftKey&&k==='t'){e.preventDefault();newTab(S.set.profile||'ps');return}
  if(M&&!e.shiftKey&&k==='w'){e.preventDefault();closeTab(cur);return}
- if(M&&e.shiftKey&&(e.code==='BracketRight'||e.code==='BracketLeft')){e.preventDefault();nx(e.code==='BracketRight'?1:-1);return}
- if(C&&e.key==='Tab'){e.preventDefault();nx(e.shiftKey?-1:1);return}
+ if(M&&e.shiftKey&&(e.code==='BracketRight'||e.code==='BracketLeft')){e.preventDefault();nxTab(e.code==='BracketRight'?1:-1);return}
+ if(C&&e.key==='Tab'){e.preventDefault();nxTab(e.shiftKey?-1:1);return}
  if((M||e.altKey)&&/^Digit[1-9]$/.test(e.code)){e.preventDefault();const t=tabs[+e.code.slice(5)-1];t&&sel(t)}});
 /* ===== PWA ===== */
 if('serviceWorker' in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
