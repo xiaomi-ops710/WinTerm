@@ -464,6 +464,12 @@ html.rbow #app{animation:rbow 2.4s linear}
 .poff{position:fixed;inset:0;z-index:300;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;color:#fff;font-family:var(--uif);animation:fadeIn .3s}
 .poffs{width:40px;height:40px;border:4px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite}
 .poffh{opacity:.7}
+
+.con{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+.cpbar{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 8px;white-space:normal}
+.cpbar button{height:28px;padding:0 10px;border-radius:4px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:inherit;font:12px var(--uif);cursor:pointer;animation:scIn .3s var(--ease) both}
+.cpbar button:hover{background:rgba(255,255,255,.16)}.cpbar button:active{transform:scale(.97)}
+html.light .cpbar button{border-color:rgba(0,0,0,.16);background:rgba(0,0,0,.05)}
 </style></head><body>
 <div id="boot"><div class="bw"><div class="bl"><i></i><i></i><i></i><i></i></div></div><div class="bsw"><svg class="bsp" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="58 24"/></svg></div></div>
 <div id="app">
@@ -553,7 +559,7 @@ function buildConsole(t){t.view.innerHTML='<div class="con"><div class="inl"><sp
  t.god=()=>{S.secrets=true;save();t.con.classList.remove('god');void t.con.offsetWidth;t.con.classList.add('god');
   t.html(`<span style="color:#ffd700">${plain(bannerH('GOD MODE')).split('\n').join('\n')}</span>`);t.print(godList());t.scroll()};
  const upd=()=>{t.hl.innerHTML=hlHtml(t.inp.value);t.hl.scrollLeft=t.inp.scrollLeft};t.upd=upd;
- t.inp.addEventListener('input',upd);t.inp.addEventListener('scroll',upd);
+ t.inp.addEventListener('input',()=>{t.rsq=null;t.rsi=null;upd()});t.inp.addEventListener('scroll',upd);
  t.con.addEventListener('click',()=>{if(!getSelection().toString())t.inp.focus()});
  t.con.addEventListener('mouseup',()=>{if(S.set.copySel){const x=getSelection().toString();if(x&&navigator.clipboard)navigator.clipboard.writeText(x).catch(()=>{})}});
  t.inp.addEventListener('keydown',e=>{
@@ -561,6 +567,7 @@ function buildConsole(t){t.view.innerHTML='<div class="con"><div class="inl"><sp
   else if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();const h=S.hist;if(e.key==='ArrowUp'){if(t.hi<0)t.hi=h.length;t.hi=Math.max(0,t.hi-1)}else{if(t.hi<0)return;t.hi++}
    t.inp.value=t.hi>=h.length?(t.hi=-1,''):h[t.hi]||'';upd()}
   else if(e.key==='Tab'){e.preventDefault();complete(t)}
+  else if(e.ctrlKey&&e.key.toLowerCase()==='r'){e.preventDefault();revSearch(t)}
   else t.tc=t.tc&&e.key.length>1?t.tc:null});
  header(t);setPrompt(t)}
 function header(t){if(t.type==='ai'){t.print('Gemini AI Shell — コマンド不要で、そのまま自然言語で話しかけられます。(exit で終了)\n'+(S.set.apiKey?'':'APIキーが未設定です。Ctrl + , で設定を開いてください。\n'));return}
@@ -584,7 +591,7 @@ const tokenize=s=>{const r=[];s.replace(/"([^"]*)"|'([^']*)'|(\S+)/g,(m,a,b,c)=>
 async function run(t,line){t.busy=true;t.inl.style.display='none';
  t.html(esc(t.pr.textContent)+(t.type==='ps'?hlHtml(line):esc(line)));
  if(line.trim()&&S.set.histSave!==false){S.hist.push(line);if(S.hist.length>(S.set.histMax||500))S.hist.shift();save()}
- try{await exec(t,line)}catch(e){t.print(String(e.message||e),'r')}
+ t.artPng=null;t.artAnsi=null;try{await exec(t,line)}catch(e){t.print(String(e.message||e),'r')}
  t.busy=false;if(!t.dead){t.inl.style.display='';setPrompt(t);t.inp.focus();t.scroll()}}
 async function exec(t,line){line=line.trim();if(!line)return;let m;
  if(/^(start\s+)?ms-settings:/i.test(line)){openW11(msKey(line));return}
@@ -600,14 +607,14 @@ async function exec(t,line){line=line.trim();if(!line)return;let m;
  if(m=/^\$env:(\w+)\s*=\s*(.*)$/i.exec(line)){setEnv(m[1],m[2].replace(/^(["'])(.*)\1$/,'$2'));return}
  if(m=/^\$env:(\w+)$/i.exec(line)){t.print(getEnv(m[1]));return}
  if(t.type==='cmd'&&(m=/^set\s+(\w+)=(.*)$/i.exec(line))){setEnv(m[1],m[2]);return}
- const{stages,redir}=splitLine(line);let data=null;
+ const{stages,redir}=splitLine(line);let data=null,lastId=null;
  for(let i=0;i<stages.length;i++){const last=i===stages.length-1,a=tokenize(stages[i]);if(!a.length)continue;const name=a.shift(),id=AL[name.toLowerCase()];
   if(!id||(t.type==='cmd'&&name.includes('-')))throw new Error(t.type==='cmd'?`'${name}' は、内部コマンドまたは外部コマンド、\n操作可能なプログラムまたはバッチ ファイルとして認識されていません。`:`${name}: The term '${name}' is not recognized as a name of a cmdlet, function, script file, or executable program.\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.`);
   const c={t,n:name.toLowerCase(),a,p:a.filter(x=>!/^[-\/]/.test(x)),f:new Set(a.filter(x=>/^[-\/]/.test(x)).map(x=>x.slice(1).toLowerCase())),in:data,live:last&&!redir};
-  const r=await CM[id].f(c);data=r==null?'':r}
+  const r=await CM[id].f(c);data=r==null?'':r;lastId=id}
  if(redir){const l=loc(t.cwd,redir.path);if(!l.par||!l.name)throw new Error('指定されたパスが見つかりません。');const txt=plain(data)+'\n';
   if(l.node&&l.node.t==='d')throw new Error('Access is denied.');if(l.node&&redir.app)l.node.c+=txt;else l.par.c[l.name]=mkF(txt);l.par.m=now();save();return}
- if(data){data.startsWith(H0)?t.html(data.slice(H0.length)):t.print(data)}}
+ if(data){const el=data.startsWith(H0)?t.html(data.slice(H0.length)):t.print(data);if(lastId&&ART_IDS.has(lastId)&&!redir&&plain(data).split('\n').length>=3)addCopyBar(t,el,plain(data));t.artPng=null;t.artAnsi=null}}
 /* ===== commands ===== */
 const CM={},AL={},AS={};
 function reg(id,name,desc,al,fn){CM[id]={n:name,d:desc,f:fn};AS[id]=al;[name,...al].forEach(a=>AL[a.toLowerCase()]=id)}
@@ -684,7 +691,7 @@ reg('title','title','タブのタイトルを変更',['title'],c=>{c.t.title=c.a
 reg('setmodel','Set-AiModel','Gemini のモデルを設定',['set-aimodel'],c=>{if(!c.p[0])throw new Error('使い方: Set-AiModel <モデル名>');setEnv('GEMINI_MODEL',c.p[0]);return`AIモデルを '${c.p[0]}' に設定しました。`});
 reg('getmodel','Get-AiModel','現在の Gemini モデルを表示',['get-aimodel'],c=>S.set.model);
 reg('god','godmode','解放されたシークレットコマンド一覧',['godmode'],c=>{if(!S.secrets)throw new Error('まだ解放されていません。ヒント: mkdir GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}');return godList()});
-const godList=()=>'\n【神モード: シークレットコマンド】\n  telnet towel.blinkenlights.nl       ASCII スター・ウォーズ風アニメ\n  curl ascii.live/parrot              パーティーパロット（ドット絵）\n  curl ascii.live/nyan / nyancat      ニャンキャット（ドット絵）\n  sl [-F]                             蒸気機関車（ドット絵・煙と車輪が動く）\n  cmatrix                             マトリックス\n  pipes                               3D パイプ風スクリーンセーバー\n  mystify                             Mystify スクリーンセーバー\n  fire                                ASCII の炎\n  hack                                ハッキング風アニメーション\n  bsod                                ブルー スクリーン\n  shutdown /r | /s                    再起動 / シャットダウン演出\n  winver                              Windows のバージョン情報\n  clipsay / cowsay <テキスト>             クリッピー / 牛が喋る\n  lolcat <テキスト>                       虹色で出力\n  fortune                             今日の運勢\n  weather [都市]                        天気 (wttr.in)\n  cal                                 今月のカレンダー\n  yes                                 y を繰り返す\n  sudo make me a sandwich             サンドイッチを作る\n  rm -rf /                            やってみてください（安全です）\n  ↑↑↓↓←→←→BA                          コナミコマンド\n  banner / figlet <テキスト>              巨大文字\n  img2ascii [-color]                  画像をアスキーアート化\n  winfetch                            システム情報\n';
+const godList=()=>'\n【神モード: シークレットコマンド】\n  telnet towel.blinkenlights.nl     ASCII スター・ウォーズ風アニメ\n  curl ascii.live/parrot            パーティーパロット（ドット絵）\n  curl ascii.live/nyan / nyancat    ニャンキャット（ドット絵）\n  sl [-F]                           蒸気機関車（ドット絵）\n  snake                             スネークゲーム（矢印キー）\n  life                              ライフゲーム\n  clock                             巨大な時計\n  starfield                         スター フィールド\n  dvd                               DVD ロゴが跳ねる（角に当たると…）\n  cmatrix                           マトリックス\n  pipes                             3D パイプ風スクリーンセーバー\n  mystify                           Mystify スクリーンセーバー\n  fire                              ASCII の炎\n  hack                              ハッキング風アニメーション\n  bsod                              ブルー スクリーン\n  shutdown /r | /s                  再起動 / シャットダウン演出\n  winver                            Windows のバージョン情報\n  clipsay / cowsay <テキスト>           クリッピー / 牛が喋る\n  lolcat <テキスト>                     虹色で出力\n  morse / rot13 <テキスト>              暗号遊び\n  fortune / quote                   今日の運勢 / ことわざ\n  roll 2d6 / flip                   サイコロ / コイン\n  weather [都市] / joke               天気 / ジョーク\n  sudo make me a sandwich           サンドイッチを作る\n  rm -rf /                          やってみてください（安全です）\n  ↑↑↓↓←→←→BA                        コナミコマンド\n  banner / figlet <テキスト>            巨大文字\n  img2ascii [-color]                画像をアスキーアート化（コピー可）\n  winfetch                          システム情報\n';
 reg('mss','ms-settings','Windows の設定を開く（start ms-settings:personalization など）',['ms-settings:','ms-settings'],c=>{openW11('home');return''});
 /* ===== extra commands ===== */
 const src=c=>{if(c.in!=null)return plain(c.in).replace(/\n$/,'').split('\n');const f=c.p[0]&&loc(c.t.cwd,c.p[0]);return f&&f.node&&f.node.t==='f'?f.node.c.replace(/\n$/,'').split('\n'):null};
@@ -864,6 +871,61 @@ function trainFrame(f){const W=124,H=36,g=mkGrid(W,H),G=gfx(g);
  return pxHtml(T,'#0b1020')}
 const KON=['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];let kpos=0;
 addEventListener('keydown',e=>{const k=e.key.toLowerCase();kpos=k===KON[kpos]?kpos+1:(k===KON[0]?1:0);if(kpos===KON.length){kpos=0;document.documentElement.classList.add('rbow');setTimeout(()=>document.documentElement.classList.remove('rbow'),2600);toast('🎮 コナミコマンド！ 神モードを解放しました');S.secrets=true;save()}});
+const ART_IDS=new Set(['img2','banner','winfetch','clipsay','cowsay','cal','tree','draw','fortune','lolcat','sel']);
+const copyText=async x=>{try{await navigator.clipboard.writeText(x);toast('コピーしました')}catch(e){const ta=document.createElement('textarea');ta.value=x;ta.style.cssText='position:fixed;opacity:0';document.body.append(ta);ta.select();try{document.execCommand('copy');toast('コピーしました')}catch(_){toast('コピーできませんでした')}ta.remove()}};
+const copyPng=async fn=>{try{await navigator.clipboard.write([new ClipboardItem({'image/png':fn()})]);toast('画像をコピーしました')}catch(e){toast('この環境では画像のコピーに対応していません。「画像を保存」をお使いください')}};
+const savePng=async fn=>{const b=await fn(),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='winterm-art-'+Date.now()+'.png';document.body.append(a);a.click();a.remove();toast('画像を保存しました')};
+const textToPng=(tx,fg='#e6e6e6',bg='#0c0c0c')=>()=>new Promise(res=>{const L=tx.split('\n'),fs=16,cv=document.createElement('canvas'),g=cv.getContext('2d');g.font=fs+'px monospace';const w=Math.max(...L.map(l=>g.measureText(l).width))+24;cv.width=Math.ceil(w*2);cv.height=(L.length*(fs+2)+24)*2;g.scale(2,2);g.fillStyle=bg;g.fillRect(0,0,cv.width,cv.height);g.fillStyle=fg;g.font=fs+'px monospace';g.textBaseline='top';L.forEach((l,i)=>g.fillText(l,12,12+i*(fs+2)));cv.toBlob(res,'image/png')});
+function addCopyBar(t,el,text){if(S.set.copyBar===false)return;const bar=document.createElement('div');bar.className='cpbar',png=t.artPng||textToPng(text),ansi=t.artAnsi;
+ const mk=(l,fn)=>{const b=document.createElement('button');b.textContent=l;b.onclick=e=>{e.stopPropagation();fn()};bar.append(b)};
+ mk('📋 コピー',()=>copyText(text));if(ansi)mk('🎨 ANSI でコピー',()=>copyText(ansi));mk('🖼 画像をコピー',()=>copyPng(png));mk('⬇ 画像を保存',()=>savePng(png));
+ mk('💾 ファイルに保存',()=>{const nm='art-'+new Date().toISOString().replace(/[-:T]/g,'').slice(0,14)+'.txt',l=loc(t.cwd,nm);if(l.par&&l.name){l.par.c[l.name]=mkF(text+'\n');save();toast(nm+' に保存しました')}});el.after(bar);t.scroll()}
+const copyAll=()=>{if(!cur||!cur.con)return;copyText([...cur.con.children].filter(e=>e!==cur.inl&&!e.classList.contains('cpbar')).map(e=>e.textContent).join('\n').replace(/\n{3,}/g,'\n\n'))};
+function revSearch(t){const q=t.rsq!=null?t.rsq:t.inp.value;t.rsq=q;const h=S.hist;let i=(t.rsi==null?h.length:t.rsi)-1;while(i>=0&&!h[i].toLowerCase().includes(q.toLowerCase()))i--;if(i>=0){t.rsi=i;t.inp.value=h[i];t.upd();toast('履歴検索: '+(q||'(すべて)'))}else{toast('一致する履歴がありません');t.rsi=null}}
+delete CM.img2ascii;delete AS.img2ascii;
+reg('img2','img2ascii','画像を ASCII / カラーブロックアートに変換 (-color, -w 幅, -invert)。結果はコピー・保存できます',['img2ascii'],c=>new Promise(res=>{
+ const t=c.t,color=c.f.has('color'),inv=c.f.has('invert'),wopt=+(opt(c.a,'w')||opt(c.a,'width')||0),inp=document.createElement('input');inp.type='file';inp.accept='image/*';
+ const bw=t.print('画像を選択してください (Ctrl+C でキャンセル) '),b=document.createElement('button');b.className='btn';b.textContent='📁 画像を選択…';b.onclick=()=>inp.click();bw.append(b);t.abort=()=>{t.abort=null;res('キャンセルしました')};try{inp.click()}catch(e){}
+ inp.onchange=()=>{const f=inp.files[0];if(!f)return;t.abort=null;const im=new Image(),u=URL.createObjectURL(f);im.onerror=()=>res('画像を読み込めませんでした。');
+  im.onload=()=>{URL.revokeObjectURL(u);const maxc=Math.min(150,Math.floor((t.con.clientWidth-24)/(S.set.fs*.6))),cols=Math.max(10,Math.min(wopt||maxc,300)),r0=Math.max(2,Math.round(im.height/im.width*cols*(color?1:.5))),R=color?r0+(r0%2):r0,cv=document.createElement('canvas');cv.width=cols;cv.height=R;const g=cv.getContext('2d');g.drawImage(im,0,0,cols,R);const d=g.getImageData(0,0,cols,R).data,px=(x,y)=>{const i=(y*cols+x)*4;return[d[i],d[i+1],d[i+2]]};let o='';
+   if(color){let ans='';for(let y=0;y<R;y+=2){for(let x=0;x<cols;x++){const a=px(x,y),b2=px(x,y+1);o+=`<span style="color:rgb(${a});background:rgb(${b2})">▀</span>`;ans+=`\u001b[38;2;${a[0]};${a[1]};${a[2]}m\u001b[48;2;${b2[0]};${b2[1]};${b2[2]}m▀`}o+='\n';ans+='\u001b[0m\n'}
+    t.artAnsi=ans;t.artPng=()=>new Promise(r=>{const K=8,c2=document.createElement('canvas');c2.width=cols*K;c2.height=R*K;const g2=c2.getContext('2d');for(let y=0;y<R;y++)for(let x=0;x<cols;x++){g2.fillStyle=`rgb(${px(x,y)})`;g2.fillRect(x*K,y*K,K,K)}c2.toBlob(r,'image/png')});res(H('<div class="pxa">'+o+'</div>'))}
+   else{const ramp=inv?'@%#*+=-:. ':' .:-=+*#%@';for(let y=0;y<R;y++){for(let x=0;x<cols;x++){const q=px(x,y);o+=ramp[Math.min(9,Math.floor((.299*q[0]+.587*q[1]+.114*q[2])/25.6))]}o+='\n'}t.artPng=textToPng(o.replace(/\n$/,''));res(o)}};im.src=u}}));
+reg('b64','base64','Base64 変換 (-d でデコード)',['base64'],c=>{const tx=c.in!=null?plain(c.in).replace(/\n$/,''):c.p.join(' ');if(!tx)throw new Error('使い方: base64 [-d] <テキスト>');if(c.f.has('d')||c.f.has('decode')){try{return new TextDecoder().decode(Uint8Array.from(atob(tx.trim()),ch=>ch.charCodeAt(0)))}catch(e){throw new Error('base64: 無効な入力です')}}return btoa(String.fromCharCode(...new TextEncoder().encode(tx)))});
+reg('urle','urlencode','URL エンコード (-d でデコード)',['urlencode'],c=>{const tx=c.in!=null?plain(c.in).replace(/\n$/,''):c.p.join(' ');if(!tx)throw new Error('使い方: urlencode [-d] <テキスト>');try{return c.f.has('d')?decodeURIComponent(tx):encodeURIComponent(tx)}catch(e){throw new Error('urlencode: 無効な入力です')}});
+reg('hashx','hash','テキストのハッシュ値 (-a sha1|sha256|sha512)',['hash','sha256'],async c=>{const av=opt(c.a,'a')||opt(c.a,'algorithm'),tx=c.in!=null?plain(c.in).replace(/\n$/,''):c.p.filter(x=>x!==av).join(' ');if(!tx)throw new Error('使い方: hash [-a sha256] <テキスト>');const al=({sha1:'SHA-1',sha256:'SHA-256',sha512:'SHA-512'})[(av||'sha256').toLowerCase().replace('-','')]||'SHA-256',h=await crypto.subtle.digest(al,new TextEncoder().encode(tx));return[...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('')});
+reg('guid','New-Guid','GUID を生成',['new-guid','guid','uuid'],c=>crypto.randomUUID?crypto.randomUUID():'00000000-0000-4000-8000-000000000000');
+const UNITS={length:{m:1,km:1000,cm:.01,mm:.001,mi:1609.344,yd:.9144,ft:.3048,in:.0254},mass:{kg:1,g:.001,mg:1e-6,lb:.45359237,oz:.0283495,t:1000},data:{b:1,kb:1024,mb:1048576,gb:1073741824,tb:1099511627776},time:{s:1,ms:.001,min:60,h:3600,d:86400,w:604800}};
+reg('conv','convert','単位を変換 (例: convert 10 km mi / convert 100 c f)',['convert','conv'],c=>{const[v,a,b]=c.p,n=parseFloat(v);if(isNaN(n)||!a||!b)throw new Error('使い方: convert <数値> <単位> <単位>   例: convert 10 km mi');const A=a.toLowerCase(),B=b.toLowerCase();
+ if(['c','f','k'].includes(A)&&['c','f','k'].includes(B)){const k=A==='c'?n+273.15:A==='f'?(n-32)*5/9+273.15:n,r=B==='c'?k-273.15:B==='f'?(k-273.15)*9/5+32:k;return`${n} °${A.toUpperCase()} = ${+r.toFixed(4)} °${B.toUpperCase()}`}
+ for(const g of Object.values(UNITS))if(A in g&&B in g)return`${n} ${a} = ${+(n*g[A]/g[B]).toPrecision(8)} ${b}`;throw new Error('convert: 対応していない単位です（長さ・質量・データ量・時間・温度）')});
+reg('json','ConvertFrom-Json','JSON を整形表示 (jq 風に .a.b で絞り込み)',['convertfrom-json','json','jq'],c=>{const q=c.p.find(x=>x.startsWith('.')),file=c.p.find(x=>x!==q);let tx=c.in!=null?plain(c.in):null;if(tx==null&&file){const l=loc(c.t.cwd,file);if(l.node&&l.node.t==='f')tx=l.node.c}if(tx==null)throw new Error('使い方: <JSON> | json [.path]  または json <ファイル>');let j;try{j=JSON.parse(tx)}catch(e){throw new Error('JSON を解析できません: '+e.message)}if(q&&q!=='.')for(const k of q.slice(1).split('.')){if(k==='')continue;j=j==null?undefined:j[/^\d+$/.test(k)?+k:k]}return j===undefined?'null':JSON.stringify(j,null,2)});
+reg('timer','timer','カウントダウン タイマー (timer 10 ＝ 10 秒)',['timer'],c=>new Promise((res,rej)=>{const n=+(c.p[0]||10);if(!(n>0))return rej(new Error('使い方: timer <秒>'));const T=c.t,el=T.print('');let left=n;const z=x=>String(Math.floor(x)).padStart(2,'0'),draw=()=>{const k=Math.round((n-left)/n*20);el.textContent=`⏱  ${z(left/60)}:${z(left%60)} [${'█'.repeat(k)}${'░'.repeat(20-k)}]`};draw();const id=setInterval(()=>{left--;if(left<=0){clearInterval(id);el.textContent='⏱  00:00 [████████████████████]  時間です！';try{navigator.vibrate&&navigator.vibrate(300)}catch(e){}T.abort=null;res('')}else draw()},1000);T.abort=()=>{clearInterval(id);T.abort=null;res('')}}));
+reg('themec','Set-Theme','テーマを変更 (theme dark|light|system)',['theme','set-theme'],c=>{const v=(c.p[0]||'').toLowerCase();if(!['dark','light','system'].includes(v))return'現在のテーマ: '+S.set.theme+'\n使い方: theme dark | light | system';setLook('theme',v);return'テーマを '+v+' に変更しました'});
+reg('accentc','Set-Accent','アクセント カラーを変更 (accent #60cdff / accent red)',['accent'],c=>{let v=c.p[0];if(!v)return'現在: '+S.set.accent;const N={blue:'#60cdff',green:'#6ccb5f',purple:'#b4a0ff',pink:'#ff99a4',yellow:'#fce100',orange:'#f7630c',red:'#ff4343'};v=N[v.toLowerCase()]||v;if(!/^#[0-9a-f]{6}$/i.test(v))throw new Error('色は #rrggbb か blue / green / purple / pink / yellow / orange / red で指定してください');setLook('accent',v);return'アクセント カラーを '+v+' に変更しました'});
+reg('fontc','Set-Font','フォントとサイズを変更 (font "Cascadia Mono" 16)',['font','fontsize'],c=>{const nm=c.p.filter(x=>isNaN(x)).join(' '),sz=c.p.find(x=>x!==''&&!isNaN(x));if(!nm&&!sz)return`現在: ${S.set.font} ${S.set.fs}px`;if(nm)setLook('font',nm);if(sz)setLook('fs',Math.max(10,Math.min(32,+sz)));return`${S.set.font} ${S.set.fs}px に変更しました`});
+reg('backupc','Export-Backup','設定とデータを JSON で書き出す',['backup','export-backup'],c=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({app:'winterm',version:5,state:S},null,1)],{type:'application/json'}));a.download='winterm-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(a);a.click();a.remove();return'バックアップを書き出しました'});
+AL['diff']=AL['fc'];AL['dig']=AL['nslookup'];
+const QUOTES=['七転び八起き。','継続は力なり。','急がば回れ。','千里の道も一歩から。','失敗は成功のもと。','塵も積もれば山となる。','猿も木から落ちる。','案ずるより産むが易し。','百聞は一見に如かず。','終わり良ければすべて良し。'];
+reg('quote','quote','今日のことわざ',['quote'],c=>QUOTES[Math.floor(Math.random()*QUOTES.length)]);
+reg('roll','roll','サイコロを振る (roll 2d6)',['roll','dice'],c=>{const m=/^(\d*)d(\d+)$/i.exec(c.p[0]||'1d6');if(!m)throw new Error('使い方: roll 2d6');const n=Math.min(100,+m[1]||1),sd=+m[2],r=Array.from({length:n},()=>1+Math.floor(Math.random()*sd));return`🎲 ${r.join(' + ')} = ${r.reduce((a,b)=>a+b,0)}`});
+reg('flip','flip','コインを投げる',['flip','coin'],c=>Math.random()<.5?'表 (Heads)':'裏 (Tails)');
+const MORSE={a:'.-',b:'-...',c:'-.-.',d:'-..',e:'.',f:'..-.',g:'--.',h:'....',i:'..',j:'.---',k:'-.-',l:'.-..',m:'--',n:'-.',o:'---',p:'.--.',q:'--.-',r:'.-.',s:'...',t:'-',u:'..-',v:'...-',w:'.--',x:'-..-',y:'-.--',z:'--..',0:'-----',1:'.----',2:'..---',3:'...--',4:'....-',5:'.....',6:'-....',7:'--...',8:'---..',9:'----.'};
+reg('morse','morse','モールス信号に変換 (-d でデコード)',['morse'],c=>{const tx=(c.in!=null?plain(c.in):c.p.join(' ')).trim();if(!tx)throw new Error('使い方: morse [-d] <テキスト>');if(c.f.has('d')){const R=Object.fromEntries(Object.entries(MORSE).map(([k,v])=>[v,k]));return tx.split(/\s{2,}|\//).map(w=>w.trim().split(/\s+/).map(x=>R[x]||'?').join('')).join(' ')}return[...tx.toLowerCase()].map(ch=>ch===' '?'/':MORSE[ch]||'').filter(Boolean).join(' ')});
+reg('rot13','rot13','ROT13 変換',['rot13'],c=>(c.in!=null?plain(c.in):c.p.join(' ')).replace(/[a-zA-Z]/g,ch=>String.fromCharCode((ch<='Z'?90:122)>=(ch=ch.charCodeAt(0)+13)?ch:ch-26)));
+reg('joke','joke','ジョーク (icanhazdadjoke)',['joke'],async c=>{const ac=new AbortController();c.t.abort=()=>ac.abort();try{const r=await fetch('https://icanhazdadjoke.com/',{headers:{Accept:'text/plain'},signal:ac.signal});return await r.text()}catch(e){throw new Error('joke: 取得できません（ネットワーク制限の可能性）')}finally{c.t.abort=null}});
+reg('snake','snake','スネークゲーム (矢印キー / WASD、Esc で終了)',['snake'],c=>new Promise(res=>{const T=c.t,W=30,Hh=14,el=T.print('');el.style.lineHeight='1.15';let sn=[[8,7],[7,7],[6,7]],d=[1,0],nd=d,food=[20,7],score=0,over=false;
+ const rnd=()=>{do{food=[Math.floor(Math.random()*W),Math.floor(Math.random()*Hh)]}while(sn.some(q=>q[0]===food[0]&&q[1]===food[1]))};
+ const draw=()=>{let o='┌'+'──'.repeat(W)+'┐  Score: '+score+'\n';for(let y=0;y<Hh;y++){o+='│';for(let x=0;x<W;x++)o+=(sn[0][0]===x&&sn[0][1]===y)?'██':sn.some(q=>q[0]===x&&q[1]===y)?'▓▓':(food[0]===x&&food[1]===y?'<span style="color:#e74856">●</span> ':'  ');o+='│\n'}o+='└'+'──'.repeat(W)+'┘\n'+(over?'<span class="r">GAME OVER</span>  (Esc で終了)':'矢印キー / WASD で操作・Esc で終了');el.innerHTML=o;T.scroll()};
+ const end=()=>{clearInterval(id);removeEventListener('keydown',kd,true);T.abort=null;res(score?`スコア: ${score}`:'')};
+ const kd=e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();end();return}const M={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0],w:[0,-1],s:[0,1],a:[-1,0],d:[1,0]}[e.key];if(M){e.preventDefault();e.stopPropagation();if(M[0]!==-d[0]||M[1]!==-d[1])nd=M}};
+ const id=setInterval(()=>{if(over)return;d=nd;const h=[sn[0][0]+d[0],sn[0][1]+d[1]];if(h[0]<0||h[1]<0||h[0]>=W||h[1]>=Hh||sn.some(q=>q[0]===h[0]&&q[1]===h[1])){over=true;draw();return}sn.unshift(h);if(h[0]===food[0]&&h[1]===food[1]){score++;rnd()}else sn.pop();draw()},120);
+ addEventListener('keydown',kd,true);T.abort=end;draw()}));
+reg('life','life','ライフゲーム (Ctrl+C で終了)',['life'],c=>{const W=56,Hh=20;let g=Array.from({length:Hh},()=>Array.from({length:W},()=>Math.random()<.28?1:0));const st=()=>{g=g.map((r,y)=>r.map((v,x)=>{let n=0;for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++)if(i||j)n+=g[(y+j+Hh)%Hh][(x+i+W)%W];return(v&&(n===2||n===3))||(!v&&n===3)?1:0}))};return ANIM.loop(c.t,()=>{const o=g.map(r=>r.map(v=>v?'█':'·').join('')).join('\n');st();return`<span class="gn">${o}</span>\n<span class="gr">Ctrl + C で終了</span>`},120)});
+reg('clock','clock','巨大な時計 (Ctrl+C で終了)',['clock'],c=>ANIM.loop(c.t,()=>{const d=new Date(),z=n=>String(n).padStart(2,'0');return bannerH(`${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`).slice(H0.length)+'\n<span class="gr">'+d.toLocaleDateString('ja-JP',{dateStyle:'full'})+'  /  Ctrl + C で終了</span>'},500));
+const canvasCmd=(c,draw,ms)=>new Promise(res=>{const t=c.t,w=t.print(''),cv=document.createElement('canvas');cv.style.cssText='display:block;width:100%;height:'+Math.max(240,t.con.clientHeight-60)+'px;background:#000;border-radius:6px';w.append(cv);const W=cv.width=w.clientWidth,Hh=cv.height=cv.clientHeight,g=cv.getContext('2d'),step=draw(g,W,Hh),id=setInterval(step,ms);t.scroll();t.abort=()=>{clearInterval(id);t.abort=null;w.remove();res('')}});
+reg('starfield','starfield','スター フィールド (Ctrl+C で終了)',['starfield','stars'],c=>canvasCmd(c,(g,W,Hh)=>{const S0=Array.from({length:240},()=>({x:(Math.random()-.5)*W,y:(Math.random()-.5)*Hh,z:Math.random()*W}));return()=>{g.fillStyle='rgba(0,0,0,.35)';g.fillRect(0,0,W,Hh);for(const q of S0){q.z-=7;if(q.z<=1){q.x=(Math.random()-.5)*W;q.y=(Math.random()-.5)*Hh;q.z=W}const px=W/2+q.x/q.z*W*.5,py=Hh/2+q.y/q.z*W*.5;g.fillStyle='#fff';g.beginPath();g.arc(px,py,Math.max(.5,(1-q.z/W)*3),0,7);g.fill()}}},30));
+reg('dvd','dvd','DVD ロゴが跳ねる (Ctrl+C で終了)',['dvd'],c=>canvasCmd(c,(g,W,Hh)=>{let x=40,y=30,vx=2.4,vy=1.9,hue=200,msg=0;const bw=128,bh=56;return()=>{g.fillStyle='#000';g.fillRect(0,0,W,Hh);x+=vx;y+=vy;let hx=false,hy=false;if(x<=0||x+bw>=W){vx=-vx;hx=true}if(y<=0||y+bh>=Hh){vy=-vy;hy=true}if(hx||hy)hue=(hue+67)%360;if(hx&&hy)msg=60;g.fillStyle=`hsl(${hue} 90% 60%)`;g.beginPath();g.roundRect?g.roundRect(x,y,bw,bh,10):g.rect(x,y,bw,bh);g.fill();g.fillStyle='#000';g.font='bold 24px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText('WinTerm',x+bw/2,y+bh/2);if(msg>0){msg--;g.fillStyle='#fff';g.font='20px sans-serif';g.fillText('🎉 角に当たった！',W/2,30)}}},16));
 reg('nyancat','nyancat','ニャンキャット（ドット絵）',['nyancat'],c=>ANIM.nyan(c.t));
 reg('parrot','parrot','パーティーパロット（ドット絵）',['parrot'],c=>ANIM.parrot(c.t));
 reg('bsod','bsod','ブルー スクリーン (イースターエッグ)',['bsod'],c=>{const m=document.createElement('div');m.className='bsod';
@@ -952,6 +1014,7 @@ const ANIM={loop(t,mk,ms){return new Promise(res=>{const el=t.html('');el.style.
   return this.loop(t,i=>{const f=cat[i%2],pad=' '.repeat(i%6);return '\n'+f.map((l,j)=>`${pad}<span style="color:${tr[(j+i)%6]}">${'~'.repeat(10-(i%2))}</span>${esc(l)}`).join('\n')+'\n\n<span class="gr">Ctrl + C で停止</span>'},140)}};
 ANIM.nyan=t=>ANIM.loop(t,i=>nyanHtml(i%12),85);
 ANIM.parrot=t=>ANIM.loop(t,i=>parrotHtml(i%10),90);
+delete CM.img2ascii;delete AS.img2ascii;AL['img2ascii']='img2';
 delete CM.sl;delete AS.sl;
 reg('sl2','sl','蒸気機関車が走る (ls のタイプミス / -F で空を飛ぶ)',['sl'],c=>new Promise(res=>{const t=c.t,fly=c.f.has('f'),w=t.print('');w.style.overflow='hidden';w.style.minHeight='20em';const p=document.createElement('div');p.className='pxa';p.style.willChange='transform';w.append(p);t.scroll();
  let x=w.clientWidth,f=0;const W0=x,id=setInterval(()=>{f++;x-=14;p.innerHTML=trainFrame(f);p.style.transform=`translate(${x}px,${fly?-Math.max(0,(1-x/W0))*160:0}px)`;if(x<-p.offsetWidth){end()}},55);
@@ -1058,7 +1121,8 @@ function buildSettings(t){
   +urow('sv:pointer','右クリックで貼り付け','右クリック (長押し) で貼り付けます。',utg('rc0',false,true),'',true)
   +urow('sv:scroll','出力の自動スクロール','新しい出力が表示されたら、自動的に最下部へスクロールします。',utg('as',S.set.autoScroll!==false))
   +urow('sv:bar','スクロール バーの表示','コンソールのスクロール バー',usl('sbr',[['auto','自動'],['always','常に表示'],['hidden','非表示']],S.set.sbar||'auto'))
-  +urow('history-24-regular','コマンド履歴を保存','オフにすると、↑ ↓ で呼び出せる履歴に追加されません',utg('hs',S.set.histSave!==false));
+  +urow('history-24-regular','コマンド履歴を保存','オフにすると、↑ ↓ で呼び出せる履歴に追加されません',utg('hs',S.set.histSave!==false))
+  +urow('sv:copy','アート出力にコピー ボタンを表示','img2ascii / banner などの出力の下に、コピーと保存のボタンを表示します',utg('cb',S.set.copyBar!==false));
  else if(pgn==='look')pg=urow('weather-sunny-24-regular','テーマ','アプリケーションのテーマ',usl('th',[['dark','ダーク'],['light','ライト'],['system','Windows の既定に従う']],S.set.theme))
   +urow('image-24-regular','壁紙','Mica が映し込む背景',usl('wl',[...WALL_UI,...(S.set.wallImg?[['custom','カスタム画像']]:[])],S.set.wall||'bloom'))
   +uex('accent','color-24-regular','アクセント カラー','',`<span class="kvv"><i class="dot" style="background:${S.set.accent}"></i></span>`,`<div class="swg">${ACC.map(a=>`<button class="sw${a[0]===S.set.accent?' on':''}" data-c="${a[0]}" style="background:${a[0]}" title="${a[1]}" aria-label="${a[1]}"></button>`).join('')}</div>`)
@@ -1115,7 +1179,7 @@ function buildSettings(t){
  on('sv','click',()=>{t.snap=JSON.stringify(S.set);save();toast('設定を保存しました')});
  on('dc','click',()=>{try{S.set=JSON.parse(t.snap)}catch(e){}save();applyLook();again();toast('変更を破棄しました')});
  on('pf','change',e=>{S.set.profile=e.target.value;save();again()});on('lg','change',e=>{S.set.logo=e.target.value;save()});on('bn','input',e=>{S.set.banner=e.target.value;save()});on('fa','change',e=>{S.set.fast=e.target.checked;save();again()});
- on('cs','change',e=>{S.set.copySel=e.target.checked;save();again()});on('as','change',e=>{S.set.autoScroll=e.target.checked;save();again()});on('sbr','change',e=>{setLook('sbar',e.target.value)});on('hs','change',e=>{S.set.histSave=e.target.checked;save();again()});
+ on('cs','change',e=>{S.set.copySel=e.target.checked;save();again()});on('as','change',e=>{S.set.autoScroll=e.target.checked;save();again()});on('sbr','change',e=>{setLook('sbar',e.target.value)});on('hs','change',e=>{S.set.histSave=e.target.checked;save();again()});on('cb','change',e=>{S.set.copyBar=e.target.checked;save();again()});
  on('fp','change',e=>{S.set.fullPath=e.target.checked;save();tabs.forEach(x=>x.pr&&setPrompt(x));again()});on('tmp','input',e=>{S.set.temp=+e.target.value;save();q('#tmpv').textContent=(+e.target.value).toFixed(1)});on('mt','change',e=>{S.set.maxTok=+e.target.value;save()});
  on('th','change',e=>{setLook('theme',e.target.value);again()});on('wl','change',e=>{setLook('wall',e.target.value);again()});
  t.view.querySelectorAll('.sw').forEach(b=>b.onclick=()=>{S.set.accent=b.dataset.c;save();applyLook();t.view.querySelectorAll('.sw').forEach(x=>x.classList.toggle('on',x===b));const d=t.view.querySelector('.dot');if(d)d.style.background=S.set.accent});
@@ -1250,7 +1314,7 @@ const MENU=[['ps','Windows PowerShell','Ctrl+Shift+1'],['cmd','コマンド プ�
 $('#menu').innerHTML=MENU.map(m=>m==='-'?'<hr>':`<div data-t="${m[0]}"><span class="mi">${MICON[m[0]]}</span><span class="ml">${m[1]}</span><small>${m[2]}</small></div>`).join('');
 const nxTab=d=>{const i=tabs.indexOf(cur);sel(tabs[(i+d+tabs.length)%tabs.length])};
 function showAbout(){const m=document.createElement('div');m.className='modal';m.innerHTML=`<div class="dlg"><div style="display:flex;gap:14px;align-items:center;margin-bottom:14px">${WTLOGO(48)}<b style="font-size:20px">WinTerm</b></div><div style="line-height:1.8">バージョン: 1.5.0<br>Windows Terminal を Web で再現した、非公式のアプリです。<br>仮想 PowerShell: ${S.set.psver==='5'?'5.1':'7.7.0'}</div><div style="text-align:right;margin-top:20px"><button class="btn pri">OK</button></div></div>`;document.body.append(m);const c=()=>m.remove();m.querySelector('button').onclick=c;m.onclick=e=>{if(e.target===m)c()}}
-const PCMDS=[['新しい Windows PowerShell タブ','Ctrl+Shift+1',()=>newTab('ps')],['新しいコマンド プロンプト タブ','Ctrl+Shift+2',()=>newTab('cmd')],['新しい Gemini AI Shell タブ','Ctrl+Shift+3',()=>newTab('ai')],['設定を開く','Ctrl+,',()=>openWT('startup')],['Windows の設定を開く','',()=>openW11('home')],['出力をクリア','⌘K',()=>cur&&cur.clear&&cur.clear()],['タブを閉じる','⌘W',()=>cur&&closeTab(cur)],['次のタブ','Ctrl+Tab',()=>nxTab(1)],['前のタブ','Ctrl+Shift+Tab',()=>nxTab(-1)],['テーマ: ダーク','',()=>setLook('theme','dark')],['テーマ: ライト','',()=>setLook('theme','light')],['バージョン情報','',showAbout]];
+const PCMDS=[['新しい Windows PowerShell タブ','Ctrl+Shift+1',()=>newTab('ps')],['新しいコマンド プロンプト タブ','Ctrl+Shift+2',()=>newTab('cmd')],['新しい Gemini AI Shell タブ','Ctrl+Shift+3',()=>newTab('ai')],['設定を開く','Ctrl+,',()=>openWT('startup')],['Windows の設定を開く','',()=>openW11('home')],['出力をクリア','⌘K',()=>cur&&cur.clear&&cur.clear()],['タブを閉じる','⌘W',()=>cur&&closeTab(cur)],['次のタブ','Ctrl+Tab',()=>nxTab(1)],['前のタブ','Ctrl+Shift+Tab',()=>nxTab(-1)],['テーマ: ダーク','',()=>setLook('theme','dark')],['テーマ: ライト','',()=>setLook('theme','light')],['出力をすべてコピー','',()=>copyAll()],['フォントを大きく','⌘ +',()=>setLook('fs',Math.min(32,S.set.fs+1))],['フォントを小さく','⌘ -',()=>setLook('fs',Math.max(10,S.set.fs-1))],['フォント サイズをリセット','⌘ 0',()=>setLook('fs',15)],['バージョン情報','',showAbout]];
 function openPalette(){if($('#cp'))return;const m=document.createElement('div');m.id='cp';m.className='modal cpm';m.innerHTML='<div class="cp"><input placeholder="コマンド名を入力してください" autocomplete="off" autocapitalize="off" spellcheck="false"><div class="cpl"></div></div>';document.body.append(m);
  const inp=m.querySelector('input'),lst=m.querySelector('.cpl');let k=0,items=[];
  const draw=()=>{const f=inp.value.toLowerCase();items=PCMDS.filter(c=>c[0].toLowerCase().includes(f));k=Math.min(k,Math.max(0,items.length-1));lst.innerHTML=items.map((c,i)=>`<div class="cpi${i===k?' on':''}" data-i="${i}"><span>${esc(c[0])}</span><small>${c[1]}</small></div>`).join('')||'<div class="cpi"><span>一致するコマンドがありません</span></div>'};
@@ -1270,6 +1334,7 @@ addEventListener('keydown',e=>{if(!cur)return;if(/INPUT|TEXTAREA|SELECT/.test(e.
  if(C&&e.shiftKey&&/^Digit[1-3]$/.test(e.code)){e.preventDefault();newTab(['ps','cmd','ai'][+e.code.slice(5)-1]);return}
  if((M&&!e.shiftKey&&k==='k')||(C&&k==='l')){if(cur.con){e.preventDefault();cur.clear()}return}
  if(C&&k==='c'){if(getSelection().toString())return;e.preventDefault();if(cur.busy){cur.print('^C','gr');cur.abort&&cur.abort()}else if(cur.inp){cur.html(esc(cur.pr.textContent+cur.inp.value)+'<span class="gr">^C</span>');cur.inp.value='';cur.upd()}return}
+ if((M||C)&&['=','+','-','0'].includes(e.key)){e.preventDefault();const f=e.key==='0'?15:Math.max(10,Math.min(32,S.set.fs+(e.key==='-'?-1:1)));setLook('fs',f);toast('フォント サイズ: '+f+' px');return}
  if((M||C)&&e.key===','){e.preventDefault();openWT('startup');return}
  if(M&&!e.shiftKey&&k==='t'){e.preventDefault();newTab(S.set.profile||'ps');return}
  if(M&&!e.shiftKey&&k==='w'){e.preventDefault();closeTab(cur);return}
